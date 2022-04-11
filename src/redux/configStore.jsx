@@ -7,6 +7,7 @@ import { rootSaga } from './sagas/rootSaga';
 import LoadingReducers from './reducers/LoadingReducers';
 import { HistoryReducer } from './reducers/HistoryReducer';
 import { UserLoginCyberbugsReducer } from './reducers/UserCyberbugsReducer';
+import { ProjectCategoryReducer } from './reducers/ProjectCategoryReducer';
 
 const middleWareSaga = createMiddleWareSaga();
 
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     //Nơi chứa các state của ứng dụng
     LoadingReducers,
     HistoryReducer,
-    UserLoginCyberbugsReducer
+    UserLoginCyberbugsReducer,
+    ProjectCategoryReducer
 });
 
 let middleWare = applyMiddleware(reduxThunk, middleWareSaga);

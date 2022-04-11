@@ -11,5 +11,24 @@ export const cyberbugsService = {
                 TokenCybersoft: TOKEN_CYBERSOFT
             }
         })
+    },
+    getAllProjectCategory: () => {
+        return axios({
+            url: `${DOMAIN}/projectCategory`,
+            method: "GET",
+            headers: { 
+                TokenCybersoft: TOKEN_CYBERSOFT
+            }
+        })
+    },
+    createProject: (newProject) => {
+        return axios({
+            url: `${DOMAIN}/project/createProject`,
+            method: "POST",
+            data: newProject,
+            headers: { 
+                TokenCybersoft: TOKEN_CYBERSOFT
+            }
+        })
     }
 }

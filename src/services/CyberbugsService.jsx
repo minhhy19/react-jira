@@ -1,5 +1,5 @@
 import axios from "axios"
-import { DOMAIN, TOKEN_CYBERSOFT } from "../util/constants/settingSystem"
+import { ACCESS_TOKEN, DOMAIN, TOKEN_CYBERSOFT } from "../util/constants/settingSystem"
 
 export const cyberbugsService = {
     signinCyberBugs: (userLogin) => {
@@ -23,11 +23,22 @@ export const cyberbugsService = {
     },
     createProject: (newProject) => {
         return axios({
-            url: `${DOMAIN}/project/createProject`,
+            url: `${DOMAIN}/project/createProjectAuthorize`,
             method: "POST",
             data: newProject,
             headers: { 
-                TokenCybersoft: TOKEN_CYBERSOFT
+                TokenCybersoft: TOKEN_CYBERSOFT,
+                Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+            }
+        })
+    },
+    getListProject: () => {
+        return axios({
+            url: `${DOMAIN}/project/getAllProject`,
+            method: "GET",
+            headers: { 
+                TokenCybersoft: TOKEN_CYBERSOFT,
+                Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
             }
         })
     }

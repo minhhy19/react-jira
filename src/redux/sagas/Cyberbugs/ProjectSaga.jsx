@@ -1,10 +1,10 @@
 import { call, delay, fork, take, takeEvery, takeLatest, put, select } from 'redux-saga/effects';
 import { cyberbugsService } from '../../../services/CyberbugsService';
-import { STATUS_CODE } from '../../../util/constants/settingSystem';
+import { history, STATUS_CODE } from '../../../util/constants/settingSystem';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConst';
 
 function * createProjectSaga(action) {
-    console.log('createProjectAction', action)
+    // console.log('createProjectAction', action)
     // hiển thị loading
     yield put({
         type: DISPLAY_LOADING
@@ -15,13 +15,9 @@ function * createProjectSaga(action) {
 
         // Gọi API thành công thì dispatch lên reducer thông qua put
         if(status === STATUS_CODE.SUCCESS) {
-            // yield put({
-            //     type: 'CREATE_PROJECT',
-            //     data: data.content
-            // })
+            console.log(data);
+            history.push('/projectmanagement');
         }
-
-        console.log(data);
     } catch(err) {
         console.log(err);
     }
@@ -31,6 +27,31 @@ function * createProjectSaga(action) {
     
 }
 
-export function * theoDoiCreateProjectSaga() {
+export function* theoDoiCreateProjectSaga() {
     yield takeLatest('CREATE_PROJECT_SAGA', createProjectSaga);
+}
+
+
+// Saga dùng để get all project từ api
+function * getListProjectSaga(action) {
+    // console.log('getListProjectSaga', action)
+    try {
+        // Gọi API lấy dữ liệu về
+        const { data, status } = yield call(() => cyberbugsService.getListProject());
+
+        // Gọi API thành công thì dispatch lên reducer thông qua put
+        if(status === STATUS_CODE.SUCCESS) {
+            console.log(data);
+            yield put({
+                type: "GET_LIST_PROJECT",
+                projectList: data.content
+            })
+        }
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+export function* theoDoiGetListProjectSaga() {
+    yield takeLatest('GET_LIST_PROJECT_SAGA', getListProjectSaga);
 }

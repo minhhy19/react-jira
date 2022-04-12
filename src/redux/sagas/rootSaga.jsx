@@ -11,7 +11,8 @@ export function* rootSaga() {
     
     ProjectCategorySaga.theoDoiGetAllProjectCategory(),
 
-    ProjectSaga.theoDoiCreateProjectSaga()
+    ProjectSaga.theoDoiCreateProjectSaga(),
+    ProjectSaga.theoDoiGetListProjectSaga()
 
   ])
 }

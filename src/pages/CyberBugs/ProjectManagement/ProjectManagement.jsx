@@ -3,6 +3,7 @@ import { Table, Button, Space, Tag } from 'antd';
 import ReactHtmlParse from "react-html-parser";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from 'react-redux';
+import FormEditProject from '../../../components/Forms/FormEditProject/FormEditProject';
 
 
 
@@ -14,7 +15,7 @@ export default function ProjectManagement(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch({type: 'GET_LIST_PROJECT_SAGA'})
+        dispatch({ type: 'GET_LIST_PROJECT_SAGA' })
     }, [])
 
     const [state, setState] = useState({
@@ -124,12 +125,21 @@ export default function ProjectManagement(props) {
             title: 'Action',
             key: 'action',
             render: (text, record, index) => (
-                <Space size="middle">
-                    <a onClick={() => {
-                        
-                    }}><EditOutlined /></a>
-                    <a><DeleteOutlined /></a>
-                </Space>
+                <div>
+                    <button className='btn mr-2 btn-primary' onClick={() => {
+                        const action = {
+                            type: 'OPEN_FORM_EDIT_PROJECT',
+                            Component: <FormEditProject />
+                        }
+                        // dispatch lên reducer nội dung
+                        dispatch(action);
+                    }}>
+                        <EditOutlined style={{ fontSize: 17 }} />
+                    </button>
+                    <button className='btn btn-danger'>
+                        <DeleteOutlined style={{ fontSize: 17 }} />
+                    </button>
+                </div>
             ),
         },
     ];

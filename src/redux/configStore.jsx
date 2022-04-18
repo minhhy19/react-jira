@@ -9,6 +9,7 @@ import { HistoryReducer } from './reducers/HistoryReducer';
 import { UserLoginCyberbugsReducer } from './reducers/UserCyberbugsReducer';
 import { ProjectCategoryReducer } from './reducers/ProjectCategoryReducer';
 import { ProjectCyberbugsReducer } from './reducers/ProjectCyberbugsReducer';
+import { DrawerCyberBugsReducer } from './reducers/DrawerCyberBugsReducer';
 
 const middleWareSaga = createMiddleWareSaga();
 
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     HistoryReducer,
     UserLoginCyberbugsReducer,
     ProjectCategoryReducer,
-    ProjectCyberbugsReducer
+    ProjectCyberbugsReducer,
+    DrawerCyberBugsReducer
 });
 
 let middleWare = applyMiddleware(reduxThunk, middleWareSaga);

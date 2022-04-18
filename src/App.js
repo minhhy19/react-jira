@@ -14,6 +14,7 @@ import { CyberbugsTemplate } from "./templates/HomeTemplate/CyberbugsTemplate";
 import indexCyberbugs from "./redux/sagas/Cyberbugs/indexCyberbugs";
 import CreateProject from "./pages/CyberBugs/CreateProject/CreateProject";
 import ProjectManagement from "./pages/CyberBugs/ProjectManagement/ProjectManagement";
+import DrawerCyberbugs from "./HOC/CyberbugsHOC/DrawerCyberbugs";
 
 function App() {
 	// const history = useHistory()
@@ -24,6 +25,7 @@ function App() {
     return (
         <>
             <LoadingComponent />
+            <DrawerCyberbugs />
             <Switch>
                 <UserLoginTemplate exact path="/login" Component={LoginCyberBugs} />
                 <CyberbugsTemplate exact path='/cyberbugs' Component={indexCyberbugs} />

@@ -14,7 +14,9 @@ export const DrawerCyberBugsReducer = (state = initialState, action) => {
         case 'CLOSE_DRAWER':
             return { ...state, visible: false }
         case 'OPEN_FORM_EDIT_PROJECT': {
-            return { ...state, visible: true, ComponentContentDrawer: action.Component }
+            state.visible = true;
+            state.ComponentContentDrawer = action.Component;
+            return { ...state }
         }
         case 'SET_SUBMIT_EDIT_PROJECT': {
             state.callBackSubmit = action.submitFunction;

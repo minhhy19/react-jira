@@ -133,6 +133,13 @@ export default function ProjectManagement(props) {
                         }
                         // dispatch lên reducer nội dung
                         dispatch(action);
+
+                        // dispatch dữ liệu dòng hiện tại lên reducer
+                        const actionEditProject = {
+                            type: 'EDIT_PROJECT',
+                            projectEditModel: record
+                        }
+                        dispatch(actionEditProject);
                     }}>
                         <EditOutlined style={{ fontSize: 17 }} />
                     </button>

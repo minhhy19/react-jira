@@ -55,3 +55,39 @@ function * getListProjectSaga(action) {
 export function* theoDoiGetListProjectSaga() {
     yield takeLatest('GET_LIST_PROJECT_SAGA', getListProjectSaga);
 }
+
+// Saga dùng để update project
+function * updateProjectSaga(action) {
+    // console.log('actionupdateProjectSaga', action)
+    // hiển thị loading
+    yield put({
+        type: DISPLAY_LOADING
+    })
+    try {
+        // Gọi API lấy dữ liệu về
+        const { data, status } = yield call(() => cyberbugsService.updateProject(action.projectUpdate));
+
+        // Gọi API thành công thì dispatch lên reducer thông qua put
+        if(status === STATUS_CODE.SUCCESS) {
+            console.log(data);
+            // history.push('/projectmanagement');
+        }
+        // load lại list project
+        yield call(getListProjectSaga);
+
+        // tắt drawer
+        yield put({
+            type: 'CLOSE_DRAWER'
+        })
+    } catch(err) {
+        console.log(err);
+    }
+    yield put({
+        type: HIDE_LOADING
+    })
+    
+}
+
+export function* theoDoiUpdateProjectSaga() {
+    yield takeLatest('UPDATE_PROJECT_SAGA', updateProjectSaga);
+}

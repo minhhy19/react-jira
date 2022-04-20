@@ -10,6 +10,7 @@ import { UserLoginCyberbugsReducer } from './reducers/UserCyberbugsReducer';
 import { ProjectCategoryReducer } from './reducers/ProjectCategoryReducer';
 import { ProjectCyberbugsReducer } from './reducers/ProjectCyberbugsReducer';
 import { DrawerCyberBugsReducer } from './reducers/DrawerCyberBugsReducer';
+import { ProjectReducer } from './reducers/ProjectReducer';
 
 const middleWareSaga = createMiddleWareSaga();
 
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
     UserLoginCyberbugsReducer,
     ProjectCategoryReducer,
     ProjectCyberbugsReducer,
-    DrawerCyberBugsReducer
+    DrawerCyberBugsReducer,
+    ProjectReducer
 });
 
 let middleWare = applyMiddleware(reduxThunk, middleWareSaga);

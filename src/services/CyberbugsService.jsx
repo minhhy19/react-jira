@@ -41,5 +41,16 @@ export const cyberbugsService = {
                 Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
             }
         })
-    }
+    },
+    updateProject: (projectUpdate) => {
+        return axios({
+            url: `${DOMAIN}/project/updateProject?projectId=${projectUpdate.id}`,
+            method: "PUT",
+            data: projectUpdate,
+            headers: { 
+                TokenCybersoft: TOKEN_CYBERSOFT,
+                Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+            }
+        })
+    },
 }

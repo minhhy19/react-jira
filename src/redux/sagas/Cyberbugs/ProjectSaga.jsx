@@ -1,6 +1,8 @@
 import { call, delay, fork, take, takeEvery, takeLatest, put, select } from 'redux-saga/effects';
 import { cyberbugsService } from '../../../services/CyberbugsService';
+import { projectService } from '../../../services/ProjectService';
 import { history, STATUS_CODE } from '../../../util/constants/settingSystem';
+import { notificationFunction } from '../../../util/Notification/notificationCyberbugs';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConst';
 
 function * createProjectSaga(action) {
@@ -90,4 +92,44 @@ function * updateProjectSaga(action) {
 
 export function* theoDoiUpdateProjectSaga() {
     yield takeLatest('UPDATE_PROJECT_SAGA', updateProjectSaga);
+}
+
+// Saga dùng để delete project
+function * deleteProjectSaga(action) {
+    // console.log('actionupdateProjectSaga', action)
+    // hiển thị loading
+    yield put({
+        type: DISPLAY_LOADING
+    })
+    try {
+        // Gọi API lấy dữ liệu về
+        const { data, status } = yield call(() => projectService.deleteProject(action.idProject));
+
+        // Gọi API thành công thì dispatch lên reducer thông qua put
+        if(status === STATUS_CODE.SUCCESS) {
+            console.log(data);
+            // history.push('/projectmanagement');
+            notificationFunction('success', 'Delete project successfully!')
+        } else {
+            notificationFunction('error', 'Delete project fail!')
+        }
+        // load lại list project
+        yield call(getListProjectSaga);
+
+        // tắt drawer
+        yield put({
+            type: 'CLOSE_DRAWER'
+        })
+    } catch(err) {
+        notificationFunction('error', 'Delete project fail!')
+        console.log(err);
+    }
+    yield put({
+        type: HIDE_LOADING
+    })
+    
+}
+
+export function* theoDoiDeleteProjectSaga() {
+    yield takeLatest('DELETE_PROJECT_SAGA', deleteProjectSaga);
 }

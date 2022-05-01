@@ -43,7 +43,7 @@ function * getListProjectSaga(action) {
 
         // Gọi API thành công thì dispatch lên reducer thông qua put
         if(status === STATUS_CODE.SUCCESS) {
-            console.log(data);
+            // console.log(data);
             yield put({
                 type: "GET_LIST_PROJECT",
                 projectList: data.content
@@ -133,3 +133,4 @@ function * deleteProjectSaga(action) {
 export function* theoDoiDeleteProjectSaga() {
     yield takeLatest('DELETE_PROJECT_SAGA', deleteProjectSaga);
 }
+

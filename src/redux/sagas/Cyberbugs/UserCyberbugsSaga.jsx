@@ -44,7 +44,7 @@ export function * theoDoiSignin() {
 
 
 
-function * getUser(action) {
+function * getUserSaga(action) {
 
     // action.keyWord
 
@@ -61,8 +61,8 @@ function * getUser(action) {
     }
 }
 
-export function * theoDoiGetUser() {
-    yield takeLatest('GET_USER_API', getUser);
+export function * theoDoiGetUserSaga() {
+    yield takeLatest('GET_USER_API', getUserSaga);
 }
 
 function * addUserProjectSaga(action) {

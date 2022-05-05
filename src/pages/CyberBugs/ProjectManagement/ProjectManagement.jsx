@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Table, Button, Space, Tag, Popconfirm, message, Avatar, Popover, AutoComplete } from 'antd';
 import ReactHtmlParse from "react-html-parser";
 import { EditOutlined, DeleteOutlined, CloseSquareOutlined, CloseOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from 'react-redux';
 import FormEditProject from '../../../components/Forms/FormEditProject/FormEditProject';
+import { NavLink } from 'react-router-dom';
 
 export default function ProjectManagement(props) {
     // Lấy dữ liệu reducer về component
@@ -12,6 +13,8 @@ export default function ProjectManagement(props) {
     const { userSearch } = useSelector(state => state.UserLoginCyberbugsReducer);
 
     const [value, setValue] = useState('');
+    const searchRef = useRef(null);
+
     // Sử dụng useDispatch để gọi action
     const dispatch = useDispatch();
 
@@ -70,6 +73,9 @@ export default function ProjectManagement(props) {
             title: 'Project Name',
             dataIndex: 'projectName',
             key: 'projectName',
+            render: (text, record, index) => {
+                return <NavLink to={`/projectdetail/${record.id}`}>{text}</NavLink>
+            },
             sorter: (item2, item1) => {
                 let projectName1 = item1.projectName?.trim().toLowerCase();
                 let projectName2 = item2.projectName?.trim().toLowerCase();
@@ -189,11 +195,15 @@ export default function ProjectManagement(props) {
                                     })
                                 }}
                                 style={{ width: '100%' }} onSearch={(value) => {
-                                    // console.log('value', value);
-                                    dispatch({
-                                        type: 'GET_USER_API',
-                                        keyWord: value
-                                    })
+                                    if (searchRef.current) {
+                                        clearTimeout(searchRef.current);
+                                    }
+                                    searchRef.current = setTimeout(() => {
+                                        dispatch({
+                                            type: 'GET_USER_API',
+                                            keyWord: value
+                                        })
+                                    }, 300)
                                 }} />
                         }
                     } trigger="click">

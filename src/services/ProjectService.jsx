@@ -9,7 +9,9 @@ export class ProjectService extends baseService {
         return this.delete(`Project/deleteProject?projectId=${id}`)
     }
 
-    
+    getProjectDetail = (projectId) => {
+        return this.get(`Project/getProjectDetail?id=${projectId}`)
+    }
 }
 
 export const projectService = new ProjectService();

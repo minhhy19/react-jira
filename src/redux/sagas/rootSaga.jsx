@@ -8,7 +8,7 @@ export function* rootSaga() {
   yield all([
     //Nghiệp vụ cyberbugs .... 
     Cyberbugs.theoDoiSignin(),
-    Cyberbugs.theoDoiGetUser(),
+    Cyberbugs.theoDoiGetUserSaga(),
     Cyberbugs.theoDoiAddUserProjectSaga(),
     Cyberbugs.theoDoiRemoveUserProjectSaga(),
     
@@ -18,7 +18,7 @@ export function* rootSaga() {
     ProjectSaga.theoDoiGetListProjectSaga(),
     ProjectSaga.theoDoiUpdateProjectSaga(),
     ProjectSaga.theoDoiDeleteProjectSaga(),
-
+    ProjectSaga.theoDoiGetProjectDetailSaga(),
     
 
   ])

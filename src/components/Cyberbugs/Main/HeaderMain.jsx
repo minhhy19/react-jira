@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function HeaderMain(props) {
 
-    // const {projectDetail} = props;
+    const {projectDetail} = props;
 
     return (
         <div className="header">
@@ -12,7 +12,7 @@ export default function HeaderMain(props) {
                     <li className="breadcrumb-item">CyberLearn</li>
                     <li className="breadcrumb-item">Project management</li>
                     <li className="breadcrumb-item active" aria-current="page">
-                        {/* {projectDetail.projectName} */}
+                        {projectDetail.projectName}
                     </li>
                 </ol>
             </nav>

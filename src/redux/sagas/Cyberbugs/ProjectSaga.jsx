@@ -134,3 +134,29 @@ export function* theoDoiDeleteProjectSaga() {
     yield takeLatest('DELETE_PROJECT_SAGA', deleteProjectSaga);
 }
 
+function * getProjectDetailSaga(action) {
+    // hiển thị loading
+    yield put({
+        type: DISPLAY_LOADING
+    })
+    try {
+        // Gọi API lấy dữ liệu về
+        const { data, status } = yield call(() => projectService.getProjectDetail(action.projectId));
+        // Lấy dữ liệu thành công thì đưa dữ liệu lên redux
+        yield put({
+            type: 'PUT_PROJECT_DETAIL',
+            projectDetail: data.content
+        })
+    } catch(err) {
+        console.log(err);
+        history.push('/projectmanagement')
+    }
+    yield put({
+        type: HIDE_LOADING
+    })
+    
+}
+
+export function* theoDoiGetProjectDetailSaga() {
+    yield takeLatest('GET_PROJECT_DETAIL', getProjectDetailSaga);
+}

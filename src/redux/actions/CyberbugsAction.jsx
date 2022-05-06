@@ -8,7 +8,7 @@ export const signinCyberbugAction = (email, password) => {
         type: USER_SIGNIN_API,
         userLogin: {
             email: email,
-            password: password
+            passWord: password
         }
     }
 }

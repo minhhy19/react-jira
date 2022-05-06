@@ -1,5 +1,6 @@
 const initialState = {
     visible: false,
+    title: '',
     ComponentContentDrawer: <p>Default</p>,
     callBackSubmit: (propsValue) => {
         alert('click demo')
@@ -16,10 +17,17 @@ export const DrawerCyberBugsReducer = (state = initialState, action) => {
         case 'OPEN_FORM_EDIT_PROJECT': {
             state.visible = true;
             state.ComponentContentDrawer = action.Component;
+            state.title = action.title;
             return { ...state }
         }
         case 'SET_SUBMIT_EDIT_PROJECT': {
             state.callBackSubmit = action.submitFunction;
+            return { ...state }
+        }
+        case 'OPEN_FORM_CREATE_TASK': {
+            state.visible = true;
+            state.ComponentContentDrawer = action.Component;
+            state.title = action.title;
             return { ...state }
         }
         default:

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const { Option } = Select;
 
 export default function DrawerCyberbugs(props) {
-    const { visible, ComponentContentDrawer, callBackSubmit } = useSelector(state => state.DrawerCyberBugsReducer);
+    const { visible, ComponentContentDrawer, callBackSubmit, title } = useSelector(state => state.DrawerCyberBugsReducer);
     const dispatch = useDispatch();
     const showDrawer = () => {
         dispatch({
@@ -26,7 +26,7 @@ export default function DrawerCyberbugs(props) {
                 New account
             </Button> */}
             <Drawer
-                title="Create a new account"
+                title={title}
                 width={720}
                 onClose={onClose}
                 visible={visible}

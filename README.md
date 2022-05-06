@@ -61,3 +61,47 @@ componentWillMount() {
 ```
 
 </details>
+
+- [ ] Sorting strings with accented characters
+<details>
+  <summary><b>There are two ways to overcome this behavior localeCompare and Intl</b></summary>
+
+-   Bad 
+
+```javascript
+// Spanish
+['único','árbol', 'cosas', 'fútbol'].sort();
+// ["cosas", "fútbol", "árbol", "único"] // bad order
+
+// German
+['Woche', 'wöchentlich', 'wäre', 'Wann'].sort();
+// ["Wann", "Woche", "wäre", "wöchentlich"] // bad order
+```
+
+-   Using localeCompare()
+
+```javascript
+['único','árbol', 'cosas', 'fútbol'].sort(function (a, b) {
+  return a.localeCompare(b);
+});
+// ["árbol", "cosas", "fútbol", "único"]
+
+['Woche', 'wöchentlich', 'wäre', 'Wann'].sort(function (a, b) {
+  return a.localeCompare(b);
+});
+// ["Wann", "wäre", "Woche", "wöchentlich"]
+```
+
+-   Using Intl.Collator()
+
+```javascript
+['único','árbol', 'cosas', 'fútbol'].sort(Intl.Collator().compare);
+// ["árbol", "cosas", "fútbol", "único"]
+
+['Woche', 'wöchentlich', 'wäre', 'Wann'].sort(Intl.Collator().compare);
+// ["Wann", "wäre", "Woche", "wöchentlich"]
+```
+
+According to Firefox Intl.Collator is faster when comparing large numbers of strings.
+
+</details>

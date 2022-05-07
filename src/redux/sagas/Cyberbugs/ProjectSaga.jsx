@@ -3,6 +3,7 @@ import { cyberbugsService } from '../../../services/CyberbugsService';
 import { projectService } from '../../../services/ProjectService';
 import { history, STATUS_CODE } from '../../../util/constants/settingSystem';
 import { notificationFunction } from '../../../util/Notification/notificationCyberbugs';
+import { GET_ALL_PROJECT, GET_ALL_PROJECT_SAGA } from '../../constants/CyberBugs/ProjectConstants';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConst';
 
 function * createProjectSaga(action) {
@@ -159,4 +160,31 @@ function * getProjectDetailSaga(action) {
 
 export function* theoDoiGetProjectDetailSaga() {
     yield takeLatest('GET_PROJECT_DETAIL', getProjectDetailSaga);
+}
+
+function * getAllProjectSaga(action) {
+    // hiển thị loading
+    yield put({
+        type: DISPLAY_LOADING
+    })
+    try {
+        // Gọi API lấy dữ liệu về
+        const { data, status } = yield call(() => projectService.getAllProject());
+        // Lấy dữ liệu thành công thì đưa dữ liệu lên redux
+        yield put({
+            type: GET_ALL_PROJECT,
+            arrProject: data.content
+        })
+    } catch(err) {
+        console.log(err);
+        history.push('/projectmanagement')
+    }
+    yield put({
+        type: HIDE_LOADING
+    })
+    
+}
+
+export function* theoDoiGetAllProjectSaga() {
+    yield takeLatest(GET_ALL_PROJECT_SAGA, getAllProjectSaga);
 }

@@ -2,6 +2,8 @@ import { all } from "redux-saga/effects";
 import * as Cyberbugs from './Cyberbugs/UserCyberbugsSaga'
 import * as ProjectCategorySaga from './Cyberbugs/ProjectCategorySaga';
 import * as ProjectSaga from './Cyberbugs/ProjectSaga';
+import * as TaskTypeSaga from './Cyberbugs/TaskTypeSaga';
+import * as PrioritySaga from './Cyberbugs/PrioritySaga';
 
 export function* rootSaga() {
 
@@ -19,7 +21,10 @@ export function* rootSaga() {
     ProjectSaga.theoDoiUpdateProjectSaga(),
     ProjectSaga.theoDoiDeleteProjectSaga(),
     ProjectSaga.theoDoiGetProjectDetailSaga(),
+    ProjectSaga.theoDoiGetAllProjectSaga(),
     
+    TaskTypeSaga.theoDoiGetAllTaskTypeSaga(),
 
+    PrioritySaga.theoDoiGetAllPrioritySaga(),
   ])
 }

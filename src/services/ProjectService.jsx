@@ -5,6 +5,10 @@ export class ProjectService extends baseService {
         super();
     }
 
+    getAllProject = () => {
+        return this.get(`Project/getAllProject`)
+    }
+
     deleteProject = (id) => {
         return this.delete(`Project/deleteProject?projectId=${id}`)
     }

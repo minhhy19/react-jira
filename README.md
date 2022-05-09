@@ -105,3 +105,24 @@ componentWillMount() {
 According to Firefox Intl.Collator is faster when comparing large numbers of strings.
 
 </details>
+
+Tip to measure performance of a javascript block
+
+```javascript
+console.time("Array initialize");
+var arr = new Array(100),
+    len = arr.length,
+    i;
+
+for (i = 0; i < len; i++) {
+    arr[i] = new Object();
+};
+console.timeEnd("Array initialize"); // Outputs: Array initialize: 0.711ms
+```
+
+Converting to number fast way
+```javascript
+var one = '1';
+
+var numberOne = +one; // Number 1
+```

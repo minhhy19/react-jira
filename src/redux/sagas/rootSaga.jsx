@@ -4,6 +4,7 @@ import * as ProjectCategorySaga from './Cyberbugs/ProjectCategorySaga';
 import * as ProjectSaga from './Cyberbugs/ProjectSaga';
 import * as TaskTypeSaga from './Cyberbugs/TaskTypeSaga';
 import * as PrioritySaga from './Cyberbugs/PrioritySaga';
+import * as StatusSaga from './Cyberbugs/StatusSaga';
 
 export function* rootSaga() {
 
@@ -26,5 +27,7 @@ export function* rootSaga() {
     TaskTypeSaga.theoDoiGetAllTaskTypeSaga(),
 
     PrioritySaga.theoDoiGetAllPrioritySaga(),
+
+    StatusSaga.theoDoiGetAllStatusSaga(),
   ])
 }

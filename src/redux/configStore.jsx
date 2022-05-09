@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore, compose} from 'redux';
+import { applyMiddleware, combineReducers, createStore, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 
 //middleware saga
@@ -13,6 +13,7 @@ import { DrawerCyberBugsReducer } from './reducers/DrawerCyberBugsReducer';
 import { ProjectReducer } from './reducers/ProjectReducer';
 import { TaskTypeReducer } from './reducers/TaskTypeReducer';
 import { PriorityReducer } from './reducers/PriorityReducer';
+import { StatusReducer } from './reducers/StatusReducer';
 
 const middleWareSaga = createMiddleWareSaga();
 
@@ -26,12 +27,16 @@ const rootReducer = combineReducers({
     DrawerCyberBugsReducer,
     ProjectReducer,
     TaskTypeReducer,
-    PriorityReducer
+    PriorityReducer,
+    StatusReducer
 });
 
 let middleWare = applyMiddleware(reduxThunk, middleWareSaga);
 
-let composeCustom = compose(middleWare, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+let composeCustom = compose(
+    middleWare,
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 const store = createStore(rootReducer, composeCustom)
 

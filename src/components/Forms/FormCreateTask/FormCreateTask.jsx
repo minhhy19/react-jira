@@ -5,6 +5,7 @@ import { useSelector, useDispatch, connect } from 'react-redux'
 import { GET_ALL_PROJECT_SAGA } from '../../../redux/constants/CyberBugs/ProjectConstants';
 import { GET_ALL_TASK_TYPE_SAGA } from '../../../redux/constants/CyberBugs/TaskTypeConstant';
 import { GET_ALL_PRIORITY_SAGA } from '../../../redux/constants/CyberBugs/PriorityConstants';
+import { GET_ALL_STATUS_SAGA } from '../../../redux/constants/CyberBugs/StatusConstant';
 
 const { Option } = Select;
 
@@ -20,6 +21,7 @@ export default function FormCreateTask(props) {
     const { arrProject } = useSelector(state => state.ProjectCyberbugsReducer);
     const { arrTaskType } = useSelector(state => state.TaskTypeReducer);
     const { arrPriority } = useSelector(state => state.PriorityReducer);
+    const { arrStatus } = useSelector(state => state.StatusReducer);
 
     const [size, setSize] = React.useState('default');
 
@@ -36,6 +38,7 @@ export default function FormCreateTask(props) {
         dispatch({type: GET_ALL_PROJECT_SAGA});
         dispatch({type: GET_ALL_TASK_TYPE_SAGA});
         dispatch({type: GET_ALL_PRIORITY_SAGA});
+        dispatch({type: GET_ALL_STATUS_SAGA});
 
     }, [])
 
@@ -57,9 +60,9 @@ export default function FormCreateTask(props) {
             <div className="form-group">
                 <p>Status</p>
                 <select name="statusId" className="form-control">
-                    {/* {arrStatus.map((statusItem,index) => {
-                        return <option key={index} value={statusItem.statusId}>{statusItem.statusName}</option>
-                    })} */}
+                    {arrStatus.map((statusItem) => {
+                        return <option key={statusItem.statusId} value={statusItem.statusId}>{statusItem.statusName}</option>
+                    })}
                 </select>
             </div>
             <div className="form-group">

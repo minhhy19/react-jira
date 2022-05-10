@@ -19,7 +19,7 @@ function FormCreateTask(props) {
     const { arrTaskType } = useSelector(state => state.TaskTypeReducer);
     const { arrPriority } = useSelector(state => state.PriorityReducer);
     const { arrStatus } = useSelector(state => state.StatusReducer);
-    const { arrUser } = useSelector(state => state.UserLoginCyberbugsReducer);
+    const { arrUser } = useSelector(state => state.UserReducer);
 
     //Hàm biến đổi options cho thẻ select
     const userOptions = arrUser.map((item, index) => {

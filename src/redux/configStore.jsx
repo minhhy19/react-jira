@@ -6,7 +6,7 @@ import createMiddleWareSaga from 'redux-saga';
 import { rootSaga } from './sagas/rootSaga';
 import LoadingReducers from './reducers/LoadingReducers';
 import { HistoryReducer } from './reducers/HistoryReducer';
-import { UserLoginCyberbugsReducer } from './reducers/UserCyberbugsReducer';
+import { UserReducer } from './reducers/UserReducer';
 import { ProjectCategoryReducer } from './reducers/ProjectCategoryReducer';
 import { ProjectCyberbugsReducer } from './reducers/ProjectCyberbugsReducer';
 import { DrawerCyberBugsReducer } from './reducers/DrawerCyberBugsReducer';
@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
     //Nơi chứa các state của ứng dụng
     LoadingReducers,
     HistoryReducer,
-    UserLoginCyberbugsReducer,
+    UserReducer,
     ProjectCategoryReducer,
     ProjectCyberbugsReducer,
     DrawerCyberBugsReducer,

@@ -14,7 +14,7 @@ const stateDefault = {
     arrUser:[] // Array user cho thẻ select create task
 }
 
-export const UserLoginCyberbugsReducer = (state = stateDefault, action) => {
+export const UserReducer = (state = stateDefault, action) => {
     switch(action.type) {
         case USLOGIN: {
             state.userLogin = action.userLogin;

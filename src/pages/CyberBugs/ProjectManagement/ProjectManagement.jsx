@@ -10,7 +10,7 @@ export default function ProjectManagement(props) {
     // Lấy dữ liệu reducer về component
     const { projectList } = useSelector(state => state.ProjectCyberbugsReducer);
 
-    const { userSearch } = useSelector(state => state.UserLoginCyberbugsReducer);
+    const { userSearch } = useSelector(state => state.UserReducer);
 
     const [value, setValue] = useState('');
     const searchRef = useRef(null);

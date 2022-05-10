@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const { Option } = Select;
 
-export default function DrawerCyberbugs(props) {
-    const { visible, ComponentContentDrawer, callBackSubmit, title } = useSelector(state => state.DrawerCyberBugsReducer);
+export default function DrawerJira(props) {
+    const { visible, ComponentContentDrawer, callBackSubmit, title } = useSelector(state => state.DrawerReducer);
     const dispatch = useDispatch();
     const showDrawer = () => {
         dispatch({

@@ -7,7 +7,7 @@ const initialState = {
     }
 }
 
-export const DrawerCyberBugsReducer = (state = initialState, action) => {
+export const DrawerReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case 'OPEN_DRAWER':

@@ -13,8 +13,8 @@ import Home from "./pages/Home/Home";
 import { CyberbugsTemplate } from "./templates/HomeTemplate/CyberbugsTemplate";
 import CreateProject from "./pages/CyberBugs/CreateProject/CreateProject";
 import ProjectManagement from "./pages/CyberBugs/ProjectManagement/ProjectManagement";
-import DrawerCyberbugs from "./HOC/CyberbugsHOC/DrawerCyberbugs";
 import ProjecDetail from "./pages/CyberBugs/ProjectDetail/ProjecDetail";
+import DrawerJira from "./HOC/DrawerJira";
 
 function App() {
 	// const history = useHistory()
@@ -25,7 +25,7 @@ function App() {
     return (
         <>
             <LoadingComponent />
-            <DrawerCyberbugs />
+            <DrawerJira />
             <Switch>
                 <UserLoginTemplate exact path="/login" Component={LoginCyberBugs} />
                 <CyberbugsTemplate exact path='/cyberbugs' Component={ProjecDetail} />

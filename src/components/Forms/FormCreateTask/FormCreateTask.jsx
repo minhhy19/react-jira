@@ -206,9 +206,9 @@ const formCreateTask = withFormik({
         const { arrProject, arrTaskType, arrPriority, arrStatus } = props;
 
 
-        if(arrProject?.length > 0){
-            props.dispatch({type: GET_USER_BY_PROJECT_ID_SAGA, idProject: arrProject[0]?.id});
-        }
+        // if(arrProject?.length > 0){
+        //     props.dispatch({type: GET_USER_BY_PROJECT_ID_SAGA, idProject: arrProject[0]?.id});
+        // }
 
 
         return {

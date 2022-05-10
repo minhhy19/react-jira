@@ -48,9 +48,9 @@ function FormEditProject(props) {
                 <div className='col-4'>
                     <div className='form-group'>
                         <p className='font-weight-bold'>Project category</p>
-                        <select name="categoryId" value={values.categoryId} className='form-control'>
+                        <select name="categoryId" value={values.categoryId} className='form-control' onChange={handleChange}>
                             {arrProjectCategory?.map((item, index) => {
-                                return <option key={index} value={item.id}>{item.projectCategoryName}</option>
+                                return <option key={item.id} value={item.id} >{item.projectCategoryName}</option>
                             })}
                         </select>
                     </div>
@@ -65,7 +65,7 @@ function FormEditProject(props) {
                             init={{
                                 selector: 'textarea#myTextArea',
                                 height: 500,
-
+                                defaultValue: '',
                                 menubar: false,
                                 plugins: [
                                     'advlist autolink lists link image charmap print preview anchor',

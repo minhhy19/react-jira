@@ -11,10 +11,10 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Home from "./pages/Home/Home";
 import { CyberbugsTemplate } from "./templates/HomeTemplate/CyberbugsTemplate";
-import indexCyberbugs from "./redux/sagas/Cyberbugs/indexCyberbugs";
 import CreateProject from "./pages/CyberBugs/CreateProject/CreateProject";
 import ProjectManagement from "./pages/CyberBugs/ProjectManagement/ProjectManagement";
 import DrawerCyberbugs from "./HOC/CyberbugsHOC/DrawerCyberbugs";
+import ProjecDetail from "./pages/CyberBugs/ProjectDetail/ProjecDetail";
 
 function App() {
 	// const history = useHistory()
@@ -28,10 +28,10 @@ function App() {
             <DrawerCyberbugs />
             <Switch>
                 <UserLoginTemplate exact path="/login" Component={LoginCyberBugs} />
-                <CyberbugsTemplate exact path='/cyberbugs' Component={indexCyberbugs} />
+                <CyberbugsTemplate exact path='/cyberbugs' Component={ProjecDetail} />
                 <CyberbugsTemplate exact path='/createproject' Component={CreateProject} />
                 <CyberbugsTemplate exact path='/projectmanagement' Component={ProjectManagement} />
-                <CyberbugsTemplate exact path='/projectdetail/:projectId' Component={indexCyberbugs} />
+                <CyberbugsTemplate exact path='/projectdetail/:projectId' Component={ProjecDetail} />
                 <CyberbugsTemplate exact path="/" Component={ProjectManagement} />
             </Switch>
         </>

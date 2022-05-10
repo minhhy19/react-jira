@@ -5,6 +5,10 @@ export class UserService extends baseService {
         super();
     }
 
+    signin = (userLogin) => {
+        return this.post(`users/signin`, userLogin)
+    }
+
     getUser = (keyWord) => {
         return this.get(`Users/getUser?keyword=${keyWord}`)
     }

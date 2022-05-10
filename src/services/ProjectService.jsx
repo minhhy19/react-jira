@@ -5,6 +5,14 @@ export class ProjectService extends baseService {
         super();
     }
 
+    createProject = (newProject) => {
+        return this.post(`project/createProjectAuthorize`, newProject)
+    }
+
+    updateProject = (projectUpdate) => {
+        return this.put(`project/updateProject?projectId=${projectUpdate.id}`, projectUpdate)
+    }
+
     getAllProject = () => {
         return this.get(`Project/getAllProject`)
     }

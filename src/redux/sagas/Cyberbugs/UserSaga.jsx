@@ -1,6 +1,4 @@
-import Axios from 'axios';
 import { call, delay, fork, take, takeEvery, takeLatest, put, select } from 'redux-saga/effects';
-import { cyberbugsService } from '../../../services/CyberbugsService';
 import { userService } from '../../../services/UserService';
 import { ACCESS_TOKEN, history, STATUS_CODE, USER_LOGIN } from '../../../util/constants/settingSystem';
 import { USER_SIGNIN_API, USLOGIN } from '../../constants/CyberBugs/CyberBugs';
@@ -19,7 +17,7 @@ function * signinSaga(action) {
     // yield delay(500);
     // Gọi api
     try {
-        const { data, status } = yield call(() => cyberbugsService.signinCyberBugs(action.userLogin));
+        const { data, status } = yield call(() => userService.signin(action.userLogin));
         // lưu vào localstorage khi đăng nhập thành công
         localStorage.setItem(ACCESS_TOKEN, data.content.accessToken);
         localStorage.setItem(USER_LOGIN, JSON.stringify(data.content));

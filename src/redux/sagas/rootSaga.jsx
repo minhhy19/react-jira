@@ -1,5 +1,5 @@
 import { all } from "redux-saga/effects";
-import * as Cyberbugs from './Cyberbugs/UserCyberbugsSaga'
+import * as UserSaga from './Cyberbugs/UserSaga'
 import * as ProjectCategorySaga from './Cyberbugs/ProjectCategorySaga';
 import * as ProjectSaga from './Cyberbugs/ProjectSaga';
 import * as TaskTypeSaga from './Cyberbugs/TaskTypeSaga';
@@ -11,11 +11,11 @@ export function* rootSaga() {
 
   yield all([
     //Nghiệp vụ cyberbugs .... 
-    Cyberbugs.theoDoiSignin(),
-    Cyberbugs.theoDoiGetUserSaga(),
-    Cyberbugs.theoDoiAddUserProjectSaga(),
-    Cyberbugs.theoDoiRemoveUserProjectSaga(),
-    Cyberbugs.theoDoiGetUserByProjectIdSaga(),
+    UserSaga.theoDoiSignin(),
+    UserSaga.theoDoiGetUserSaga(),
+    UserSaga.theoDoiAddUserProjectSaga(),
+    UserSaga.theoDoiRemoveUserProjectSaga(),
+    UserSaga.theoDoiGetUserByProjectIdSaga(),
     
     ProjectCategorySaga.theoDoiGetAllProjectCategory(),
 

@@ -4,7 +4,7 @@ import ContentMain from '../../../components/Cyberbugs/Main/ContentMain'
 import HeaderMain from '../../../components/Cyberbugs/Main/HeaderMain'
 import InfoMain from '../../../components/Cyberbugs/Main/InfoMain'
 
-export default function IndexCyberbugs(props) {
+export default function ProjecDetail(props) {
   // console.log(props.match.params.projectId);
   let { projectDetail } = useSelector(state => state.ProjectReducer)
   const dispatch = useDispatch();

@@ -1,5 +1,4 @@
 import { call, delay, fork, take, takeEvery, takeLatest, put, select } from 'redux-saga/effects';
-import { cyberbugsService } from '../../../services/CyberbugsService';
 import { projectService } from '../../../services/ProjectService';
 import { history, STATUS_CODE } from '../../../util/constants/settingSystem';
 import { notificationFunction } from '../../../util/Notification/notificationCyberbugs';
@@ -14,7 +13,7 @@ function * createProjectSaga(action) {
     })
     try {
         // Gọi API lấy dữ liệu về
-        const { data, status } = yield call(() => cyberbugsService.createProject(action.newProject));
+        const { data, status } = yield call(() => projectService.createProject(action.newProject));
 
         // Gọi API thành công thì dispatch lên reducer thông qua put
         if(status === STATUS_CODE.SUCCESS) {
@@ -34,31 +33,6 @@ export function* theoDoiCreateProjectSaga() {
     yield takeLatest('CREATE_PROJECT_SAGA', createProjectSaga);
 }
 
-
-// // Saga dùng để get all project từ api
-// function * getListProjectSaga(action) {
-//     // console.log('getListProjectSaga', action)
-//     try {
-//         // Gọi API lấy dữ liệu về
-//         const { data, status } = yield call(() => cyberbugsService.getListProject());
-
-//         // Gọi API thành công thì dispatch lên reducer thông qua put
-//         if(status === STATUS_CODE.SUCCESS) {
-//             // console.log(data);
-//             yield put({
-//                 type: "GET_LIST_PROJECT",
-//                 projectList: data.content
-//             })
-//         }
-//     } catch(err) {
-//         console.log(err);
-//     }
-// }
-
-// export function* theoDoiGetListProjectSaga() {
-//     yield takeLatest('GET_LIST_PROJECT_SAGA', getListProjectSaga);
-// }
-
 // Saga dùng để update project
 function * updateProjectSaga(action) {
     // console.log('actionupdateProjectSaga', action)
@@ -68,7 +42,7 @@ function * updateProjectSaga(action) {
     })
     try {
         // Gọi API lấy dữ liệu về
-        const { data, status } = yield call(() => cyberbugsService.updateProject(action.projectUpdate));
+        const { data, status } = yield call(() => projectService.updateProject(action.projectUpdate));
 
         // Gọi API thành công thì dispatch lên reducer thông qua put
         if(status === STATUS_CODE.SUCCESS) {

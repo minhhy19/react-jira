@@ -5,10 +5,11 @@ import { EditOutlined, DeleteOutlined, CloseSquareOutlined, CloseOutlined } from
 import { useDispatch, useSelector } from 'react-redux';
 import FormEditProject from '../../../components/Forms/FormEditProject/FormEditProject';
 import { NavLink } from 'react-router-dom';
+import { GET_ALL_PROJECT_SAGA } from '../../../redux/constants/CyberBugs/ProjectConstants';
 
 export default function ProjectManagement(props) {
     // Lấy dữ liệu reducer về component
-    const { projectList } = useSelector(state => state.ProjectCyberbugsReducer);
+    const { arrProject } = useSelector(state => state.ProjectReducer);
 
     const { userSearch } = useSelector(state => state.UserReducer);
 
@@ -19,7 +20,7 @@ export default function ProjectManagement(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch({ type: 'GET_LIST_PROJECT_SAGA' })
+        dispatch({ type: GET_ALL_PROJECT_SAGA });
     }, [])
 
     const [state, setState] = useState({
@@ -203,7 +204,7 @@ export default function ProjectManagement(props) {
                                             type: 'GET_USER_API',
                                             keyWord: value
                                         })
-                                    }, 300)
+                                    }, 100)
                                 }} />
                         }
                     } trigger="click">
@@ -262,7 +263,7 @@ export default function ProjectManagement(props) {
                 <Button onClick={clearFilters}>Clear filters</Button>
                 <Button onClick={clearAll}>Clear filters and sorters</Button>
             </Space>
-            <Table columns={columns} rowKey={"id"} dataSource={projectList} onChange={handleChange} />
+            <Table columns={columns} rowKey={"id"} dataSource={arrProject} onChange={handleChange} />
         </div>
     )
 }

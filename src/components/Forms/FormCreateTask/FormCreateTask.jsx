@@ -15,7 +15,7 @@ import { CREATE_TASK_SAGA } from '../../../redux/constants/CyberBugs/TaskConstan
 function FormCreateTask(props) {
     const dispatch = useDispatch();
     // lấy dữ liệu từ redux
-    const { arrProject } = useSelector(state => state.ProjectCyberbugsReducer);
+    const { arrProject } = useSelector(state => state.ProjectReducer);
     const { arrTaskType } = useSelector(state => state.TaskTypeReducer);
     const { arrPriority } = useSelector(state => state.PriorityReducer);
     const { arrStatus } = useSelector(state => state.StatusReducer);
@@ -207,7 +207,7 @@ const formCreateTask = withFormik({
 
 
         if(arrProject?.length > 0){
-            props.dispatch({type: GET_USER_BY_PROJECT_ID_SAGA, idProject:arrProject[0]?.id});
+            props.dispatch({type: GET_USER_BY_PROJECT_ID_SAGA, idProject: arrProject[0]?.id});
         }
 
 
@@ -237,7 +237,7 @@ const formCreateTask = withFormik({
 
 const mapStateToProps = (state) => {
     return {
-        arrProject: state.ProjectCyberbugsReducer.arrProject,
+        arrProject: state.ProjectReducer.arrProject,
         arrTaskType: state.TaskTypeReducer.arrTaskType,
         arrPriority: state.PriorityReducer.arrPriority,
         arrStatus: state.StatusReducer.arrStatus,

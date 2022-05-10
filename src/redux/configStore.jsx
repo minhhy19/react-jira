@@ -8,7 +8,6 @@ import LoadingReducers from './reducers/LoadingReducers';
 import { HistoryReducer } from './reducers/HistoryReducer';
 import { UserReducer } from './reducers/UserReducer';
 import { ProjectCategoryReducer } from './reducers/ProjectCategoryReducer';
-import { ProjectCyberbugsReducer } from './reducers/ProjectCyberbugsReducer';
 import { DrawerCyberBugsReducer } from './reducers/DrawerCyberBugsReducer';
 import { ProjectReducer } from './reducers/ProjectReducer';
 import { TaskTypeReducer } from './reducers/TaskTypeReducer';
@@ -23,7 +22,6 @@ const rootReducer = combineReducers({
     HistoryReducer,
     UserReducer,
     ProjectCategoryReducer,
-    ProjectCyberbugsReducer,
     DrawerCyberBugsReducer,
     ProjectReducer,
     TaskTypeReducer,

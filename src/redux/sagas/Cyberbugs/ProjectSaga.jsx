@@ -35,29 +35,29 @@ export function* theoDoiCreateProjectSaga() {
 }
 
 
-// Saga dùng để get all project từ api
-function * getListProjectSaga(action) {
-    // console.log('getListProjectSaga', action)
-    try {
-        // Gọi API lấy dữ liệu về
-        const { data, status } = yield call(() => cyberbugsService.getListProject());
+// // Saga dùng để get all project từ api
+// function * getListProjectSaga(action) {
+//     // console.log('getListProjectSaga', action)
+//     try {
+//         // Gọi API lấy dữ liệu về
+//         const { data, status } = yield call(() => cyberbugsService.getListProject());
 
-        // Gọi API thành công thì dispatch lên reducer thông qua put
-        if(status === STATUS_CODE.SUCCESS) {
-            // console.log(data);
-            yield put({
-                type: "GET_LIST_PROJECT",
-                projectList: data.content
-            })
-        }
-    } catch(err) {
-        console.log(err);
-    }
-}
+//         // Gọi API thành công thì dispatch lên reducer thông qua put
+//         if(status === STATUS_CODE.SUCCESS) {
+//             // console.log(data);
+//             yield put({
+//                 type: "GET_LIST_PROJECT",
+//                 projectList: data.content
+//             })
+//         }
+//     } catch(err) {
+//         console.log(err);
+//     }
+// }
 
-export function* theoDoiGetListProjectSaga() {
-    yield takeLatest('GET_LIST_PROJECT_SAGA', getListProjectSaga);
-}
+// export function* theoDoiGetListProjectSaga() {
+//     yield takeLatest('GET_LIST_PROJECT_SAGA', getListProjectSaga);
+// }
 
 // Saga dùng để update project
 function * updateProjectSaga(action) {
@@ -76,7 +76,7 @@ function * updateProjectSaga(action) {
             // history.push('/projectmanagement');
         }
         // load lại list project
-        yield call(getListProjectSaga);
+        yield call(getAllProjectSaga);
 
         // tắt drawer
         yield put({
@@ -115,7 +115,7 @@ function * deleteProjectSaga(action) {
             notificationFunction('error', 'Delete project fail!')
         }
         // load lại list project
-        yield call(getListProjectSaga);
+        yield call(getAllProjectSaga);
 
         // tắt drawer
         yield put({

@@ -4,6 +4,7 @@ import { cyberbugsService } from '../../../services/CyberbugsService';
 import { userService } from '../../../services/UserService';
 import { ACCESS_TOKEN, history, STATUS_CODE, USER_LOGIN } from '../../../util/constants/settingSystem';
 import { USER_SIGNIN_API, USLOGIN } from '../../constants/CyberBugs/CyberBugs';
+import { GET_ALL_PROJECT_SAGA } from '../../constants/CyberBugs/ProjectConstants';
 import { GET_USER_BY_PROJECT_ID, GET_USER_BY_PROJECT_ID_SAGA } from '../../constants/CyberBugs/UserConstants';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConst';
 
@@ -52,7 +53,7 @@ function * getUserSaga(action) {
     // Gọi api
     try {
         const { data, status } = yield call(() => userService.getUser(action.keyWord));
-        // console.log('data', data);
+        console.log('data', data);
         yield put({
             type: 'GET_USER_SEARCH',
             lstUserSearch: data.content
@@ -71,7 +72,7 @@ function * addUserProjectSaga(action) {
         const { data, status } = yield call(() => userService.assignUserProject(action.userProject));
         // console.log('data', data);
         yield put({
-            type: 'GET_LIST_PROJECT_SAGA'
+            type: GET_ALL_PROJECT_SAGA
         })
     } catch(err) {
         console.log(err.response.data);
@@ -87,7 +88,7 @@ function * removeUserProjectSaga(action) {
         const { data, status } = yield call(() => userService.deleteUserFromProject(action.userProject));
         // console.log('data', data);
         yield put({
-            type: 'GET_LIST_PROJECT_SAGA'
+            type: GET_ALL_PROJECT_SAGA
         })
     } catch(err) {
         console.log(err.response.data);

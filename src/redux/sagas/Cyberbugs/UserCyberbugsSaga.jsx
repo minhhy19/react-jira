@@ -2,8 +2,9 @@ import Axios from 'axios';
 import { call, delay, fork, take, takeEvery, takeLatest, put, select } from 'redux-saga/effects';
 import { cyberbugsService } from '../../../services/CyberbugsService';
 import { userService } from '../../../services/UserService';
-import { ACCESS_TOKEN, history, USER_LOGIN } from '../../../util/constants/settingSystem';
+import { ACCESS_TOKEN, history, STATUS_CODE, USER_LOGIN } from '../../../util/constants/settingSystem';
 import { USER_SIGNIN_API, USLOGIN } from '../../constants/CyberBugs/CyberBugs';
+import { GET_USER_BY_PROJECT_ID, GET_USER_BY_PROJECT_ID_SAGA } from '../../constants/CyberBugs/UserConstants';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConst';
 
 
@@ -95,4 +96,37 @@ function * removeUserProjectSaga(action) {
 
 export function * theoDoiRemoveUserProjectSaga() {
     yield takeLatest('REMOVE_USER_PROJECT_API', removeUserProjectSaga);
+}
+
+function* getUserByProjectIdSaga(action) {
+    const { idProject } = action;
+    // console.log('action',idProject)
+
+    try {
+        const { data, status } = yield call(() => userService.getUserByProjectId(idProject));
+        // console.log('checkdata',data);
+
+        if (status === STATUS_CODE.SUCCESS) {
+            yield put({
+                type: GET_USER_BY_PROJECT_ID,
+                arrUser:data.content
+            })
+        }
+
+    } catch (err) {
+        console.log(err);
+        console.log(err.response?.data);
+        if(err.response?.data.statusCode === STATUS_CODE.NOT_FOUND) {
+            yield put({
+                type: GET_USER_BY_PROJECT_ID,
+                arrUser:[]
+            })
+        }
+    }
+}
+
+
+
+export function* theoDoiGetUserByProjectIdSaga() {
+    yield takeLatest(GET_USER_BY_PROJECT_ID_SAGA, getUserByProjectIdSaga)
 }

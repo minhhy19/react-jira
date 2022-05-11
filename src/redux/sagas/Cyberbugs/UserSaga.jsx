@@ -4,7 +4,7 @@ import { ACCESS_TOKEN, history, STATUS_CODE, USER_LOGIN } from '../../../util/co
 import { USER_SIGNIN_API, USLOGIN } from '../../constants/Jira/UserConstants';
 import { GET_ALL_PROJECT_SAGA } from '../../constants/Jira/ProjectConstants';
 import { GET_USER_BY_PROJECT_ID, GET_USER_BY_PROJECT_ID_SAGA } from '../../constants/Jira/UserConstants';
-import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConst';
+import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConstant';
 
 
 // Quản lý các action saga

@@ -65,38 +65,6 @@ export function * theoDoiGetUserSaga() {
     yield takeLatest('GET_USER_API', getUserSaga);
 }
 
-function * addUserProjectSaga(action) {
-    try {
-        const { data, status } = yield call(() => userService.assignUserProject(action.userProject));
-        // console.log('data', data);
-        yield put({
-            type: GET_ALL_PROJECT_SAGA
-        })
-    } catch(err) {
-        console.log(err.response.data);
-    }
-}
-
-export function * theoDoiAddUserProjectSaga() {
-    yield takeLatest('ADD_USER_PROJECT_API', addUserProjectSaga);
-}
-
-function * removeUserProjectSaga(action) {
-    try {
-        const { data, status } = yield call(() => userService.deleteUserFromProject(action.userProject));
-        // console.log('data', data);
-        yield put({
-            type: GET_ALL_PROJECT_SAGA
-        })
-    } catch(err) {
-        console.log(err.response.data);
-    }
-}
-
-export function * theoDoiRemoveUserProjectSaga() {
-    yield takeLatest('REMOVE_USER_PROJECT_API', removeUserProjectSaga);
-}
-
 function* getUserByProjectIdSaga(action) {
     const { idProject } = action;
     // console.log('action',idProject)

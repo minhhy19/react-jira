@@ -5,6 +5,38 @@ import { notificationFunction } from '../../../util/Notification/notificationJir
 import { GET_ALL_PROJECT, GET_ALL_PROJECT_SAGA } from '../../constants/Jira/ProjectConstants';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConstant';
 
+function * addUserProjectSaga(action) {
+    try {
+        const { data, status } = yield call(() => projectService.assignUserProject(action.userProject));
+        // console.log('data', data);
+        yield put({
+            type: GET_ALL_PROJECT_SAGA
+        })
+    } catch(err) {
+        console.log(err.response.data);
+    }
+}
+
+export function * theoDoiAddUserProjectSaga() {
+    yield takeLatest('ADD_USER_PROJECT_API', addUserProjectSaga);
+}
+
+function * removeUserProjectSaga(action) {
+    try {
+        const { data, status } = yield call(() => projectService.deleteUserFromProject(action.userProject));
+        // console.log('data', data);
+        yield put({
+            type: GET_ALL_PROJECT_SAGA
+        })
+    } catch(err) {
+        console.log(err.response.data);
+    }
+}
+
+export function * theoDoiRemoveUserProjectSaga() {
+    yield takeLatest('REMOVE_USER_PROJECT_API', removeUserProjectSaga);
+}
+
 function * createProjectSaga(action) {
     // console.log('createProjectAction', action)
     // hiển thị loading

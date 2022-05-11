@@ -4,6 +4,14 @@ export class ProjectService extends baseService {
     constructor() {
         super();
     }
+    
+    assignUserProject = (userProject) => {
+        return this.post(`Project/assignUserProject`, userProject);
+    }
+
+    deleteUserFromProject = (userProject) => {
+        return this.post(`Project/removeUserFromProject`, userProject)
+    }
 
     createProject = (newProject) => {
         return this.post(`project/createProjectAuthorize`, newProject)

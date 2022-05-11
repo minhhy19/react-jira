@@ -13,12 +13,12 @@ export function* rootSaga() {
     //Nghiệp vụ Jira .... 
     UserSaga.theoDoiSignin(),
     UserSaga.theoDoiGetUserSaga(),
-    UserSaga.theoDoiAddUserProjectSaga(),
-    UserSaga.theoDoiRemoveUserProjectSaga(),
     UserSaga.theoDoiGetUserByProjectIdSaga(),
     
     ProjectCategorySaga.theoDoiGetAllProjectCategory(),
 
+    ProjectSaga.theoDoiAddUserProjectSaga(),
+    ProjectSaga.theoDoiRemoveUserProjectSaga(),
     ProjectSaga.theoDoiCreateProjectSaga(),
     ProjectSaga.theoDoiUpdateProjectSaga(),
     ProjectSaga.theoDoiDeleteProjectSaga(),

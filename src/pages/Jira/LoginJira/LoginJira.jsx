@@ -13,7 +13,7 @@ const IconFont = createFromIconfontCN({
 });
 
 
-function LoginCyberBugs(props) {
+function LoginJira(props) {
   
   console.log(props);
 
@@ -66,7 +66,7 @@ const LoginCyberBugsWithFormik = withFormik({
   },
 
   displayName: 'LoginCyberbugs',
-})(LoginCyberBugs);
+})(LoginJira);
 
 
 export default connect()(LoginCyberBugsWithFormik);

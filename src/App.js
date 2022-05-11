@@ -1,8 +1,7 @@
 import {BrowserRouter, Switch, Router} from "react-router-dom";
 import "./App.css";
 import {UserLoginTemplate} from "./templates/HomeTemplate/UserLoginTemplate";
-import Login from "./pages/Login/Login";
-import LoginCyberBugs from "./pages/CyberBugs/LoginCyberBugs/LoginCyberBugs";
+import LoginJira from "./pages/Jira/LoginJira/LoginJira";
 import LoadingComponent from "./components/GlobalSetting/LoadingComponent/LoadingComponent";
 import {history} from "./util/constants/settingSystem";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
@@ -11,9 +10,9 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Home from "./pages/Home/Home";
 import { CyberbugsTemplate } from "./templates/HomeTemplate/CyberbugsTemplate";
-import CreateProject from "./pages/CyberBugs/CreateProject/CreateProject";
-import ProjectManagement from "./pages/CyberBugs/ProjectManagement/ProjectManagement";
-import ProjecDetail from "./pages/CyberBugs/ProjectDetail/ProjecDetail";
+import CreateProject from "./pages/Jira/CreateProject/CreateProject";
+import ProjectManagement from "./pages/Jira/ProjectManagement/ProjectManagement";
+import ProjecDetail from "./pages/Jira/ProjectDetail/ProjecDetail";
 import DrawerJira from "./HOC/DrawerJira";
 
 function App() {
@@ -27,7 +26,7 @@ function App() {
             <LoadingComponent />
             <DrawerJira />
             <Switch>
-                <UserLoginTemplate exact path="/login" Component={LoginCyberBugs} />
+                <UserLoginTemplate exact path="/login" Component={LoginJira} />
                 <CyberbugsTemplate exact path='/cyberbugs' Component={ProjecDetail} />
                 <CyberbugsTemplate exact path='/createproject' Component={CreateProject} />
                 <CyberbugsTemplate exact path='/projectmanagement' Component={ProjectManagement} />

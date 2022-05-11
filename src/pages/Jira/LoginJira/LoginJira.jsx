@@ -6,7 +6,7 @@ import { withFormik, Form } from 'formik';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { USER_SIGNIN_API } from '../../../redux/constants/CyberBugs/CyberBugs';
-import { signinCyberbugAction } from '../../../redux/actions/CyberbugsAction';
+import { signinAction } from '../../../redux/actions/UserAction';
 
 const IconFont = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js',
@@ -30,7 +30,7 @@ function LoginJira(props) {
   return (
     <form onSubmit={handleSubmit} className='container' style={{ height: window.innerHeight }}>
       <div className='d-flex flex-column justify-content-center align-items-center' style={{ height: window.innerHeight }}>
-        <h3 className='text-center'>Login Cyberbugs</h3>
+        <h3 className='text-center'>Login</h3>
         <div className='d-flex mt-3'>
           <Input onChange={handleChange} name='email' style={{ minWidth: 300 }} placeholder="Email" prefix={<UserOutlined />} />
         </div>
@@ -48,7 +48,7 @@ function LoginJira(props) {
     </form>
   )
 }
-const LoginCyberBugsWithFormik = withFormik({
+const LoginJiraWithFormik = withFormik({
   mapPropsToValues: () => ({ 
     email: '',
     password: ''
@@ -59,14 +59,14 @@ const LoginCyberBugsWithFormik = withFormik({
   }),
   handleSubmit: ({ email, password }, { props, setSubmitting }) => {
     
-    props.dispatch(signinCyberbugAction(email, password));
+    props.dispatch(signinAction(email, password));
     // console.log(props)
     // console.log(values);
 
   },
 
-  displayName: 'LoginCyberbugs',
+  displayName: 'Login',
 })(LoginJira);
 
 
-export default connect()(LoginCyberBugsWithFormik);
+export default connect()(LoginJiraWithFormik);

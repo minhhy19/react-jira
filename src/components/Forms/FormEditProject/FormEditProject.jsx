@@ -49,7 +49,7 @@ function FormEditProject(props) {
                     <div className='form-group'>
                         <p className='font-weight-bold'>Project category</p>
                         <select name="categoryId" value={values.categoryId} className='form-control' onChange={handleChange}>
-                            {arrProjectCategory?.map((item, index) => {
+                            {arrProjectCategory?.map((item) => {
                                 return <option key={item.id} value={item.id} >{item.projectCategoryName}</option>
                             })}
                         </select>

@@ -22,7 +22,7 @@ function FormCreateTask(props) {
     const { arrUser } = useSelector(state => state.UserReducer);
 
     //Hàm biến đổi options cho thẻ select
-    const userOptions = arrUser.map((item, index) => {
+    const userOptions = arrUser.map((item) => {
         return { value: item.userId, label: item.name }
     })
 
@@ -230,7 +230,7 @@ const formCreateTask = withFormik({
     }),
     handleSubmit: (values, { props, setSubmitting }) => {
         props.dispatch({type: CREATE_TASK_SAGA, taskObject: values});
-        console.log('taskobject', values)
+        // console.log('taskobject', values)
     },
     displayName: 'createTaskForm',
 })(FormCreateTask);

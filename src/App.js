@@ -9,7 +9,7 @@ import {useEffect, useState} from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Home from "./pages/Home/Home";
-import { CyberbugsTemplate } from "./templates/HomeTemplate/CyberbugsTemplate";
+import { JiraTemplate } from "./templates/HomeTemplate/JiraTemplate";
 import CreateProject from "./pages/Jira/CreateProject/CreateProject";
 import ProjectManagement from "./pages/Jira/ProjectManagement/ProjectManagement";
 import ProjecDetail from "./pages/Jira/ProjectDetail/ProjecDetail";
@@ -27,11 +27,11 @@ function App() {
             <DrawerJira />
             <Switch>
                 <UserLoginTemplate exact path="/login" Component={LoginJira} />
-                <CyberbugsTemplate exact path='/cyberbugs' Component={ProjecDetail} />
-                <CyberbugsTemplate exact path='/createproject' Component={CreateProject} />
-                <CyberbugsTemplate exact path='/projectmanagement' Component={ProjectManagement} />
-                <CyberbugsTemplate exact path='/projectdetail/:projectId' Component={ProjecDetail} />
-                <CyberbugsTemplate exact path="/" Component={ProjectManagement} />
+                <JiraTemplate exact path='/cyberbugs' Component={ProjecDetail} />
+                <JiraTemplate exact path='/createproject' Component={CreateProject} />
+                <JiraTemplate exact path='/projectmanagement' Component={ProjectManagement} />
+                <JiraTemplate exact path='/projectdetail/:projectId' Component={ProjecDetail} />
+                <JiraTemplate exact path="/" Component={ProjectManagement} />
             </Switch>
         </>
     );

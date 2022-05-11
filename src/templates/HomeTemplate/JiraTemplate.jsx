@@ -6,7 +6,7 @@ import SidebarJira from '../../components/Jira/SidebarJira';
 
 import '../../index.css';
 
-export const CyberbugsTemplate = (props) => {
+export const JiraTemplate = (props) => {
 
     const { Component, ...restParam } = props;
     return <Route {...restParam} render={(propsRoute) => {

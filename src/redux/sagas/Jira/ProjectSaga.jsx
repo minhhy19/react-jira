@@ -1,7 +1,7 @@
 import { call, delay, fork, take, takeEvery, takeLatest, put, select } from 'redux-saga/effects';
 import { projectService } from '../../../services/ProjectService';
 import { history, STATUS_CODE } from '../../../util/constants/settingSystem';
-import { notificationFunction } from '../../../util/Notification/notificationCyberbugs';
+import { notificationFunction } from '../../../util/Notification/notificationJira';
 import { GET_ALL_PROJECT, GET_ALL_PROJECT_SAGA } from '../../constants/Jira/ProjectConstants';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConstant';
 

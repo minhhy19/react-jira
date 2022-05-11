@@ -5,7 +5,7 @@ import { EditOutlined, DeleteOutlined, CloseSquareOutlined, CloseOutlined } from
 import { useDispatch, useSelector } from 'react-redux';
 import FormEditProject from '../../../components/Forms/FormEditProject/FormEditProject';
 import { NavLink } from 'react-router-dom';
-import { GET_ALL_PROJECT_SAGA } from '../../../redux/constants/Jira/ProjectConstants';
+import { ADD_USER_PROJECT_API, GET_ALL_PROJECT_SAGA } from '../../../redux/constants/Jira/ProjectConstants';
 
 export default function ProjectManagement(props) {
     // Lấy dữ liệu reducer về component
@@ -188,7 +188,7 @@ export default function ProjectManagement(props) {
                                     setValue(option.label);
                                     // Gọi API gửi về backend
                                     dispatch({
-                                        type: 'ADD_USER_PROJECT_API',
+                                        type: ADD_USER_PROJECT_API,
                                         userProject: {
                                             "projectId": record.id,
                                             "userId": valueSelect

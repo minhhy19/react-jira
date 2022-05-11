@@ -2,7 +2,7 @@ import { call, delay, fork, take, takeEvery, takeLatest, put, select } from 'red
 import { projectService } from '../../../services/ProjectService';
 import { history, STATUS_CODE } from '../../../util/constants/settingSystem';
 import { notificationFunction } from '../../../util/Notification/notificationJira';
-import { GET_ALL_PROJECT, GET_ALL_PROJECT_SAGA } from '../../constants/Jira/ProjectConstants';
+import { ADD_USER_PROJECT_API, GET_ALL_PROJECT, GET_ALL_PROJECT_SAGA } from '../../constants/Jira/ProjectConstants';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConstant';
 
 function * addUserProjectSaga(action) {
@@ -18,7 +18,7 @@ function * addUserProjectSaga(action) {
 }
 
 export function * theoDoiAddUserProjectSaga() {
-    yield takeLatest('ADD_USER_PROJECT_API', addUserProjectSaga);
+    yield takeLatest(ADD_USER_PROJECT_API, addUserProjectSaga);
 }
 
 function * removeUserProjectSaga(action) {

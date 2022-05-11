@@ -1,11 +1,11 @@
 import { all } from "redux-saga/effects";
-import * as UserSaga from './Cyberbugs/UserSaga'
-import * as ProjectCategorySaga from './Cyberbugs/ProjectCategorySaga';
-import * as ProjectSaga from './Cyberbugs/ProjectSaga';
-import * as TaskTypeSaga from './Cyberbugs/TaskTypeSaga';
-import * as PrioritySaga from './Cyberbugs/PrioritySaga';
-import * as StatusSaga from './Cyberbugs/StatusSaga';
-import * as TaskSaga from './Cyberbugs/TaskSaga';
+import * as UserSaga from './Jira/UserSaga'
+import * as ProjectCategorySaga from './Jira/ProjectCategorySaga';
+import * as ProjectSaga from './Jira/ProjectSaga';
+import * as TaskTypeSaga from './Jira/TaskTypeSaga';
+import * as PrioritySaga from './Jira/PrioritySaga';
+import * as StatusSaga from './Jira/StatusSaga';
+import * as TaskSaga from './Jira/TaskSaga';
 
 export function* rootSaga() {
 

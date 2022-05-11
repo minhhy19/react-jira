@@ -2,7 +2,7 @@ import { call, delay, fork, take, takeEvery, takeLatest, put, select } from 'red
 import { projectService } from '../../../services/ProjectService';
 import { history, STATUS_CODE } from '../../../util/constants/settingSystem';
 import { notificationFunction } from '../../../util/Notification/notificationCyberbugs';
-import { GET_ALL_PROJECT, GET_ALL_PROJECT_SAGA } from '../../constants/CyberBugs/ProjectConstants';
+import { GET_ALL_PROJECT, GET_ALL_PROJECT_SAGA } from '../../constants/Jira/ProjectConstants';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConst';
 
 function * createProjectSaga(action) {

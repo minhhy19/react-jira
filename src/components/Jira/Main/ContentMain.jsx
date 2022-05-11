@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { GET_TASK_DETAIL_SAGA } from '../../../redux/constants/CyberBugs/TaskConstants';
+import { GET_TASK_DETAIL_SAGA } from '../../../redux/constants/Jira/TaskConstants';
 export default function ContentMain(props) {
 
     const { projectDetail } = props;

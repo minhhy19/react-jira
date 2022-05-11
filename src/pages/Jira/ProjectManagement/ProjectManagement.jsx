@@ -5,7 +5,7 @@ import { EditOutlined, DeleteOutlined, CloseSquareOutlined, CloseOutlined } from
 import { useDispatch, useSelector } from 'react-redux';
 import FormEditProject from '../../../components/Forms/FormEditProject/FormEditProject';
 import { NavLink } from 'react-router-dom';
-import { GET_ALL_PROJECT_SAGA } from '../../../redux/constants/CyberBugs/ProjectConstants';
+import { GET_ALL_PROJECT_SAGA } from '../../../redux/constants/Jira/ProjectConstants';
 
 export default function ProjectManagement(props) {
     // Lấy dữ liệu reducer về component

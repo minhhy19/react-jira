@@ -1,4 +1,4 @@
-import { GET_ALL_PRIORITY } from "../constants/CyberBugs/PriorityConstants"
+import { GET_ALL_PRIORITY } from "../constants/Jira/PriorityConstants"
 
 
 const initialState = {

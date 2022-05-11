@@ -1,6 +1,6 @@
 import { call, delay, fork, take, takeEvery, takeLatest, put, select } from 'redux-saga/effects';
 import { statusService } from '../../../services/StatusService';
-import { GET_ALL_STATUS, GET_ALL_STATUS_SAGA } from '../../constants/CyberBugs/StatusConstant';
+import { GET_ALL_STATUS, GET_ALL_STATUS_SAGA } from '../../constants/Jira/StatusConstant';
 
 function * getAllStatusSaga(action) {
     try {

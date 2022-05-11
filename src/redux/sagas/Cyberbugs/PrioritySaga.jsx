@@ -1,6 +1,6 @@
 import { call, delay, fork, take, takeEvery, takeLatest, put, select } from 'redux-saga/effects';
 import { priorityService } from '../../../services/PriorityService';
-import { GET_ALL_PRIORITY, GET_ALL_PRIORITY_SAGA } from '../../constants/CyberBugs/PriorityConstants';
+import { GET_ALL_PRIORITY, GET_ALL_PRIORITY_SAGA } from '../../constants/Jira/PriorityConstants';
 
 function * getAllPrioritySaga(action) {
     try {

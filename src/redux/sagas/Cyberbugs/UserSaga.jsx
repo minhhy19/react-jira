@@ -1,9 +1,9 @@
 import { call, delay, fork, take, takeEvery, takeLatest, put, select } from 'redux-saga/effects';
 import { userService } from '../../../services/UserService';
 import { ACCESS_TOKEN, history, STATUS_CODE, USER_LOGIN } from '../../../util/constants/settingSystem';
-import { USER_SIGNIN_API, USLOGIN } from '../../constants/CyberBugs/CyberBugs';
-import { GET_ALL_PROJECT_SAGA } from '../../constants/CyberBugs/ProjectConstants';
-import { GET_USER_BY_PROJECT_ID, GET_USER_BY_PROJECT_ID_SAGA } from '../../constants/CyberBugs/UserConstants';
+import { USER_SIGNIN_API, USLOGIN } from '../../constants/Jira/UserConstants';
+import { GET_ALL_PROJECT_SAGA } from '../../constants/Jira/ProjectConstants';
+import { GET_USER_BY_PROJECT_ID, GET_USER_BY_PROJECT_ID_SAGA } from '../../constants/Jira/UserConstants';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConst';
 
 

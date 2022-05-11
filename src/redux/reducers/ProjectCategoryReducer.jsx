@@ -1,4 +1,4 @@
-import { GET_ALL_PROJECT_CATEGORY } from "../constants/CyberBugs/CyberBugs";
+import { GET_ALL_PROJECT_CATEGORY } from "../constants/Jira/ProjectCategoryConstants";
 
 
 const stateDefault = {

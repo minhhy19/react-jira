@@ -1,4 +1,4 @@
-import { USER_SIGNIN_API } from "../constants/CyberBugs/CyberBugs"
+import { USER_SIGNIN_API } from "../constants/Jira/UserConstants"
 
 
 

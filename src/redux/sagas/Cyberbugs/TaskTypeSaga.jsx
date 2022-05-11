@@ -1,6 +1,6 @@
 import { call, delay, fork, take, takeEvery, takeLatest, put, select } from 'redux-saga/effects';
 import { taskTypeService } from '../../../services/TaskTypeService';
-import { GET_ALL_TASK_TYPE, GET_ALL_TASK_TYPE_SAGA } from '../../constants/CyberBugs/TaskTypeConstant';
+import { GET_ALL_TASK_TYPE, GET_ALL_TASK_TYPE_SAGA } from '../../constants/Jira/TaskTypeConstant';
 
 function * getAllTaskTypeSaga(action) {
     try {

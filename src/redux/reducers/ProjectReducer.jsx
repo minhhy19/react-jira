@@ -1,4 +1,4 @@
-import { GET_ALL_PROJECT } from "../constants/CyberBugs/ProjectConstants";
+import { GET_ALL_PROJECT } from "../constants/Jira/ProjectConstants";
 
 
 const initialState = {

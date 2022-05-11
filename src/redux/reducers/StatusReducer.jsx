@@ -1,4 +1,4 @@
-import { GET_ALL_STATUS } from "../constants/CyberBugs/StatusConstant"
+import { GET_ALL_STATUS } from "../constants/Jira/StatusConstant"
 
 const initialState = {
     arrStatus:[]

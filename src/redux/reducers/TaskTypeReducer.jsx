@@ -1,4 +1,4 @@
-import { GET_ALL_TASK_TYPE } from "../constants/CyberBugs/TaskTypeConstant"
+import { GET_ALL_TASK_TYPE } from "../constants/Jira/TaskTypeConstant"
 
 const initialState = {
     arrTaskType: []

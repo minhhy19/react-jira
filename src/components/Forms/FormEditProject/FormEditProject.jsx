@@ -3,7 +3,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
 import { connect, useSelector, useDispatch } from 'react-redux';
-import { GET_ALL_PROJECT_CATEGORY_SAGA } from '../../../redux/constants/CyberBugs/CyberBugs';
+import { GET_ALL_PROJECT_CATEGORY_SAGA } from '../../../redux/constants/Jira/ProjectCategoryConstants';
 
 function FormEditProject(props) {
     const arrProjectCategory = useSelector(state => state.ProjectCategoryReducer.arrProjectCategory);

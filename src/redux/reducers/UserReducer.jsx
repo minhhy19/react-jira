@@ -1,6 +1,5 @@
 import { USER_LOGIN } from "../../util/constants/settingSystem";
-import { USLOGIN } from "../constants/CyberBugs/CyberBugs";
-import { GET_USER_BY_PROJECT_ID } from "../constants/CyberBugs/UserConstants";
+import { GET_USER_BY_PROJECT_ID, USLOGIN } from "../constants/Jira/UserConstants";
 
 let usLogin = {};
 if (localStorage.getItem(USER_LOGIN)) {

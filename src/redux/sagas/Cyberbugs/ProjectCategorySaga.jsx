@@ -1,7 +1,7 @@
 import { call, delay, fork, take, takeEvery, takeLatest, put, select } from 'redux-saga/effects';
 import { projectCategoryService } from '../../../services/ProjectCategoryService';
 import { STATUS_CODE } from '../../../util/constants/settingSystem';
-import { GET_ALL_PROJECT_CATEGORY, GET_ALL_PROJECT_CATEGORY_SAGA } from '../../constants/CyberBugs/CyberBugs';
+import { GET_ALL_PROJECT_CATEGORY, GET_ALL_PROJECT_CATEGORY_SAGA } from '../../constants/Jira/ProjectCategoryConstants';
 
 function * getAllProjectCategorySaga (action) {
     try {

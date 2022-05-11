@@ -5,7 +5,6 @@ import { UserOutlined, LockOutlined, TwitterOutlined } from '@ant-design/icons';
 import { withFormik, Form } from 'formik';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
-import { USER_SIGNIN_API } from '../../../redux/constants/CyberBugs/CyberBugs';
 import { signinAction } from '../../../redux/actions/UserAction';
 
 const IconFont = createFromIconfontCN({

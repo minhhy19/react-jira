@@ -4,12 +4,12 @@ import { Select, Radio, Slider } from 'antd';
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
 import { useSelector, useDispatch, connect } from 'react-redux'
-import { GET_ALL_PROJECT_SAGA } from '../../../redux/constants/CyberBugs/ProjectConstants';
-import { GET_ALL_TASK_TYPE_SAGA } from '../../../redux/constants/CyberBugs/TaskTypeConstant';
-import { GET_ALL_PRIORITY_SAGA } from '../../../redux/constants/CyberBugs/PriorityConstants';
-import { GET_ALL_STATUS_SAGA } from '../../../redux/constants/CyberBugs/StatusConstant';
-import { GET_USER_BY_PROJECT_ID_SAGA } from '../../../redux/constants/CyberBugs/UserConstants';
-import { CREATE_TASK_SAGA } from '../../../redux/constants/CyberBugs/TaskConstants';
+import { GET_ALL_PROJECT_SAGA } from '../../../redux/constants/Jira/ProjectConstants';
+import { GET_ALL_TASK_TYPE_SAGA } from '../../../redux/constants/Jira/TaskTypeConstant';
+import { GET_ALL_PRIORITY_SAGA } from '../../../redux/constants/Jira/PriorityConstants';
+import { GET_ALL_STATUS_SAGA } from '../../../redux/constants/Jira/StatusConstant';
+import { GET_USER_BY_PROJECT_ID_SAGA } from '../../../redux/constants/Jira/UserConstants';
+import { CREATE_TASK_SAGA } from '../../../redux/constants/Jira/TaskConstants';
 
 
 function FormCreateTask(props) {

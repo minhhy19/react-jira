@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import ContentMain from '../../../components/Cyberbugs/Main/ContentMain'
-import HeaderMain from '../../../components/Cyberbugs/Main/HeaderMain'
-import InfoMain from '../../../components/Cyberbugs/Main/InfoMain'
+import ContentMain from '../../../components/Jira/Main/ContentMain'
+import HeaderMain from '../../../components/Jira/Main/HeaderMain'
+import InfoMain from '../../../components/Jira/Main/InfoMain'
 
 export default function ProjecDetail(props) {
   // console.log(props.match.params.projectId);

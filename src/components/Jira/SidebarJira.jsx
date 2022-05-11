@@ -16,7 +16,7 @@ import FormCreateTask from '../Forms/FormCreateTask/FormCreateTask';
 
 const { Header, Sider, Content } = Layout;
 
-export default function SidebarCyberbugs() {
+export default function SidebarJira() {
 
     const dispatch = useDispatch();
 

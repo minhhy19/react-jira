@@ -11,7 +11,7 @@ import { Select } from 'antd';
 const { Option } = Select;
 
 
-export default function ModalCyberBugs(props) {
+export default function ModalJira(props) {
 
     // const { taskDetailModal } = useSelector(state => state.TaskReducer);
     // const { arrStatus } = useSelector(state => state.StatusReducer);

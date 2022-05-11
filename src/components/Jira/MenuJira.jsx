@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-export default function MenuCyberbugs() {
+export default function MenuJira() {
     return (
         <div className="menu">
             <div className="account">

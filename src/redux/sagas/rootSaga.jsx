@@ -10,7 +10,7 @@ import * as TaskSaga from './Jira/TaskSaga';
 export function* rootSaga() {
 
   yield all([
-    //Nghiệp vụ cyberbugs .... 
+    //Nghiệp vụ Jira .... 
     UserSaga.theoDoiSignin(),
     UserSaga.theoDoiGetUserSaga(),
     UserSaga.theoDoiAddUserProjectSaga(),

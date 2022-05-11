@@ -27,7 +27,7 @@ function App() {
             <DrawerJira />
             <Switch>
                 <UserLoginTemplate exact path="/login" Component={LoginJira} />
-                <JiraTemplate exact path='/cyberbugs' Component={ProjecDetail} />
+                <JiraTemplate exact path='/jira' Component={ProjecDetail} />
                 <JiraTemplate exact path='/createproject' Component={CreateProject} />
                 <JiraTemplate exact path='/projectmanagement' Component={ProjectManagement} />
                 <JiraTemplate exact path='/projectdetail/:projectId' Component={ProjecDetail} />

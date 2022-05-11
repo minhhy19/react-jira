@@ -16,7 +16,7 @@ export default function MenuJira() {
             <div className="control">
                 <div>
                     <i className="fa fa-credit-card mr-1" />
-                    <NavLink className="text-dark" activeStyle={{color:'blue'}} to="/cyberbugs" activeClassName="active font-weight-bold text-primary" >Cyber Board</NavLink>
+                    <NavLink className="text-dark" activeStyle={{color:'blue'}} to="/jira" activeClassName="active font-weight-bold text-primary" >Cyber Board</NavLink>
                 </div>
                 <div>
                     <i className="fa fa-cog mr-1" /> 

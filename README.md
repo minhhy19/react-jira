@@ -1,7 +1,7 @@
 ### TO DO LIST
 
 - [x] Hoàn thành API Jira
-- [ ] Hoàn thành giao diện và các chức năng Cyberbugs
+- [ ] Hoàn thành giao diện và các chức năng Jira
 - [ ] Chỉnh keys trong children component khi render bằng map
 
 In short, here's when you can safely use the index as key:

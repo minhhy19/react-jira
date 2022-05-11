@@ -9,14 +9,14 @@ export default function MenuJira() {
                     <img src={require("../../assets/img/download.jfif")} alt="123" />
                 </div>
                 <div className="account-info">
-                    <p>CyberLearn.vn</p>
-                    <p>Report bugs</p>
+                    <p>Jira 1.0</p>
+                    <p>Software project</p>
                 </div>
             </div>
             <div className="control">
                 <div>
                     <i className="fa fa-credit-card mr-1" />
-                    <NavLink className="text-dark" activeStyle={{color:'blue'}} to="/jira" activeClassName="active font-weight-bold text-primary" >Cyber Board</NavLink>
+                    <NavLink className="text-dark" activeStyle={{color:'blue'}} to="/jira" activeClassName="active font-weight-bold text-primary" >MinhHy Board</NavLink>
                 </div>
                 <div>
                     <i className="fa fa-cog mr-1" /> 

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 // import ReactHtmlParser from "react-html-parser";
-// import { GET_ALL_STATUS_SAGA } from '../../../redux/constants/Cyberbugs/StatusConstant';
-// import { GET_ALL_PRIORITY_SAGA } from '../../../redux/constants/Cyberbugs/PriorityConstants';
-// import { CHANGE_ASSIGNESS, CHANGE_TASK_MODAL, HANDLE_CHANGE_POST_API_SAGA, REMOVE_USER_ASSIGN, UPDATE_STATUS_TASK_SAGA } from '../../../redux/constants/Cyberbugs/TaskConstants';
-// import { GET_ALL_TASK_TYPE_SAGA } from '../../../redux/constants/Cyberbugs/TaskTypeConstants';
+// import { GET_ALL_STATUS_SAGA } from '../../../redux/constants/Jira/StatusConstant';
+// import { GET_ALL_PRIORITY_SAGA } from '../../../redux/constants/Jira/PriorityConstants';
+// import { CHANGE_ASSIGNESS, CHANGE_TASK_MODAL, HANDLE_CHANGE_POST_API_SAGA, REMOVE_USER_ASSIGN, UPDATE_STATUS_TASK_SAGA } from '../../../redux/constants/Jira/TaskConstants';
+// import { GET_ALL_TASK_TYPE_SAGA } from '../../../redux/constants/Jira/TaskTypeConstants';
 // import { Editor } from '@tinymce/tinymce-react'
 import { Select } from 'antd';
 

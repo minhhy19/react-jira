@@ -4,6 +4,7 @@ import { history, STATUS_CODE } from '../../../util/constants/settingSystem';
 import { notificationFunction } from '../../../util/Notification/notificationJira';
 import { CLOSE_DRAWER } from '../../constants/DrawerConstant';
 import { ADD_USER_PROJECT_API, CREATE_PROJECT_SAGA, DELETE_PROJECT_SAGA, GET_ALL_PROJECT, GET_ALL_PROJECT_SAGA, GET_PROJECT_DETAIL, GET_PROJECT_DETAIL_SAGA, REMOVE_USER_PROJECT_API, UPDATE_PROJECT_SAGA } from '../../constants/Jira/ProjectConstants';
+import { GET_USER_BY_PROJECT_ID_SAGA } from '../../constants/Jira/UserConstants';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConstant';
 
 function * addUserProjectSaga(action) {
@@ -181,6 +182,11 @@ function * getAllProjectSaga(action) {
         yield put({
             type: GET_ALL_PROJECT,
             arrProject: data.content
+        })
+
+        yield put({
+            type: GET_USER_BY_PROJECT_ID_SAGA,
+            idProject:data.content[0].id
         })
     } catch(err) {
         console.log(err);

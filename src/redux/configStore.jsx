@@ -4,7 +4,7 @@ import reduxThunk from 'redux-thunk';
 //middleware saga
 import createMiddleWareSaga from 'redux-saga';
 import { rootSaga } from './sagas/rootSaga';
-import LoadingReducers from './reducers/LoadingReducers';
+import { LoadingReducers } from './reducers/LoadingReducers';
 import { HistoryReducer } from './reducers/HistoryReducer';
 import { UserReducer } from './reducers/UserReducer';
 import { ProjectCategoryReducer } from './reducers/ProjectCategoryReducer';

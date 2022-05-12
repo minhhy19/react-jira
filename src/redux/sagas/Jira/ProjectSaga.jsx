@@ -2,7 +2,8 @@ import { call, delay, fork, take, takeEvery, takeLatest, put, select } from 'red
 import { projectService } from '../../../services/ProjectService';
 import { history, STATUS_CODE } from '../../../util/constants/settingSystem';
 import { notificationFunction } from '../../../util/Notification/notificationJira';
-import { ADD_USER_PROJECT_API, GET_ALL_PROJECT, GET_ALL_PROJECT_SAGA } from '../../constants/Jira/ProjectConstants';
+import { CLOSE_DRAWER } from '../../constants/DrawerConstant';
+import { ADD_USER_PROJECT_API, CREATE_PROJECT_SAGA, DELETE_PROJECT_SAGA, GET_ALL_PROJECT, GET_ALL_PROJECT_SAGA, GET_PROJECT_DETAIL, GET_PROJECT_DETAIL_SAGA, REMOVE_USER_PROJECT_API, UPDATE_PROJECT_SAGA } from '../../constants/Jira/ProjectConstants';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConstant';
 
 function * addUserProjectSaga(action) {
@@ -34,7 +35,7 @@ function * removeUserProjectSaga(action) {
 }
 
 export function * theoDoiRemoveUserProjectSaga() {
-    yield takeLatest('REMOVE_USER_PROJECT_API', removeUserProjectSaga);
+    yield takeLatest(REMOVE_USER_PROJECT_API, removeUserProjectSaga);
 }
 
 function * createProjectSaga(action) {
@@ -62,7 +63,7 @@ function * createProjectSaga(action) {
 }
 
 export function* theoDoiCreateProjectSaga() {
-    yield takeLatest('CREATE_PROJECT_SAGA', createProjectSaga);
+    yield takeLatest(CREATE_PROJECT_SAGA, createProjectSaga);
 }
 
 // Saga dùng để update project
@@ -86,7 +87,7 @@ function * updateProjectSaga(action) {
 
         // tắt drawer
         yield put({
-            type: 'CLOSE_DRAWER'
+            type: CLOSE_DRAWER
         })
     } catch(err) {
         console.log(err);
@@ -98,7 +99,7 @@ function * updateProjectSaga(action) {
 }
 
 export function* theoDoiUpdateProjectSaga() {
-    yield takeLatest('UPDATE_PROJECT_SAGA', updateProjectSaga);
+    yield takeLatest(UPDATE_PROJECT_SAGA, updateProjectSaga);
 }
 
 // Saga dùng để delete project
@@ -125,7 +126,7 @@ function * deleteProjectSaga(action) {
 
         // tắt drawer
         yield put({
-            type: 'CLOSE_DRAWER'
+            type: CLOSE_DRAWER
         })
     } catch(err) {
         notificationFunction('error', 'Delete project fail!')
@@ -138,7 +139,7 @@ function * deleteProjectSaga(action) {
 }
 
 export function* theoDoiDeleteProjectSaga() {
-    yield takeLatest('DELETE_PROJECT_SAGA', deleteProjectSaga);
+    yield takeLatest(DELETE_PROJECT_SAGA, deleteProjectSaga);
 }
 
 function * getProjectDetailSaga(action) {
@@ -151,7 +152,7 @@ function * getProjectDetailSaga(action) {
         const { data, status } = yield call(() => projectService.getProjectDetail(action.projectId));
         // Lấy dữ liệu thành công thì đưa dữ liệu lên redux
         yield put({
-            type: 'PUT_PROJECT_DETAIL',
+            type: GET_PROJECT_DETAIL,
             projectDetail: data.content
         })
     } catch(err) {
@@ -165,7 +166,7 @@ function * getProjectDetailSaga(action) {
 }
 
 export function* theoDoiGetProjectDetailSaga() {
-    yield takeLatest('GET_PROJECT_DETAIL', getProjectDetailSaga);
+    yield takeLatest(GET_PROJECT_DETAIL_SAGA, getProjectDetailSaga);
 }
 
 function * getAllProjectSaga(action) {

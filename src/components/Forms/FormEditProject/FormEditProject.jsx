@@ -4,6 +4,8 @@ import { withFormik } from 'formik';
 import * as Yup from 'yup';
 import { connect, useSelector, useDispatch } from 'react-redux';
 import { GET_ALL_PROJECT_CATEGORY_SAGA } from '../../../redux/constants/Jira/ProjectCategoryConstants';
+import { UPDATE_PROJECT_SAGA } from '../../../redux/constants/Jira/ProjectConstants';
+import { SET_SUBMIT_EDIT_PROJECT } from '../../../redux/constants/DrawerConstant';
 
 function FormEditProject(props) {
     const arrProjectCategory = useSelector(state => state.ProjectCategoryReducer.arrProjectCategory);
@@ -24,7 +26,7 @@ function FormEditProject(props) {
         dispatch({ type: GET_ALL_PROJECT_CATEGORY_SAGA });
 
         // load sự kiện submit lên drawer nút submit
-        dispatch({ type: 'SET_SUBMIT_EDIT_PROJECT', submitFunction: handleSubmit });
+        dispatch({ type: SET_SUBMIT_EDIT_PROJECT, submitFunction: handleSubmit });
     }, [])
 
     const handleEditorChange = (content, editor) => {
@@ -106,7 +108,7 @@ const editProjectForm = withFormik({
     handleSubmit: (values, { props, setSubmitting }) => {
         // Khi ng dùng bấm submit => đưa dữ liệu ng dùng từ backend thông qua API
         const action = {
-            type: 'UPDATE_PROJECT_SAGA',
+            type: UPDATE_PROJECT_SAGA,
             projectUpdate: values
         }
         // Gọi saga

@@ -1,5 +1,5 @@
 import { USER_LOGIN } from "../../util/constants/settingSystem";
-import { GET_USER_BY_PROJECT_ID, USLOGIN } from "../constants/Jira/UserConstants";
+import { GET_USER_BY_PROJECT_ID, GET_USER_SEARCH, USLOGIN } from "../constants/Jira/UserConstants";
 
 let usLogin = {};
 if (localStorage.getItem(USER_LOGIN)) {
@@ -20,7 +20,7 @@ export const UserReducer = (state = stateDefault, action) => {
             return {...state}
         }
 
-        case 'GET_USER_SEARCH': {
+        case GET_USER_SEARCH: {
             state.userSearch = action.lstUserSearch;
             // console.log('stateUser', state);
             return {...state}

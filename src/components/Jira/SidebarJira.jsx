@@ -13,6 +13,7 @@ import {
 
 import {useDispatch, useSelector} from 'react-redux'
 import FormCreateTask from '../Forms/FormCreateTask/FormCreateTask';
+import { OPEN_FORM_CREATE_TASK } from '../../redux/constants/DrawerConstant';
 
 const { Header, Sider, Content } = Layout;
 
@@ -37,7 +38,7 @@ export default function SidebarJira() {
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                     <Menu.Item key="1" icon={<PlusOutlined style={{ fontSize: 20 }} />} onClick={()=>{
                         dispatch({
-                            type: 'OPEN_FORM_CREATE_TASK',
+                            type: OPEN_FORM_CREATE_TASK,
                             Component: <FormCreateTask />,
                             title: 'Create task'
                         })

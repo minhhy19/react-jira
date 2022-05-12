@@ -5,7 +5,9 @@ import { EditOutlined, DeleteOutlined, CloseSquareOutlined, CloseOutlined } from
 import { useDispatch, useSelector } from 'react-redux';
 import FormEditProject from '../../../components/Forms/FormEditProject/FormEditProject';
 import { NavLink } from 'react-router-dom';
-import { ADD_USER_PROJECT_API, GET_ALL_PROJECT_SAGA } from '../../../redux/constants/Jira/ProjectConstants';
+import { ADD_USER_PROJECT_API, DELETE_PROJECT_SAGA, EDIT_PROJECT, GET_ALL_PROJECT_SAGA, REMOVE_USER_PROJECT_API } from '../../../redux/constants/Jira/ProjectConstants';
+import { GET_USER_SAGA } from '../../../redux/constants/Jira/UserConstants';
+import { OPEN_FORM_EDIT_PROJECT } from '../../../redux/constants/DrawerConstant';
 
 export default function ProjectManagement(props) {
     // Lấy dữ liệu reducer về component
@@ -155,7 +157,7 @@ export default function ProjectManagement(props) {
                                                 <td>
                                                     <button className='btn btn-danger' style={{ borderRadius: '50%' }} onClick={() => {
                                                         dispatch({
-                                                            type: 'REMOVE_USER_PROJECT_API',
+                                                            type: REMOVE_USER_PROJECT_API,
                                                             userProject: {
                                                                 userId: item.userId,
                                                                 projectId: record.id
@@ -201,7 +203,7 @@ export default function ProjectManagement(props) {
                                     }
                                     searchRef.current = setTimeout(() => {
                                         dispatch({
-                                            type: 'GET_USER_API',
+                                            type: GET_USER_SAGA,
                                             keyWord: value
                                         })
                                     }, 100)
@@ -220,7 +222,7 @@ export default function ProjectManagement(props) {
                 <div>
                     <button className='btn mr-2 btn-primary' onClick={() => {
                         const action = {
-                            type: 'OPEN_FORM_EDIT_PROJECT',
+                            type: OPEN_FORM_EDIT_PROJECT,
                             title: 'Edit Project',
                             Component: <FormEditProject />
                         }
@@ -229,7 +231,7 @@ export default function ProjectManagement(props) {
 
                         // dispatch dữ liệu dòng hiện tại lên reducer
                         const actionEditProject = {
-                            type: 'EDIT_PROJECT',
+                            type: EDIT_PROJECT,
                             projectEditModel: record
                         }
                         dispatch(actionEditProject);
@@ -240,7 +242,7 @@ export default function ProjectManagement(props) {
                         title="Are you sure to delete this project?"
                         onConfirm={() => {
                             dispatch({
-                                type: 'DELETE_PROJECT_SAGA', idProject: record.id
+                                type: DELETE_PROJECT_SAGA, idProject: record.id
                             })
                         }}
                         okText="Yes"

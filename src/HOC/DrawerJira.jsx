@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Space } from 'antd';
 import { PlusOutlined } from '@ant-design/icons'
 import { useDispatch, useSelector } from 'react-redux';
+import { CLOSE_DRAWER, OPEN_DRAWER } from '../redux/constants/DrawerConstant';
 
 const { Option } = Select;
 
@@ -10,13 +11,13 @@ export default function DrawerJira(props) {
     const dispatch = useDispatch();
     const showDrawer = () => {
         dispatch({
-            type: 'OPEN_DRAWER'
+            type: OPEN_DRAWER
         });
     };
 
     const onClose = () => {
         dispatch({
-            type: 'CLOSE_DRAWER'
+            type: CLOSE_DRAWER
         });
     };
 

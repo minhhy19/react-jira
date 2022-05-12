@@ -4,6 +4,7 @@ import { withFormik } from 'formik';
 import * as Yup from 'yup';
 import { connect, useSelector, useDispatch } from 'react-redux';
 import { GET_ALL_PROJECT_CATEGORY_SAGA } from '../../../redux/constants/Jira/ProjectCategoryConstants';
+import { CREATE_PROJECT_SAGA } from '../../../redux/constants/Jira/ProjectConstants';
 
 function CreateProject(props) {
     const arrProjectCategory = useSelector(state => state.ProjectCategoryReducer.arrProjectCategory);
@@ -88,7 +89,7 @@ const createProjectForm = withFormik({
         // console.log(values);
         // console.log('props', props);
         props.dispatch({
-            type: 'CREATE_PROJECT_SAGA',
+            type: CREATE_PROJECT_SAGA,
             newProject: values
         })
     },

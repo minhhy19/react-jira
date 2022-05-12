@@ -1,7 +1,7 @@
 import { call, delay, fork, take, takeEvery, takeLatest, put, select } from 'redux-saga/effects';
 import { userService } from '../../../services/UserService';
 import { ACCESS_TOKEN, history, STATUS_CODE, USER_LOGIN } from '../../../util/constants/settingSystem';
-import { USER_SIGNIN_API, USLOGIN } from '../../constants/Jira/UserConstants';
+import { GET_USER_SAGA, GET_USER_SEARCH, USER_SIGNIN_API, USLOGIN } from '../../constants/Jira/UserConstants';
 import { GET_ALL_PROJECT_SAGA } from '../../constants/Jira/ProjectConstants';
 import { GET_USER_BY_PROJECT_ID, GET_USER_BY_PROJECT_ID_SAGA } from '../../constants/Jira/UserConstants';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConstant';
@@ -53,7 +53,7 @@ function * getUserSaga(action) {
         const { data, status } = yield call(() => userService.getUser(action.keyWord));
         console.log('data', data);
         yield put({
-            type: 'GET_USER_SEARCH',
+            type: GET_USER_SEARCH,
             lstUserSearch: data.content
         })
     } catch(err) {
@@ -62,7 +62,7 @@ function * getUserSaga(action) {
 }
 
 export function * theoDoiGetUserSaga() {
-    yield takeLatest('GET_USER_API', getUserSaga);
+    yield takeLatest(GET_USER_SAGA, getUserSaga);
 }
 
 function* getUserByProjectIdSaga(action) {

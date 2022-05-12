@@ -10,6 +10,7 @@ import { GET_ALL_PRIORITY_SAGA } from '../../../redux/constants/Jira/PriorityCon
 import { GET_ALL_STATUS_SAGA } from '../../../redux/constants/Jira/StatusConstant';
 import { GET_USER_BY_PROJECT_ID_SAGA } from '../../../redux/constants/Jira/UserConstants';
 import { CREATE_TASK_SAGA } from '../../../redux/constants/Jira/TaskConstants';
+import { SET_SUBMIT_CREATE_TASK } from '../../../redux/constants/DrawerConstant';
 
 
 function FormCreateTask(props) {
@@ -52,7 +53,7 @@ function FormCreateTask(props) {
         dispatch({ type: GET_ALL_STATUS_SAGA });
 
         // Đưa hàm handle submit lên drawer reducer để cập nhật lại sự kiện cho nút submit
-        dispatch({ type: 'SET_SUBMIT_CREATE_TASK', submitFunction: handleSubmit })
+        dispatch({ type: SET_SUBMIT_CREATE_TASK, submitFunction: handleSubmit })
     }, [])
 
     return (

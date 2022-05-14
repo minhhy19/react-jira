@@ -145,9 +145,9 @@ export function* theoDoiDeleteProjectSaga() {
 
 function * getProjectDetailSaga(action) {
     // hiển thị loading
-    yield put({
-        type: DISPLAY_LOADING
-    })
+    // yield put({
+    //     type: DISPLAY_LOADING
+    // })
     try {
         // Gọi API lấy dữ liệu về
         const { data, status } = yield call(() => projectService.getProjectDetail(action.projectId));
@@ -160,10 +160,9 @@ function * getProjectDetailSaga(action) {
         console.log(err);
         history.push('/projectmanagement')
     }
-    yield put({
-        type: HIDE_LOADING
-    })
-    
+    // yield put({
+    //     type: HIDE_LOADING
+    // })
 }
 
 export function* theoDoiGetProjectDetailSaga() {

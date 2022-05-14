@@ -13,6 +13,7 @@ import { ProjectReducer } from './reducers/ProjectReducer';
 import { TaskTypeReducer } from './reducers/TaskTypeReducer';
 import { PriorityReducer } from './reducers/PriorityReducer';
 import { StatusReducer } from './reducers/StatusReducer';
+import { TaskReducer } from './reducers/TaskReducer';
 
 const middleWareSaga = createMiddleWareSaga();
 
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
     ProjectReducer,
     TaskTypeReducer,
     PriorityReducer,
-    StatusReducer
+    StatusReducer,
+    TaskReducer
 });
 
 let middleWare = applyMiddleware(reduxThunk, middleWareSaga);

@@ -55,7 +55,6 @@ export default function ModalJira(props) {
                     setContent(content);
                 }}
             />
-
                 <button className="btn btn-primary m-2" onClick={() => {
                     dispatch({
                         type: HANDLE_CHANGE_POST_API_SAGA,
@@ -73,18 +72,16 @@ export default function ModalJira(props) {
                         value: historyContent
                     })
 
-                    //    dispatch({
-                    //         type: CHANGE_TASK_MODAL,
-                    //         name: 'description',
-                    //         value: historyContent
-                    //     })
+                    // dispatch({
+                    //     type: CHANGE_TASK_MODAL,
+                    //     name: 'description',
+                    //     value: historyContent
+                    // })
                     setVisibleEditor(false)
                 }}>Close</button>
             </div> : <div onClick={() => {
-
                 setHistoryContent(taskDetailModal.description);
                 setVisibleEditor(!visibleEditor);
-
             }}>{jsxDescription}</div>}
         </div>
     }
@@ -92,9 +89,8 @@ export default function ModalJira(props) {
     const handleChange = (e) => {
         const { name, value } = e.target;
         dispatch({
-            // type: HANDLE_CHANGE_POST_API_SAGA,
-            // actionType: CHANGE_TASK_MODAL,
-            type: CHANGE_TASK_MODAL,
+            type: HANDLE_CHANGE_POST_API_SAGA,
+            actionType: CHANGE_TASK_MODAL,
             name,
             value
         })
@@ -255,8 +251,8 @@ export default function ModalJira(props) {
                                                                         userId: user.id
                                                                     })
                                                                     // dispatch({
-                                                                    //     type:REMOVE_USER_ASSIGN,
-                                                                    //     userId:user.id
+                                                                    //     type: REMOVE_USER_ASSIGN,
+                                                                    //     userId: user.id
                                                                     // })
                                                                 }} />
                                                             </p>
@@ -265,7 +261,7 @@ export default function ModalJira(props) {
                                                 })
                                             }
                                             <div className="col-6  mt-2 mb-2">
-                                                {/* <Select 
+                                                <Select 
                                                     options = {projectDetail.members?.filter(mem => {
                                                         let index = taskDetailModal.assigness?.findIndex(us => us.id === mem.userId);
                                                         if (index !== -1) {
@@ -273,7 +269,7 @@ export default function ModalJira(props) {
                                                         }
                                                         return true;
                                                     }).map((mem, index) => {
-                                                        return {value:mem.userId,label:mem.name};
+                                                        return {value: mem.userId, label: mem.name};
                                                     })}
                                                     optionFilterProp="label"
                                                     style={{ width: '100%' }}
@@ -288,7 +284,7 @@ export default function ModalJira(props) {
                                                         userSelected = { ...userSelected, id: userSelected.userId };
 
                                                         dispatch({
-                                                            type:HANDLE_CHANGE_POST_API_SAGA,
+                                                            type: HANDLE_CHANGE_POST_API_SAGA,
                                                             actionType: CHANGE_ASSIGNESS,
                                                             userSelected
                                                         })
@@ -297,9 +293,9 @@ export default function ModalJira(props) {
                                                         // dispatch({
                                                         //     type: CHANGE_ASSIGNESS,
                                                         //     userSelected
-                                                        // })
-                                                    }}> */}
-                                                {/* </Select> */}
+                                                        // });
+                                                    }}>
+                                                </Select>
                                             </div>
                                         </div>
                                     </div>

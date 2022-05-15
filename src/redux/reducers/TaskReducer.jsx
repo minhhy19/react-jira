@@ -1,4 +1,4 @@
-import { CHANGE_TASK_MODAL, GET_TASK_DETAIL } from "../constants/Jira/TaskConstants"
+import { CHANGE_ASSIGNESS, CHANGE_TASK_MODAL, GET_TASK_DETAIL, REMOVE_USER_ASSIGN } from "../constants/Jira/TaskConstants"
 
 const initialState = {
     taskDetailModal: {
@@ -49,6 +49,15 @@ export const TaskReducer = (state = initialState, action) => {
             console.log('name', name);
             console.log('value', value);
             return { ...state, taskDetailModal: { ...state.taskDetailModal, [name]: value } }
+        }
+        case CHANGE_ASSIGNESS: {
+            state.taskDetailModal.assigness = [ ...state.taskDetailModal.assigness, action.userSelected ];
+            // console.log('state',state)
+            return { ...state }
+        }
+        case REMOVE_USER_ASSIGN: {
+            state.taskDetailModal.assigness = [...state.taskDetailModal.assigness.filter(us => us.id !== action.userId)]
+            return {...state}
         }
         default:
             return { ...state }

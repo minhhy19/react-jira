@@ -2,7 +2,7 @@ import {BrowserRouter, Switch, Router} from "react-router-dom";
 import "./App.css";
 import {UserLoginTemplate} from "./templates/HomeTemplate/UserLoginTemplate";
 import LoginJira from "./pages/Jira/LoginJira/LoginJira";
-import LoadingComponent from "./components/GlobalSetting/LoadingComponent/LoadingComponent";
+import Loading from "./components/Loading/Loading";
 import {history} from "./util/constants/settingSystem";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import {useEffect, useState} from "react";
@@ -23,7 +23,7 @@ function App() {
 	// }, []);
     return (
         <>
-            <LoadingComponent />
+            <Loading />
             <DrawerJira />
             <Switch>
                 <UserLoginTemplate exact path="/login" Component={LoginJira} />

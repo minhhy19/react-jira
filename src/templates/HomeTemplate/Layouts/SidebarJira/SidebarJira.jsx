@@ -12,8 +12,8 @@ import {
 } from '@ant-design/icons';
 
 import {useDispatch, useSelector} from 'react-redux'
-import FormCreateTask from '../Forms/FormCreateTask/FormCreateTask';
-import { OPEN_FORM_CREATE_TASK } from '../../redux/constants/DrawerConstant';
+import FormCreateTask from '../../../../components/Forms/FormCreateTask/FormCreateTask'; //../Forms/FormCreateTask/FormCreateTask
+import { OPEN_FORM_CREATE_TASK } from '../../../../redux/constants/DrawerConstant';
 
 const { Header, Sider, Content } = Layout;
 

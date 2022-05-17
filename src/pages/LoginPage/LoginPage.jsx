@@ -5,14 +5,14 @@ import { UserOutlined, LockOutlined, TwitterOutlined } from '@ant-design/icons';
 import { withFormik, Form } from 'formik';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
-import { signinAction } from '../../../redux/actions/UserAction';
+import { signinAction } from '../../redux/actions/UserAction';
 
 const IconFont = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js',
 });
 
 
-function LoginJira(props) {
+function LoginPage(props) {
   
   console.log(props);
 
@@ -65,7 +65,7 @@ const LoginJiraWithFormik = withFormik({
   },
 
   displayName: 'Login',
-})(LoginJira);
+})(LoginPage);
 
 
 export default connect()(LoginJiraWithFormik);

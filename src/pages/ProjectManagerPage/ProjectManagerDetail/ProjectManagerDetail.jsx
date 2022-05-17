@@ -5,7 +5,7 @@ import HeaderMain from '../../../components/Jira/Main/HeaderMain'
 import InfoMain from '../../../components/Jira/Main/InfoMain'
 import { GET_PROJECT_DETAIL_SAGA } from '../../../redux/constants/Jira/ProjectConstants'
 
-export default function ProjecDetail(props) {
+export default function ProjectManagerDetail(props) {
   // console.log(props.match.params.projectId);
   let { projectDetail } = useSelector(state => state.ProjectReducer)
   const dispatch = useDispatch();

@@ -1,37 +1,28 @@
 import {BrowserRouter, Switch, Router} from "react-router-dom";
-import "./App.css";
-import {UserLoginTemplate} from "./templates/HomeTemplate/UserLoginTemplate";
-import LoginJira from "./pages/Jira/LoginJira/LoginJira";
+// import "./App.css";
+import {UserLoginTemplate} from "./templates/UserLoginTemplate/UserLoginTemplate";
 import Loading from "./components/Loading/Loading";
-import {history} from "./util/constants/settingSystem";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
-import {useEffect, useState} from "react";
-import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import Home from "./pages/Home/Home";
-import { JiraTemplate } from "./templates/HomeTemplate/JiraTemplate";
-import CreateProject from "./pages/Jira/CreateProject/CreateProject";
-import ProjectManagement from "./pages/Jira/ProjectManagement/ProjectManagement";
-import ProjecDetail from "./pages/Jira/ProjectDetail/ProjecDetail";
+import { HomeTemplate } from "./templates/HomeTemplate/HomeTemplate";
 import DrawerJira from "./HOC/DrawerJira";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import ProjectManagerPage from "./pages/ProjectManagerPage/ProjectManagerPage";
+import ProjectManagerAdd from "./pages/ProjectManagerPage/ProjectManagerAdd/ProjectManagerAdd";
+import ProjectManagerDetail from "./pages/ProjectManagerPage/ProjectManagerDetail/ProjectManagerDetail";
 
 function App() {
-	// const history = useHistory()
-	// const dispatch = useDispatch();
-    // useEffect(() => {
-	// 	dispatch({type: 'ADD_HISTORY', history: history});
-	// }, []);
     return (
         <>
             <Loading />
             <DrawerJira />
             <Switch>
-                <UserLoginTemplate exact path="/login" Component={LoginJira} />
-                <JiraTemplate exact path='/jira' Component={ProjecDetail} />
-                <JiraTemplate exact path='/createproject' Component={CreateProject} />
-                <JiraTemplate exact path='/projectmanagement' Component={ProjectManagement} />
-                <JiraTemplate exact path='/projectdetail/:projectId' Component={ProjecDetail} />
-                <JiraTemplate exact path="/" Component={ProjectManagement} />
+                <UserLoginTemplate exact path="/login" Component={LoginPage} />
+                {/* <HomeTemplate exact path='/jira' Component={ProjecDetail} /> */}
+                <HomeTemplate exact path='/project/add' Component={ProjectManagerAdd} />
+                <HomeTemplate exact path='/project' Component={ProjectManagerPage} />
+                <HomeTemplate exact path='/project/detail/:projectId' Component={ProjectManagerDetail} />
+                <HomeTemplate exact path="/" Component={ProjectManagerPage} />
             </Switch>
         </>
     );

@@ -6,7 +6,7 @@ import { connect, useSelector, useDispatch } from 'react-redux';
 import { GET_ALL_PROJECT_CATEGORY_SAGA } from '../../../redux/constants/Jira/ProjectCategoryConstants';
 import { CREATE_PROJECT_SAGA } from '../../../redux/constants/Jira/ProjectConstants';
 
-function CreateProject(props) {
+function ProjectManagerAdd(props) {
     const arrProjectCategory = useSelector(state => state.ProjectCategoryReducer.arrProjectCategory);
     const dispatch = useDispatch();
 
@@ -72,7 +72,7 @@ function CreateProject(props) {
     )
 }
 
-const createProjectForm = withFormik({
+const ProjectManagerAddForm = withFormik({
     enableReinitialize: true,
     mapPropsToValues: (props) => {
         // console.log('propvalue', props)
@@ -94,11 +94,11 @@ const createProjectForm = withFormik({
         })
     },
     displayName: 'CreateProjectFormik',
-})(CreateProject);
+})(ProjectManagerAdd);
 
 const mapStateToProps = (state) => ({
     arrProjectCategory: state.ProjectCategoryReducer.arrProjectCategory
 })
 
 
-export default connect(mapStateToProps)(createProjectForm);
+export default connect(mapStateToProps)(ProjectManagerAddForm);

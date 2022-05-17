@@ -3,13 +3,13 @@ import { Table, Button, Space, Tag, Popconfirm, message, Avatar, Popover, AutoCo
 import ReactHtmlParse from "react-html-parser";
 import { EditOutlined, DeleteOutlined, CloseSquareOutlined, CloseOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from 'react-redux';
-import FormEditProject from '../../../components/Forms/FormEditProject/FormEditProject';
+import FormEditProject from '../../components/Forms/FormEditProject/FormEditProject';
 import { NavLink } from 'react-router-dom';
-import { ADD_USER_PROJECT_API, DELETE_PROJECT_SAGA, EDIT_PROJECT, GET_ALL_PROJECT_SAGA, REMOVE_USER_PROJECT_API } from '../../../redux/constants/Jira/ProjectConstants';
-import { GET_USER_SAGA } from '../../../redux/constants/Jira/UserConstants';
-import { OPEN_FORM_EDIT_PROJECT } from '../../../redux/constants/DrawerConstant';
+import { ADD_USER_PROJECT_API, DELETE_PROJECT_SAGA, EDIT_PROJECT, GET_ALL_PROJECT_SAGA, REMOVE_USER_PROJECT_API } from '../../redux/constants/Jira/ProjectConstants';
+import { GET_USER_SAGA } from '../../redux/constants/Jira/UserConstants';
+import { OPEN_FORM_EDIT_PROJECT } from '../../redux/constants/DrawerConstant';
 
-export default function ProjectManagement(props) {
+export default function ProjectManagerPage(props) {
     // Lấy dữ liệu reducer về component
     const { arrProject } = useSelector(state => state.ProjectReducer);
 
@@ -77,7 +77,7 @@ export default function ProjectManagement(props) {
             dataIndex: 'projectName',
             key: 'projectName',
             render: (text, record, index) => {
-                return <NavLink to={`/projectdetail/${record.id}`}>{text}</NavLink>
+                return <NavLink to={`/project/detail/${record.id}`}>{text}</NavLink>
             },
             sorter: (item2, item1) => {
                 let projectName1 = item1.projectName?.trim().toLowerCase();

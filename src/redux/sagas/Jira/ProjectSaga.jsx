@@ -52,7 +52,7 @@ function * createProjectSaga(action) {
         // Gọi API thành công thì dispatch lên reducer thông qua put
         if(status === STATUS_CODE.SUCCESS) {
             console.log(data);
-            history.push('/projectmanagement');
+            history.push('/project');
         }
     } catch(err) {
         console.log(err);
@@ -81,7 +81,7 @@ function * updateProjectSaga(action) {
         // Gọi API thành công thì dispatch lên reducer thông qua put
         if(status === STATUS_CODE.SUCCESS) {
             console.log(data);
-            // history.push('/projectmanagement');
+            // history.push('/project');
         }
         // load lại list project
         yield call(getAllProjectSaga);
@@ -117,7 +117,7 @@ function * deleteProjectSaga(action) {
         // Gọi API thành công thì dispatch lên reducer thông qua put
         if(status === STATUS_CODE.SUCCESS) {
             console.log(data);
-            // history.push('/projectmanagement');
+            // history.push('/project');
             notificationFunction('success', 'Delete project successfully!')
         } else {
             notificationFunction('error', 'Delete project fail!')
@@ -158,7 +158,7 @@ function * getProjectDetailSaga(action) {
         })
     } catch(err) {
         console.log(err);
-        history.push('/projectmanagement')
+        history.push('/project')
     }
     // yield put({
     //     type: HIDE_LOADING
@@ -189,7 +189,7 @@ function * getAllProjectSaga(action) {
         })
     } catch(err) {
         console.log(err);
-        history.push('/projectmanagement')
+        history.push('/project')
     }
     yield put({
         type: HIDE_LOADING

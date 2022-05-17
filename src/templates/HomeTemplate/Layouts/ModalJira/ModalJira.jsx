@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import ReactHtmlParser from "react-html-parser";
-import { GET_ALL_STATUS_SAGA } from '../../../redux/constants/Jira/StatusConstant';
-import { GET_ALL_PRIORITY_SAGA } from '../../../redux/constants/Jira/PriorityConstants';
-import { CHANGE_ASSIGNESS, CHANGE_TASK_MODAL, HANDLE_CHANGE_POST_API_SAGA, REMOVE_USER_ASSIGN, UPDATE_STATUS_TASK_SAGA } from '../../../redux/constants/Jira/TaskConstants';
-import { GET_ALL_TASK_TYPE_SAGA } from '../../../redux/constants/Jira/TaskTypeConstant';
+import { GET_ALL_STATUS_SAGA } from '../../../../redux/constants/Jira/StatusConstant';
+import { GET_ALL_PRIORITY_SAGA } from '../../../../redux/constants/Jira/PriorityConstants';
+import { CHANGE_ASSIGNESS, CHANGE_TASK_MODAL, HANDLE_CHANGE_POST_API_SAGA, REMOVE_USER_ASSIGN, UPDATE_STATUS_TASK_SAGA } from '../../../../redux/constants/Jira/TaskConstants';
+import { GET_ALL_TASK_TYPE_SAGA } from '../../../../redux/constants/Jira/TaskTypeConstant';
 import { Editor } from '@tinymce/tinymce-react'
 import { Select } from 'antd';
 
@@ -173,7 +173,7 @@ export default function ModalJira(props) {
                                         <h6>Comment</h6>
                                         <div className="block-comment" style={{ display: 'flex' }}>
                                             <div className="avatar">
-                                                <img src={require("../../../assets/img/download (1).jfif")} alt='xyz' />
+                                                <img src={require("../../../../assets/img/download (1).jfif")} alt='xyz' />
                                             </div>
                                             <div className="input-comment">
                                                 <input type="text" placeholder="Add a comment ..." />
@@ -189,7 +189,7 @@ export default function ModalJira(props) {
                                             <div className="comment-item">
                                                 <div className="display-comment" style={{ display: 'flex' }}>
                                                     <div className="avatar">
-                                                        <img src={require("../../../assets/img/download (1).jfif")} alt='xyz' />
+                                                        <img src={require("../../../../assets/img/download (1).jfif")} alt='xyz' />
                                                     </div>
                                                     <div>
                                                         <p style={{ marginBottom: 5 }}>
@@ -303,7 +303,7 @@ export default function ModalJira(props) {
                                         <h6>REPORTER</h6>
                                         <div style={{ display: 'flex' }} className="item">
                                             <div className="avatar">
-                                                <img src={require("../../../assets/img/download (1).jfif")} alt='xyz' />
+                                                <img src={require("../../../../assets/img/download (1).jfif")} alt='xyz' />
                                             </div>
                                             <p className="name">
                                                 Pickle Rick

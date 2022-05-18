@@ -6,7 +6,7 @@ import SidebarJira from './Layouts/SidebarJira/SidebarJira';
 import _ from 'lodash';
 
 import '../../index.css';
-import { USER_LOGIN } from '../../util/constants/settingSystem';
+import { ACCESS_TOKEN, USER_LOGIN } from '../../util/constants/settingSystem';
 import { messageApp } from '../../util/Common/Message';
 import { Redirect } from 'react-router-dom';
 import { notificationFunction } from '../../util/Notification/notificationJira';
@@ -14,6 +14,7 @@ import { notificationFunction } from '../../util/Notification/notificationJira';
 export const HomeTemplate = (props) => {
     const { messageAuthorization } = messageApp;
 
+    const accessToken = localStorage.getItem(ACCESS_TOKEN);
     let userInfo = localStorage.getItem(USER_LOGIN);
     if (!_.isEmpty(userInfo) && !_.isNull(userInfo)) {
         userInfo = JSON.parse(userInfo);
@@ -21,7 +22,7 @@ export const HomeTemplate = (props) => {
 
     const handleRender = () => {
         switch (true) {
-            case !userInfo: {
+            case !userInfo || !accessToken: {
                 // notificationFunction('warning', messageAuthorization);
                 return <Redirect to='/login' />;
             }

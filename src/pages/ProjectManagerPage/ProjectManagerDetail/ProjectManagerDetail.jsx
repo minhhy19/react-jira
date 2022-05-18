@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import ContentMain from '../../../components/Jira/Main/ContentMain'
-import HeaderMain from '../../../components/Jira/Main/HeaderMain'
-import InfoMain from '../../../components/Jira/Main/InfoMain'
+import ContentMain from './Layouts/ContentMain/ContentMain'
+import HeaderMain from './Layouts/HeaderMain/HeaderMain'
+import InfoMain from './Layouts/InfoMain/InfoMain'
 import { GET_PROJECT_DETAIL_SAGA } from '../../../redux/constants/Jira/ProjectConstants'
 
 export default function ProjectManagerDetail(props) {

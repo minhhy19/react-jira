@@ -1,6 +1,6 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 import { taskService } from '../../../services/TaskService'
-import { STATUS_CODE } from '../../../util/constants/settingSystem';
+import { history, STATUS_CODE } from '../../../util/constants/settingSystem';
 import { notificationFunction } from '../../../util/Notification/notificationJira'
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConstant';
 import { HANDLE_CHANGE_POST_API_SAGA, GET_TASK_DETAIL_SAGA, GET_TASK_DETAIL, UPDATE_STATUS_TASK_SAGA, UPDATE_TASK_SAGA, CHANGE_TASK_MODAL, CHANGE_ASSIGNESS, REMOVE_USER_ASSIGN, CREATE_TASK_SAGA } from '../../constants/Jira/TaskConstants'
@@ -29,6 +29,9 @@ function* createTaskSaga(action) {
     catch (err) {
         console.log(err.response?.data)
         notificationFunction('error', err.response?.data.message);
+        if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
+            history.push('/login')
+        }
     }
 
     yield put({
@@ -54,6 +57,9 @@ function * getTaskDetailSaga(action) {
     catch (err) {
         console.log(err.response?.data)
         notificationFunction('error', err.response?.data.message);
+        if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
+            history.push('/login')
+        }
     }
 }
 
@@ -79,6 +85,9 @@ function * updateTaskStatusSaga(action) {
     }
     catch (err) {
         console.log(err.response?.data)
+        if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
+            history.push('/login')
+        }
     }
 }
 
@@ -149,8 +158,11 @@ export function* handelChangePostApi(action) {
             })
         }
     } catch(err) {
-        console.log(err.response?.data);
         console.log(err);
+        console.log(err.response?.data);
+        if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
+            history.push('/login')
+        }
     }
 }
 

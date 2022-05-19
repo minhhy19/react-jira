@@ -15,7 +15,10 @@ function * addUserProjectSaga(action) {
             type: GET_ALL_PROJECT_SAGA
         })
     } catch(err) {
-        console.log(err.response.data);
+        console.log(err.response?.data);
+        if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
+            history.push('/login')
+        }
     }
 }
 
@@ -31,7 +34,10 @@ function * removeUserProjectSaga(action) {
             type: GET_ALL_PROJECT_SAGA
         })
     } catch(err) {
-        console.log(err.response.data);
+        console.log(err.response?.data);
+        if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
+            history.push('/login')
+        }
     }
 }
 
@@ -55,7 +61,10 @@ function * createProjectSaga(action) {
             history.push('/project');
         }
     } catch(err) {
-        console.log(err);
+        console.log(err.response?.data);
+        if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
+            history.push('/login')
+        }
     }
     yield put({
         type: HIDE_LOADING
@@ -91,7 +100,10 @@ function * updateProjectSaga(action) {
             type: CLOSE_DRAWER
         })
     } catch(err) {
-        console.log(err);
+        console.log(err.response?.data);
+        if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
+            history.push('/login')
+        }
     }
     yield put({
         type: HIDE_LOADING
@@ -131,7 +143,10 @@ function * deleteProjectSaga(action) {
         })
     } catch(err) {
         notificationFunction('error', 'Delete project fail!')
-        console.log(err);
+        console.log(err.response?.data);
+        if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
+            history.push('/login')
+        }
     }
     yield put({
         type: HIDE_LOADING
@@ -157,8 +172,12 @@ function * getProjectDetailSaga(action) {
             projectDetail: data.content
         })
     } catch(err) {
-        console.log(err);
-        history.push('/project')
+        console.log(err.response?.data);
+        if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
+            history.push('/login')
+        } else {
+            history.push('/project')
+        }
     }
     // yield put({
     //     type: HIDE_LOADING
@@ -188,8 +207,10 @@ function * getAllProjectSaga(action) {
             idProject:data.content[0].id
         })
     } catch(err) {
-        console.log(err);
-        history.push('/project')
+        console.log(err.response?.data);
+        if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
+            history.push('/login')
+        }
     }
     yield put({
         type: HIDE_LOADING

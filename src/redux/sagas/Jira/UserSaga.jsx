@@ -31,7 +31,7 @@ function * signinSaga(action) {
         // let history = yield select(state => state.HistoryReducer.history)
         history.push('/');
     } catch(err) {
-        console.log(err.response.data);
+        console.log(err.response?.data);
     }
     yield put({
         type: HIDE_LOADING
@@ -57,7 +57,10 @@ function * getUserSaga(action) {
             lstUserSearch: data.content
         })
     } catch(err) {
-        console.log(err.response.data);
+        console.log(err.response?.data);
+        if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
+            history.push('/login')
+        }
     }
 }
 
@@ -88,6 +91,9 @@ function* getUserByProjectIdSaga(action) {
                 type: GET_USER_BY_PROJECT_ID,
                 arrUser:[]
             })
+        }
+        if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
+            history.push('/login')
         }
     }
 }

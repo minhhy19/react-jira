@@ -6,6 +6,11 @@ import { GET_ALL_PROJECT_SAGA } from '../../constants/Jira/ProjectConstants';
 import { GET_USER_BY_PROJECT_ID, GET_USER_BY_PROJECT_ID_SAGA } from '../../constants/Jira/UserConstants';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConstant';
 import { notificationFunction } from '../../../util/Notification/notificationJira';
+import { messageApp } from '../../../util/Common/Message';
+
+const {
+    messageLoginSuccess
+} = messageApp;
 
 
 // Quản lý các action saga
@@ -29,7 +34,7 @@ function * signinSaga(action) {
                 type: USLOGIN,
                 userLogin: data.content
             })
-            notificationFunction('success', 'Login successfully!');
+            notificationFunction('success', messageLoginSuccess);
             // let history = yield select(state => state.HistoryReducer.history)
             history.push('/');
         }

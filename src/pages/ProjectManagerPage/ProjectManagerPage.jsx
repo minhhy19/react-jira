@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Table, Button, Space, Tag, Popconfirm, message, Avatar, Popover, AutoComplete } from 'antd';
-import ReactHtmlParse from "react-html-parser";
 import { EditOutlined, DeleteOutlined, CloseSquareOutlined, CloseOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from 'react-redux';
 import FormEditProject from '../../components/Forms/FormEditProject/FormEditProject';

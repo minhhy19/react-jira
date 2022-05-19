@@ -6,6 +6,13 @@ import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConstant';
 import { HANDLE_CHANGE_POST_API_SAGA, GET_TASK_DETAIL_SAGA, GET_TASK_DETAIL, UPDATE_STATUS_TASK_SAGA, UPDATE_TASK_SAGA, CHANGE_TASK_MODAL, CHANGE_ASSIGNESS, REMOVE_USER_ASSIGN, CREATE_TASK_SAGA } from '../../constants/Jira/TaskConstants'
 import { CLOSE_DRAWER } from '../../constants/DrawerConstant';
 import { GET_PROJECT_DETAIL_SAGA } from '../../constants/Jira/ProjectConstants';
+import { messageApp } from '../../../util/Common/Message';
+
+const {
+    messageCreateTaskSuccess,
+    messageUpdateTaskStatusSuccess,
+    messageUpdateTaskSuccess
+} = messageApp;
 function* createTaskSaga(action) {
     try {
         yield put({
@@ -16,15 +23,15 @@ function* createTaskSaga(action) {
         //Gọi api thành công thì dispatch lên reducer thông qua put
         if (status === STATUS_CODE.SUCCESS && data.statusCode === STATUS_CODE.SUCCESS) {
             console.log(data)
-            notificationFunction('success', 'Create task successfully !');
+            notificationFunction('success', messageCreateTaskSuccess);
         } else {
             notificationFunction('error', data.message);
         }
-        
+
         yield put({
             type: CLOSE_DRAWER
         })
-        
+
     }
     catch (err) {
         console.log(err.response?.data)
@@ -39,16 +46,16 @@ function* createTaskSaga(action) {
     })
 }
 
-export function * theoDoiCreateTaskSaga() {
+export function* theoDoiCreateTaskSaga() {
     yield takeLatest(CREATE_TASK_SAGA, createTaskSaga);
 }
 
-function * getTaskDetailSaga(action) {
+function* getTaskDetailSaga(action) {
 
     try {
         const { taskId } = action;
         const { data, status } = yield call(() => taskService.getTaskDetail(taskId));
-        
+
         yield put({
             type: GET_TASK_DETAIL,
             taskDetailModal: data.content
@@ -63,11 +70,11 @@ function * getTaskDetailSaga(action) {
     }
 }
 
-export function * theoDoiGetTaskDetailSaga() {
+export function* theoDoiGetTaskDetailSaga() {
     yield takeLatest(GET_TASK_DETAIL_SAGA, getTaskDetailSaga);
 }
 
-function * updateTaskStatusSaga(action) {
+function* updateTaskStatusSaga(action) {
 
     try {
         const { taskUpdateStatus } = action;
@@ -81,7 +88,7 @@ function * updateTaskStatusSaga(action) {
                 type: GET_TASK_DETAIL_SAGA,
                 taskId: taskUpdateStatus.taskId
             })
-            notificationFunction('success', 'Update task status successfully!');
+            notificationFunction('success', messageUpdateTaskStatusSuccess);
         }
     }
     catch (err) {
@@ -93,15 +100,15 @@ function * updateTaskStatusSaga(action) {
     }
 }
 
-export function * theoDoiUpdateTaskStatusSaga() {
+export function* theoDoiUpdateTaskStatusSaga() {
     yield takeLatest(UPDATE_STATUS_TASK_SAGA, updateTaskStatusSaga);
 }
 
-function * updateTaskSaga(action) {
-    
+function* updateTaskSaga(action) {
+
 }
 
-export function * theoDoiUpdateTaskSaga() {
+export function* theoDoiUpdateTaskSaga() {
     yield takeLatest(UPDATE_TASK_SAGA, updateTaskSaga);
 }
 
@@ -116,28 +123,28 @@ export function* handleChangePostApi(action) {
                 name,
                 value
             });
-        };break;
+        }; break;
         case CHANGE_ASSIGNESS: {
             const { userSelected } = action;
             yield put({
                 type: CHANGE_ASSIGNESS,
                 userSelected
             })
-        };break;
+        }; break;
         case REMOVE_USER_ASSIGN: {
             const { userId } = action;
             yield put({
                 type: REMOVE_USER_ASSIGN,
                 userId
             })
-        };break;
+        }; break;
         default: break;
     }
 
     // Save qua api updateTaskSaga
     // Lây dữ liệu từ state.taskDetailModal 
     let { taskDetailModal } = yield select(state => state.TaskReducer);
-    console.log('taskDetailModal sau khi thay đổi', taskDetailModal)
+    // console.log('taskDetailModal sau khi thay đổi', taskDetailModal)
     // Biến đổi dữ liệu state.taskDetailModal thành dữ liệu api cần
 
     const listUserAsign = taskDetailModal.assigness?.map((user, index) => {
@@ -158,9 +165,9 @@ export function* handleChangePostApi(action) {
                 type: GET_TASK_DETAIL_SAGA,
                 taskId: taskUpdateApi.taskId
             })
-            notificationFunction('success', 'Update task successfully!');
+            notificationFunction('success', messageUpdateTaskSuccess);
         }
-    } catch(err) {
+    } catch (err) {
         console.log(err);
         console.log(err.response?.data);
         notificationFunction('error', err.response?.data.message);

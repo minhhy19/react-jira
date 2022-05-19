@@ -1,5 +1,6 @@
 import { call, delay, fork, take, takeEvery, takeLatest, put, select } from 'redux-saga/effects';
 import { projectService } from '../../../services/ProjectService';
+import { messageApp } from '../../../util/Common/Message';
 import { history, STATUS_CODE } from '../../../util/constants/settingSystem';
 import { notificationFunction } from '../../../util/Notification/notificationJira';
 import { CLOSE_DRAWER } from '../../constants/DrawerConstant';
@@ -7,16 +8,25 @@ import { ADD_USER_PROJECT_API, CREATE_PROJECT_SAGA, DELETE_PROJECT_SAGA, GET_ALL
 import { GET_USER_BY_PROJECT_ID_SAGA } from '../../constants/Jira/UserConstants';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConstant';
 
-function * addUserProjectSaga(action) {
+const {
+    messageAddUserProjectSuccess,
+    messageRemoveUserProjectSuccess,
+    messageCreateProjectSuccess,
+    messageUpdateProjectSuccess,
+    messageDeleteProjectSuccess,
+    messageDeleteProjectFailed,
+} = messageApp;
+
+function* addUserProjectSaga(action) {
     try {
         const { data, status } = yield call(() => projectService.assignUserProject(action.userProject));
-        if(status === STATUS_CODE.SUCCESS) {
-            notificationFunction('success', 'Assign user to project successfully!');
+        if (status === STATUS_CODE.SUCCESS) {
+            notificationFunction('success', messageAddUserProjectSuccess);
             yield put({
                 type: GET_ALL_PROJECT_SAGA
             })
         }
-    } catch(err) {
+    } catch (err) {
         console.log(err.response?.data);
         notificationFunction('error', err.response?.data.message);
         if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
@@ -25,20 +35,20 @@ function * addUserProjectSaga(action) {
     }
 }
 
-export function * theoDoiAddUserProjectSaga() {
+export function* theoDoiAddUserProjectSaga() {
     yield takeLatest(ADD_USER_PROJECT_API, addUserProjectSaga);
 }
 
-function * removeUserProjectSaga(action) {
+function* removeUserProjectSaga(action) {
     try {
         const { data, status } = yield call(() => projectService.deleteUserFromProject(action.userProject));
-        if(status === STATUS_CODE.SUCCESS) {
-            notificationFunction('success', 'Remove user from project successfully!');
+        if (status === STATUS_CODE.SUCCESS) {
+            notificationFunction('success', messageRemoveUserProjectSuccess);
             yield put({
                 type: GET_ALL_PROJECT_SAGA
             })
         }
-    } catch(err) {
+    } catch (err) {
         console.log(err.response?.data);
         notificationFunction('error', err.response?.data.message);
         if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
@@ -47,11 +57,11 @@ function * removeUserProjectSaga(action) {
     }
 }
 
-export function * theoDoiRemoveUserProjectSaga() {
+export function* theoDoiRemoveUserProjectSaga() {
     yield takeLatest(REMOVE_USER_PROJECT_API, removeUserProjectSaga);
 }
 
-function * createProjectSaga(action) {
+function* createProjectSaga(action) {
     // console.log('createProjectAction', action)
     // hiển thị loading
     yield put({
@@ -62,11 +72,11 @@ function * createProjectSaga(action) {
         const { data, status } = yield call(() => projectService.createProject(action.newProject));
 
         // Gọi API thành công thì dispatch lên reducer thông qua put
-        if(status === STATUS_CODE.SUCCESS) {
-            notificationFunction('success', 'Create project successfully!');
+        if (status === STATUS_CODE.SUCCESS) {
+            notificationFunction('success', messageCreateProjectSuccess);
             history.push('/project');
         }
-    } catch(err) {
+    } catch (err) {
         console.log(err.response?.data);
         notificationFunction('error', err.response?.data.message);
         if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
@@ -76,7 +86,7 @@ function * createProjectSaga(action) {
     yield put({
         type: HIDE_LOADING
     })
-    
+
 }
 
 export function* theoDoiCreateProjectSaga() {
@@ -84,7 +94,7 @@ export function* theoDoiCreateProjectSaga() {
 }
 
 // Saga dùng để update project
-function * updateProjectSaga(action) {
+function* updateProjectSaga(action) {
     // console.log('actionupdateProjectSaga', action)
     // hiển thị loading
     yield put({
@@ -95,8 +105,8 @@ function * updateProjectSaga(action) {
         const { data, status } = yield call(() => projectService.updateProject(action.projectUpdate));
 
         // Gọi API thành công thì dispatch lên reducer thông qua put
-        if(status === STATUS_CODE.SUCCESS) {
-            notificationFunction('success', 'Update project successfully!');
+        if (status === STATUS_CODE.SUCCESS) {
+            notificationFunction('success', messageUpdateProjectSuccess);
         }
         // load lại list project
         yield call(getAllProjectSaga);
@@ -105,7 +115,7 @@ function * updateProjectSaga(action) {
         yield put({
             type: CLOSE_DRAWER
         })
-    } catch(err) {
+    } catch (err) {
         console.log(err.response?.data);
         notificationFunction('error', err.response?.data.message);
         if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
@@ -115,7 +125,7 @@ function * updateProjectSaga(action) {
     yield put({
         type: HIDE_LOADING
     })
-    
+
 }
 
 export function* theoDoiUpdateProjectSaga() {
@@ -123,7 +133,7 @@ export function* theoDoiUpdateProjectSaga() {
 }
 
 // Saga dùng để delete project
-function * deleteProjectSaga(action) {
+function* deleteProjectSaga(action) {
     // console.log('actionupdateProjectSaga', action)
     // hiển thị loading
     yield put({
@@ -134,12 +144,10 @@ function * deleteProjectSaga(action) {
         const { data, status } = yield call(() => projectService.deleteProject(action.idProject));
 
         // Gọi API thành công thì dispatch lên reducer thông qua put
-        if(status === STATUS_CODE.SUCCESS) {
-            console.log(data);
-            // history.push('/project');
-            notificationFunction('success', 'Delete project successfully!')
+        if (status === STATUS_CODE.SUCCESS) {
+            notificationFunction('success', messageDeleteProjectSuccess)
         } else {
-            notificationFunction('error', 'Delete project fail!')
+            notificationFunction('error', messageDeleteProjectFailed)
         }
         // load lại list project
         yield call(getAllProjectSaga);
@@ -148,8 +156,8 @@ function * deleteProjectSaga(action) {
         yield put({
             type: CLOSE_DRAWER
         })
-    } catch(err) {
-        notificationFunction('error', 'Delete project fail!')
+    } catch (err) {
+        notificationFunction('error', err.response?.data.message || messageDeleteProjectFailed)
         console.log(err.response?.data);
         if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
             history.push('/login')
@@ -158,14 +166,14 @@ function * deleteProjectSaga(action) {
     yield put({
         type: HIDE_LOADING
     })
-    
+
 }
 
 export function* theoDoiDeleteProjectSaga() {
     yield takeLatest(DELETE_PROJECT_SAGA, deleteProjectSaga);
 }
 
-function * getProjectDetailSaga(action) {
+function* getProjectDetailSaga(action) {
     // hiển thị loading
     // yield put({
     //     type: DISPLAY_LOADING
@@ -178,7 +186,7 @@ function * getProjectDetailSaga(action) {
             type: GET_PROJECT_DETAIL,
             projectDetail: data.content
         })
-    } catch(err) {
+    } catch (err) {
         console.log(err.response?.data);
         if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
             history.push('/login')
@@ -195,7 +203,7 @@ export function* theoDoiGetProjectDetailSaga() {
     yield takeLatest(GET_PROJECT_DETAIL_SAGA, getProjectDetailSaga);
 }
 
-function * getAllProjectSaga(action) {
+function* getAllProjectSaga(action) {
     // hiển thị loading
     yield put({
         type: DISPLAY_LOADING
@@ -211,9 +219,9 @@ function * getAllProjectSaga(action) {
 
         yield put({
             type: GET_USER_BY_PROJECT_ID_SAGA,
-            idProject:data.content[0].id
+            idProject: data.content[0].id
         })
-    } catch(err) {
+    } catch (err) {
         console.log(err.response?.data);
         if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
             history.push('/login')
@@ -222,7 +230,7 @@ function * getAllProjectSaga(action) {
     yield put({
         type: HIDE_LOADING
     })
-    
+
 }
 
 export function* theoDoiGetAllProjectSaga() {

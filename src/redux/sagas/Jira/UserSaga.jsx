@@ -5,6 +5,7 @@ import { GET_USER_SAGA, GET_USER_SEARCH, USER_SIGNIN_API, USLOGIN } from '../../
 import { GET_ALL_PROJECT_SAGA } from '../../constants/Jira/ProjectConstants';
 import { GET_USER_BY_PROJECT_ID, GET_USER_BY_PROJECT_ID_SAGA } from '../../constants/Jira/UserConstants';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConstant';
+import { notificationFunction } from '../../../util/Notification/notificationJira';
 
 
 // Quản lý các action saga
@@ -18,20 +19,23 @@ function * signinSaga(action) {
     // Gọi api
     try {
         const { data, status } = yield call(() => userService.signin(action.userLogin));
-        // lưu vào localstorage khi đăng nhập thành công
-        localStorage.setItem(ACCESS_TOKEN, data.content.accessToken);
-        localStorage.setItem(USER_LOGIN, JSON.stringify(data.content));
-        // console.log(data);
+        if(status === STATUS_CODE.SUCCESS) {
+            // lưu vào localstorage khi đăng nhập thành công
+            localStorage.setItem(ACCESS_TOKEN, data.content.accessToken);
+            localStorage.setItem(USER_LOGIN, JSON.stringify(data.content));
+            // console.log(data);
 
-        yield put({
-            type: USLOGIN,
-            userLogin: data.content
-        })
-
-        // let history = yield select(state => state.HistoryReducer.history)
-        history.push('/');
+            yield put({
+                type: USLOGIN,
+                userLogin: data.content
+            })
+            notificationFunction('success', 'Login successfully!');
+            // let history = yield select(state => state.HistoryReducer.history)
+            history.push('/');
+        }
     } catch(err) {
         console.log(err.response?.data);
+        notificationFunction('error', err.response?.data.message);
     }
     yield put({
         type: HIDE_LOADING

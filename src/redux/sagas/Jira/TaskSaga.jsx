@@ -81,10 +81,12 @@ function * updateTaskStatusSaga(action) {
                 type: GET_TASK_DETAIL_SAGA,
                 taskId: taskUpdateStatus.taskId
             })
+            notificationFunction('success', 'Update task status successfully!');
         }
     }
     catch (err) {
         console.log(err.response?.data)
+        notificationFunction('error', err.response?.data.message);
         if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
             history.push('/login')
         }
@@ -103,7 +105,7 @@ export function * theoDoiUpdateTaskSaga() {
     yield takeLatest(UPDATE_TASK_SAGA, updateTaskSaga);
 }
 
-export function* handelChangePostApi(action) {
+export function* handleChangePostApi(action) {
     // console.log('abc', action)
     // Gọi action làm thay đổi taskDetail modal
     switch (action.actionType) {
@@ -156,10 +158,12 @@ export function* handelChangePostApi(action) {
                 type: GET_TASK_DETAIL_SAGA,
                 taskId: taskUpdateApi.taskId
             })
+            notificationFunction('success', 'Update task successfully!');
         }
     } catch(err) {
         console.log(err);
         console.log(err.response?.data);
+        notificationFunction('error', err.response?.data.message);
         if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
             history.push('/login')
         }
@@ -167,5 +171,5 @@ export function* handelChangePostApi(action) {
 }
 
 export function* theoDoiHandleChangePostApi() {
-    yield takeLatest(HANDLE_CHANGE_POST_API_SAGA, handelChangePostApi);
+    yield takeLatest(HANDLE_CHANGE_POST_API_SAGA, handleChangePostApi);
 }

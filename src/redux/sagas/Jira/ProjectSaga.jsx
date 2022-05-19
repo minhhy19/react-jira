@@ -10,12 +10,15 @@ import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConstant';
 function * addUserProjectSaga(action) {
     try {
         const { data, status } = yield call(() => projectService.assignUserProject(action.userProject));
-        // console.log('data', data);
-        yield put({
-            type: GET_ALL_PROJECT_SAGA
-        })
+        if(status === STATUS_CODE.SUCCESS) {
+            notificationFunction('success', 'Assign user to project successfully!');
+            yield put({
+                type: GET_ALL_PROJECT_SAGA
+            })
+        }
     } catch(err) {
         console.log(err.response?.data);
+        notificationFunction('error', err.response?.data.message);
         if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
             history.push('/login')
         }
@@ -29,12 +32,15 @@ export function * theoDoiAddUserProjectSaga() {
 function * removeUserProjectSaga(action) {
     try {
         const { data, status } = yield call(() => projectService.deleteUserFromProject(action.userProject));
-        // console.log('data', data);
-        yield put({
-            type: GET_ALL_PROJECT_SAGA
-        })
+        if(status === STATUS_CODE.SUCCESS) {
+            notificationFunction('success', 'Remove user from project successfully!');
+            yield put({
+                type: GET_ALL_PROJECT_SAGA
+            })
+        }
     } catch(err) {
         console.log(err.response?.data);
+        notificationFunction('error', err.response?.data.message);
         if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
             history.push('/login')
         }
@@ -57,11 +63,12 @@ function * createProjectSaga(action) {
 
         // Gọi API thành công thì dispatch lên reducer thông qua put
         if(status === STATUS_CODE.SUCCESS) {
-            console.log(data);
+            notificationFunction('success', 'Create project successfully!');
             history.push('/project');
         }
     } catch(err) {
         console.log(err.response?.data);
+        notificationFunction('error', err.response?.data.message);
         if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
             history.push('/login')
         }
@@ -89,8 +96,7 @@ function * updateProjectSaga(action) {
 
         // Gọi API thành công thì dispatch lên reducer thông qua put
         if(status === STATUS_CODE.SUCCESS) {
-            console.log(data);
-            // history.push('/project');
+            notificationFunction('success', 'Update project successfully!');
         }
         // load lại list project
         yield call(getAllProjectSaga);
@@ -101,6 +107,7 @@ function * updateProjectSaga(action) {
         })
     } catch(err) {
         console.log(err.response?.data);
+        notificationFunction('error', err.response?.data.message);
         if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
             history.push('/login')
         }

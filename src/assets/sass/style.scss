@@ -4,8 +4,10 @@
 @import "./base/global";
 
 @import "./components/menu";
+@import "./components/modal";
 
 // libs
 
 @import "./helper/mixin";
 @import "./pages/home";
+@import "./pages/project-manager-detail";

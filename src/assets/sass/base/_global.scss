@@ -1,36 +1,35 @@
 @font-face {
-    font-family: 'CircularStdBold';
-    src: url('../fonts/CircularStd-Bold.woff2') format('woff2');
+    font-family: "CircularStdBold";
+    src: url("../fonts/CircularStd-Bold.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'CircularStdMedium';
-    src: url('../fonts/CircularStd-Medium.woff2') format('woff2');
+    font-family: "CircularStdMedium";
+    src: url("../fonts/CircularStd-Medium.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'CircularStdBook';
-    src: url('../fonts/CircularStd-Book.woff2') format('woff2');
+    font-family: "CircularStdBook";
+    src: url("../fonts/CircularStd-Book.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'jira';
-    src: url('../fonts//jira.woff') format('woff');
+    font-family: "jira";
+    src: url("../fonts//jira.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
-  
 
 body {
     margin: 0;
-    font-family: 'CircularStdBook';
+    font-family: "CircularStdBook";
     font-size: 16px;
     font-weight: normal;
     line-height: 1.2;
-    color: rgb(23, 43, 77);;
+    color: rgb(23, 43, 77);
     text-align: left;
     background-color: #fff;
 }
@@ -41,7 +40,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 700;
+    font-weight: 700;
 }
 
 .jira {
@@ -49,4 +48,16 @@ h6 {
     font-family: "Roboto", sans-serif;
     font-weight: 300;
     display: flex;
+}
+
+.fa-bookmark {
+    color: #5fb03e;
+}
+
+.fa-arrow-up {
+    color: #d85463;
+}
+
+.fa-check-square {
+    color: #62a0ce;
 }

@@ -64,6 +64,12 @@
         .modal-header {
             padding: 1rem 2rem;
             border-bottom: none;
+
+            .task-title {
+                select {
+                    margin-left: 7px;
+                }
+            }
         }
     }
 
@@ -75,7 +81,80 @@
 
         .description {
             p:first-child {
-                margin-bottom: 5px;
+                margin: 20px 0px 6px;
+            }
+        }
+
+        .comment {
+            padding-top: 40px;
+
+            .block-comment {
+                margin-top: 15px;
+
+                .avatar {
+                    margin-right: 15px;
+                }
+
+                .input-comment {
+                    width: 100%;
+                
+                    input {
+                        width: 100%;
+                        height: 45px;
+                        padding: 10px;
+                    }
+
+                    .input-comment__tip {
+                        padding-top: 5px;
+                    }
+                }
+            }
+
+            .lastest-comment {
+                margin-top: 25px;
+
+                .comment-item {
+                    .display-comment .avatar {
+                        margin-right: 15px;
+                    }
+
+                    .comment-text {
+                        .comment-text__name {
+                            padding-bottom: 10px;
+                            color: rgb(66, 82, 110);
+                            font-family: CircularStdMedium;
+                            font-weight: normal;
+                        }
+
+                        .comment-text__content {
+                            padding-bottom: 10px;
+                            white-space: pre-wrap;
+                        }
+                    }
+                }
+            }
+        }
+
+        .assignees {
+            .col-6 {
+                padding: 0 15px;
+            }
+
+            .item {
+                background: #e9eaf0;
+                padding: 5px;
+                border-radius: 5px;
+                flex-basis: 50%;
+            
+                .avatar img {
+                    width: 30px;
+                    height: 30px;
+                }
+            
+                .name {
+                    margin: 0;
+                    font-size: 14.5px;
+                }
             }
         }
     }
@@ -102,24 +181,6 @@
     height: 20px;
 }
 
-.input-comment {
-    width: 100%;
-
-    input {
-        width: 100%;
-        height: 45px;
-        padding: 10px;
-    }
-}
-
-.block-comment .avatar {
-    margin-right: 15px;
-}
-
-.display-comment .avatar {
-    margin-right: 15px;
-}
-
 .col-4 h6 {
     font-size: 13px;
 }
@@ -128,23 +189,6 @@
     height: 35px;
     background: #dcdfe4;
     margin-bottom: 20px;
-}
-
-.item {
-    margin-right: 20px;
-    background: #e9eaf0;
-    padding: 5px;
-    border-radius: 5px;
-    flex-basis: 50%;
-
-    .avatar img {
-        width: 30px;
-        height: 30px;
-    }
-
-    .name {
-        margin: 0;
-    }
 }
 
 .reporter {

@@ -19,36 +19,40 @@ export default function MenuJira() {
                     <NavLink className='text-dark' activeStyle={{color:'blue'}} to="/jira" activeClassName="active" >Cyber Board</NavLink>
                 </div> */}
                 <div>
-                    <i className="fa fa-table"></i>
-                    <NavLink className="text-dark" activeStyle={{color:'blue', fontWeight: 'bold'}} to='/project' activeClassName="active">Project management</NavLink>
+                    <NavLink className="text-dark" activeStyle={{color:'blue', fontWeight: 'bold'}} to='/project' activeClassName="active">
+                        <i className="fa fa-table"></i>
+                        <span>Project management</span>
+                    </NavLink>
                 </div>
                 <div>
                     {/* <i className="fa fa-cog" />  */}
-                    <i className="fa fa-plus"></i>
-                    <NavLink className="text-dark" activeStyle={{color:'blue', fontWeight: 'bold'}} to='/projectadd' activeClassName="active">Create project</NavLink>
+                    <NavLink className="text-dark" activeStyle={{color:'blue', fontWeight: 'bold'}} to='/projectadd' activeClassName="active">
+                        <i className="fa fa-plus"></i>
+                        <span>Create project</span>
+                    </NavLink>
                 </div>
             </div>
             <div className="feature">
-                <div>
+                <a className="text-dark" href='#'>
                     <i className="fa fa-truck" />
                     <span>Releases</span>
-                </div>
-                <div>
+                </a>
+                <a className="text-dark" href='#'>
                     <i className="fa fa-equals" />
                     <span>Issues and filters</span>
-                </div>
-                <div>
+                </a>
+                <a className="text-dark" href='#'>
                     <i className="fa fa-paste" />
                     <span>Pages</span>
-                </div>
-                <div>
+                </a>
+                <a className="text-dark" href='#'>
                     <i className="fa fa-location-arrow" />
                     <span>Reports</span>
-                </div>
-                <div>
+                </a>
+                <a className="text-dark" href='#'>
                     <i className="fa fa-box" />
                     <span>Components</span>
-                </div>
+                </a>
             </div>
         </div>
 

@@ -39,30 +39,39 @@
         text-align: left;
         margin-bottom: 8%;
         border-bottom: 2px solid #c4c5c6;
-        margin-left: 7%;
-        margin-right: 7%;
 
         div {
-            margin-bottom: 10px;
-            padding: 2% 3%;
-            cursor: pointer;
-
-            i {
-                margin-right: 15px;
-                font-size: 20px;
-            }
-
-            span:first-child {
-                margin-right: 10px;
-
+            a {
+                display: block;
+                margin-bottom: 10px;
+                padding: 2% 3%;
+                cursor: pointer;
+                i {
+                    margin-right: 15px;
+                    font-size: 20px;
+                }
+    
+                span:first-child {
+                    margin-right: 10px;
+    
+                    &:focus {
+                        background-color: #ebecf0;
+                    }
+                }
+    
                 &:focus {
-                    background-color: #ebecf0;
+                    color: royalblue;
+                }
+
+                &:hover {
+                    background: rgb(235, 236, 240);
+                }
+
+                &.active {
+                    color: #001529;
                 }
             }
-
-            &:focus {
-                color: royalblue;
-            }
+            
         }
     }
 
@@ -70,10 +79,9 @@
         padding: 0% 10%;
         text-align: left;
         margin-bottom: 8%;
-        margin-left: 7%;
-        margin-right: 7%;
 
-        div {
+        a {
+            display: block;
             margin-bottom: 5px;
             padding: 2% 3%;
             cursor: pointer;
@@ -81,6 +89,14 @@
             i {
                 margin-right: 15px;
                 font-size: 20px;
+            }
+
+            &:hover {
+                background: rgb(235, 236, 240);
+            }
+
+            &.active {
+                color: #001529;
             }
         }
     }

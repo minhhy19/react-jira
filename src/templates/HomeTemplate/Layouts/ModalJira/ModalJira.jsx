@@ -14,6 +14,7 @@ const { Option } = Select;
 export default function ModalJira(props) {
 
     const { taskDetailModal } = useSelector(state => state.TaskReducer);
+    console.log(taskDetailModal)
     const { arrStatus } = useSelector(state => state.StatusReducer);
     const { arrPriority } = useSelector(state => state.PriorityReducer);
     const { arrTaskType } = useSelector(state => state.TaskTypeReducer);
@@ -143,7 +144,7 @@ export default function ModalJira(props) {
                                 })}
                             </select>
 
-                            <span>{taskDetailModal.taskName}</span>
+                            <span>{taskDetailModal.typeId === '1' ? `BUG-${taskDetailModal.taskId}` : `TASK-${taskDetailModal.taskId}`}</span>
                         </div>
                         <div style={{ display: 'flex' }} className="task-click">
                             <div>
@@ -164,7 +165,7 @@ export default function ModalJira(props) {
                         <div className="container-fluid">
                             <div className="row">
                                 <div className="col-8">
-                                    <p className="issue">This is an issue of type: Task.</p>
+                                    <p className="issue">{taskDetailModal.taskName}</p>
                                     <div className="description">
                                         <p>Description</p>
                                         {renderDescription()}
@@ -177,11 +178,9 @@ export default function ModalJira(props) {
                                             </div>
                                             <div className="input-comment">
                                                 <input type="text" placeholder="Add a comment ..." />
-                                                <p>
-                                                    <span style={{ fontWeight: 500, color: 'gray' }}>Protip:</span>
-                                                    <span>press
-                                                        <span style={{ fontWeight: 'bold', background: '#ecedf0', color: '#b4bac6' }}>M</span>
-                                                        to comment</span>
+                                                <p className='input-comment__tip'>
+                                                    <strong>Pro tip:</strong>
+                                                    <span> press <span style={{ fontWeight: 'normal', backgroundColor: 'rgb(223, 225, 230)', color: 'rgb(23, 43, 77)', fontFamily: 'CircularStdBold' }}>M</span> to comment</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -191,11 +190,11 @@ export default function ModalJira(props) {
                                                     <div className="avatar">
                                                         <img src={require("../../../../assets/img/download (1).jfif")} alt='xyz' />
                                                     </div>
-                                                    <div>
-                                                        <p style={{ marginBottom: 5 }}>
-                                                            Lord Gaben <span>a month ago</span>
+                                                    <div className='comment-text'>
+                                                        <p className='comment-text__name'>
+                                                            Lord Gaben
                                                         </p>
-                                                        <p style={{ marginBottom: 5 }}>
+                                                        <p className='comment-text__content'>
                                                             Lorem ipsum dolor sit amet, consectetur
                                                             adipisicing elit. Repellendus tempora ex
                                                             voluptatum saepe ab officiis alias totam ad
@@ -242,8 +241,8 @@ export default function ModalJira(props) {
                                                             <div className="avatar">
                                                                 <img src={user.avatar} alt={user.avatar} />
                                                             </div>
-                                                            <p className="name mt-1 ml-1">
-                                                                {user.name}
+                                                            <p className="name mt-1 ml-1" title={user.name}>
+                                                                {user.name.slice(0, 7)}
                                                                 <i className="fa fa-times" style={{ marginLeft: 5, cursor: 'pointer' }} onClick={() => {
                                                                     dispatch({
                                                                         type: HANDLE_CHANGE_POST_API_SAGA,

@@ -19,7 +19,7 @@ function App() {
             <Switch>
                 <UserLoginTemplate exact path="/login" Component={LoginPage} />
                 {/* <HomeTemplate exact path='/jira' Component={ProjecDetail} /> */}
-                <HomeTemplate exact path='/project/add' Component={ProjectManagerAdd} />
+                <HomeTemplate exact path='/projectadd' Component={ProjectManagerAdd} />
                 <HomeTemplate exact path='/project' Component={ProjectManagerPage} />
                 <HomeTemplate exact path='/project/detail/:projectId' Component={ProjectManagerDetail} />
                 <HomeTemplate exact path="/" Component={ProjectManagerPage} />

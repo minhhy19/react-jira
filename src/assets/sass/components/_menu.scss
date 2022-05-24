@@ -4,10 +4,11 @@
     width: 18%;
     /* margin-left: 4%; */
     background-color: #f4f5f7;
+    font-size: 14.7px;
 
     .account {
         display: flex;
-        padding: 5% 17%;
+        padding: 5% 15%;
         margin-bottom: 5%;
         .avatar {
             padding-top: 13%;
@@ -15,18 +16,20 @@
             img {
                 width: 50px;
             }
-            .account-info {
-                padding-top: 12%;
-                padding-bottom: 5%;
-                text-align: left;
-                p:first-child {
-                    margin-bottom: 3px;
-                    font-weight: 500;
-                }
-                p:last-child {
-                    margin-top: 0px;
-                    font-weight: 300;
-                }
+        }
+        .account-info {
+            padding-top: 12%;
+            padding-bottom: 5%;
+            text-align: left;
+            p:first-child {
+                margin-bottom: 3px;
+                font-size: 15px;
+                font-family: "CircularStdMedium";
+                font-weight: normal;
+            }
+            p:last-child {
+                margin-top: 0px;
+                font-size: 14px;
             }
         }
     }
@@ -43,6 +46,11 @@
             margin-bottom: 10px;
             padding: 2% 3%;
             cursor: pointer;
+
+            i.fa {
+                margin-right: 15px;
+                font-size: 20px;
+            }
 
             span:first-child {
                 margin-right: 10px;
@@ -70,12 +78,9 @@
             padding: 2% 3%;
             cursor: pointer;
 
-            .svg-inline--fa {
-                margin-right: 5px;
-            }
-
-            span {
-                font-size: 14px;
+            i.fa {
+                margin-right: 15px;
+                font-size: 20px;
             }
         }
     }

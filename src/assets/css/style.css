@@ -110,8 +110,6 @@ h6 {
 
 .jira {
   height: 100vh;
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -135,13 +133,14 @@ h6 {
   width: 18%;
   /* margin-left: 4%; */
   background-color: #f4f5f7;
+  font-size: 14.7px;
 }
 
 .menu .account {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 5% 17%;
+  padding: 5% 15%;
   margin-bottom: 5%;
 }
 
@@ -154,20 +153,22 @@ h6 {
   width: 50px;
 }
 
-.menu .account .avatar .account-info {
+.menu .account .account-info {
   padding-top: 12%;
   padding-bottom: 5%;
   text-align: left;
 }
 
-.menu .account .avatar .account-info p:first-child {
+.menu .account .account-info p:first-child {
   margin-bottom: 3px;
-  font-weight: 500;
+  font-size: 15px;
+  font-family: "CircularStdMedium";
+  font-weight: normal;
 }
 
-.menu .account .avatar .account-info p:last-child {
+.menu .account .account-info p:last-child {
   margin-top: 0px;
-  font-weight: 300;
+  font-size: 14px;
 }
 
 .menu .control {
@@ -183,6 +184,11 @@ h6 {
   margin-bottom: 10px;
   padding: 2% 3%;
   cursor: pointer;
+}
+
+.menu .control div i.fa {
+  margin-right: 15px;
+  font-size: 20px;
 }
 
 .menu .control div span:first-child {
@@ -211,12 +217,9 @@ h6 {
   cursor: pointer;
 }
 
-.menu .feature div .svg-inline--fa {
-  margin-right: 5px;
-}
-
-.menu .feature div span {
-  font-size: 14px;
+.menu .feature div i.fa {
+  margin-right: 15px;
+  font-size: 20px;
 }
 
 /* Modal */

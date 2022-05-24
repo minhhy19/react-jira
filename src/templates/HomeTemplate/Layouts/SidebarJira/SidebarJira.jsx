@@ -22,7 +22,7 @@ export default function SidebarJira() {
     const dispatch = useDispatch();
 
     const [state, setState] = useState({
-        collapsed: false,
+        collapsed: true,
     })
     const toggle = () => {
         setState({

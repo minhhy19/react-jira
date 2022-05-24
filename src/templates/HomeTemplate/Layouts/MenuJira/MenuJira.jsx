@@ -14,38 +14,37 @@ export default function MenuJira() {
                 </div>
             </div>
             <div className="control">
-                <div>
-                    <i className="fa fa-credit-card mr-1" />
-                    <NavLink className="text-dark" activeStyle={{color:'blue'}} to="/jira" activeClassName="active font-weight-bold text-primary" >Cyber Board</NavLink>
+                <div className='control__item'>
+                    <i className="fa fa-credit-card" />
+                    <NavLink className='text-dark' activeStyle={{color:'blue'}} to="/jira" activeClassName="active" >Cyber Board</NavLink>
                 </div>
-                <div>
-                    <i className="fa fa-cog mr-1" /> 
-                    <NavLink className="text-dark"  activeStyle={{color:'blue'}} to='/project' activeClassName="active font-weight-bold  text-primary" >Project management</NavLink>
+                <div className='control__item'>
+                    <i className="fa fa-cog" /> 
+                    <NavLink className="text-dark" activeStyle={{color:'blue', fontWeight: 'bold'}} to='/project' activeClassName="active" >Project management</NavLink>
                 </div>
-                <div>
-                    <i className="fa fa-cog mr-1" /> 
-                    <NavLink className="text-dark"  activeStyle={{color:'blue'}} to='/project/add' activeClassName="active font-weight-bold  text-primary" >Create project</NavLink>
+                <div className='control__item'>
+                    <i className="fa fa-cog" /> 
+                    <NavLink className="text-dark" activeStyle={{color:'blue', fontWeight: 'bold'}} to='/projectadd' activeClassName="active" >Create project</NavLink>
                 </div>
-               
             </div>
             <div className="feature">
-                <div>
-                    <i className="fa fa-truck mr-1" />
+                <div className='control__item'>
+                    <i className="fa fa-truck" />
                     <span>Releases</span>
                 </div>
-                <div>
-                    <i className="fa fa-equals mr-1" />
+                <div className='control__item'>
+                    <i className="fa fa-equals" />
                     <span>Issues and filters</span>
                 </div>
-                <div>
-                    <i className="fa fa-paste mr-1" />
+                <div className='control__item'>
+                    <i className="fa fa-paste" />
                     <span>Pages</span>
                 </div>
-                <div>
-                    <i className="fa fa-location-arrow mr-1" />
+                <div className='control__item'>
+                    <i className="fa fa-location-arrow" />
                     <span>Reports</span>
                 </div>
-                <div>
+                <div className='control__item'>
                     <i className="fa fa-box" />
                     <span>Components</span>
                 </div>

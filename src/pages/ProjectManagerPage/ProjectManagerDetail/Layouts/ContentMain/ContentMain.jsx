@@ -39,7 +39,7 @@ export default function ContentMain(props) {
                     return <Droppable key={index} droppableId={taskListDetail.statusId.toString()}>
                         {(provided) => {
                             return <div
-                                className="card pb-2" style={{ width: '17rem', height: 'auto' }}  >
+                                className="card pb-2" style={{ width: '24.5%', height: 'auto' }} >
                                 <div className="card-header">
                                     {taskListDetail.statusName}
                                 </div>
@@ -92,7 +92,7 @@ export default function ContentMain(props) {
         </DragDropContext>
     }
     return (
-        <div className="content" style={{ display: 'flex' }}>
+        <div className="content">
             {renderCardTaskList()}
         </div>
     )

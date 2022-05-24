@@ -3,25 +3,20 @@ import ReactHtmlParser from "react-html-parser";
 
 
 export default function InfoMain(props) {
-
     const {projectDetail} = props;
 
     const renderAvatar = () => {
-        
-        
         return projectDetail.members?.map((user, index) => {
             return   <div key={index} className="avatar">
-            <img src={user.avatar} alt={user.avatar} />
+            <img src={user.avatar} alt={user.avatar} title={user.name} />
         </div>
         })
     }
 
-
     return (
         <>
             <h3>{projectDetail.projectName}</h3>
-
-            <section>
+            <section className='my-2'>
                 {ReactHtmlParser(projectDetail.description)}
             </section>
             <div className="info" style={{ display: 'flex' }}>

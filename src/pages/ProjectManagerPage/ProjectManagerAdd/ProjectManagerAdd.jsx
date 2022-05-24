@@ -31,7 +31,7 @@ function ProjectManagerAdd(props) {
     }
     return (
         <div className='container m-5'>
-            <h3>Create Project</h3>
+            <h3 className='mb-3'>Create Project</h3>
             <form className='container' onSubmit={handleSubmit} onChange={handleChange}>
                 <div className='form-group'>
                     <p>Name</p>

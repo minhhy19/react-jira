@@ -14,17 +14,18 @@ export default function MenuJira() {
                 </div>
             </div>
             <div className="control">
-                <div>
+                {/* <div>
                     <i className="fa fa-credit-card" />
                     <NavLink className='text-dark' activeStyle={{color:'blue'}} to="/jira" activeClassName="active" >Cyber Board</NavLink>
+                </div> */}
+                <div>
+                    <i className="fa fa-table"></i>
+                    <NavLink className="text-dark" activeStyle={{color:'blue', fontWeight: 'bold'}} to='/project' activeClassName="active">Project management</NavLink>
                 </div>
                 <div>
-                    <i className="fa fa-cog" /> 
-                    <NavLink className="text-dark" activeStyle={{color:'blue', fontWeight: 'bold'}} to='/project' activeClassName="active" >Project management</NavLink>
-                </div>
-                <div>
-                    <i className="fa fa-cog" /> 
-                    <NavLink className="text-dark" activeStyle={{color:'blue', fontWeight: 'bold'}} to='/projectadd' activeClassName="active" >Create project</NavLink>
+                    {/* <i className="fa fa-cog" />  */}
+                    <i className="fa fa-plus"></i>
+                    <NavLink className="text-dark" activeStyle={{color:'blue', fontWeight: 'bold'}} to='/projectadd' activeClassName="active">Create project</NavLink>
                 </div>
             </div>
             <div className="feature">

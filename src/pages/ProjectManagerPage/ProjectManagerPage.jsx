@@ -258,7 +258,7 @@ export default function ProjectManagerPage(props) {
 
     return (
         <div className='container-fluid mt-5'>
-            <h3>Project Management</h3>
+            <h3 className='mb-3'>Project Management</h3>
             <Space style={{ marginBottom: 16 }}>
                 <Button onClick={setAgeSort}>Sort age</Button>
                 <Button onClick={clearFilters}>Clear filters</Button>

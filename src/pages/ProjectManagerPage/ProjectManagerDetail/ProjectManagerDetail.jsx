@@ -19,16 +19,14 @@ export default function ProjectManagerDetail(props) {
       projectId
     })
   }, [])
-  
-  return (
-    <div>
-        <div className='main'>
-            <HeaderMain projectDetail={projectDetail} />
-            
-            <InfoMain projectDetail={projectDetail} />
 
-            <ContentMain projectDetail={projectDetail} />
-        </div>
+  return (
+    <div className='main'>
+      <HeaderMain projectDetail={projectDetail} />
+
+      <InfoMain projectDetail={projectDetail} />
+
+      <ContentMain projectDetail={projectDetail} />
     </div>
   )
 }

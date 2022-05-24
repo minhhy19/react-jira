@@ -14,37 +14,37 @@ export default function MenuJira() {
                 </div>
             </div>
             <div className="control">
-                <div className='control__item'>
+                <div>
                     <i className="fa fa-credit-card" />
                     <NavLink className='text-dark' activeStyle={{color:'blue'}} to="/jira" activeClassName="active" >Cyber Board</NavLink>
                 </div>
-                <div className='control__item'>
+                <div>
                     <i className="fa fa-cog" /> 
                     <NavLink className="text-dark" activeStyle={{color:'blue', fontWeight: 'bold'}} to='/project' activeClassName="active" >Project management</NavLink>
                 </div>
-                <div className='control__item'>
+                <div>
                     <i className="fa fa-cog" /> 
                     <NavLink className="text-dark" activeStyle={{color:'blue', fontWeight: 'bold'}} to='/projectadd' activeClassName="active" >Create project</NavLink>
                 </div>
             </div>
             <div className="feature">
-                <div className='control__item'>
+                <div>
                     <i className="fa fa-truck" />
                     <span>Releases</span>
                 </div>
-                <div className='control__item'>
+                <div>
                     <i className="fa fa-equals" />
                     <span>Issues and filters</span>
                 </div>
-                <div className='control__item'>
+                <div>
                     <i className="fa fa-paste" />
                     <span>Pages</span>
                 </div>
-                <div className='control__item'>
+                <div>
                     <i className="fa fa-location-arrow" />
                     <span>Reports</span>
                 </div>
-                <div className='control__item'>
+                <div>
                     <i className="fa fa-box" />
                     <span>Components</span>
                 </div>

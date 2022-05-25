@@ -12,9 +12,9 @@ const { Option } = Select;
 
 
 export default function ModalJira(props) {
+    const { userLogin } = useSelector(state => state.UserReducer);
 
     const { taskDetailModal } = useSelector(state => state.TaskReducer);
-    console.log(taskDetailModal)
     const { arrStatus } = useSelector(state => state.StatusReducer);
     const { arrPriority } = useSelector(state => state.PriorityReducer);
     const { arrTaskType } = useSelector(state => state.TaskTypeReducer);
@@ -108,8 +108,8 @@ export default function ModalJira(props) {
         const percent = Math.round(Number(timeTrackingSpent) / max * 100)
 
         return <div>
-            <div style={{ display: 'flex' }}>
-                <i className="fa fa-clock" />
+            <div className='time-tracking__block'>
+                <i className="fa fa-clock time-tracking--clock" />
                 <div style={{ width: '100%' }}>
                     <div className="progress">
                         <div className="progress-bar" role="progressbar" style={{ width: `${percent}%` }} aria-valuenow={Number(timeTrackingSpent)} aria-valuemin={Number(timeTrackingRemaining)} aria-valuemax={max} />
@@ -147,15 +147,17 @@ export default function ModalJira(props) {
                             <span>{taskDetailModal.typeId === '1' ? `BUG-${taskDetailModal.taskId}` : `TASK-${taskDetailModal.taskId}`}</span>
                         </div>
                         <div style={{ display: 'flex' }} className="task-click">
-                            <div>
+                            <button className='task-click__feedback'>
                                 <i className="fab fa-telegram-plane" />
-                                <span style={{ paddingRight: 20 }}>Give feedback</span>
-                            </div>
-                            <div>
+                                <span>Give feedback</span>
+                            </button>
+                            <button className='task-click__link'>
                                 <i className="fa fa-link" />
-                                <span style={{ paddingRight: 20 }}>Copy link</span>
-                            </div>
-                            <i className="fa fa-trash-alt='xyz'" style={{ cursor: 'pointer' }} />
+                                <span>Copy link</span>
+                            </button>
+                            <button className='task-click__remove-task'>
+                                <i className="fa fa-trash-alt"/>
+                            </button>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
@@ -174,7 +176,8 @@ export default function ModalJira(props) {
                                         <h6>Comment</h6>
                                         <div className="block-comment" style={{ display: 'flex' }}>
                                             <div className="avatar">
-                                                <img src={require("../../../../assets/img/download (1).jfif")} alt='xyz' />
+                                                {/* <img src={require("../../../../assets/img/download (1).jfif")} alt='xyz' /> */}
+                                                <img src={userLogin?.avatar} alt='xyz' title={userLogin?.name} />
                                             </div>
                                             <div className="input-comment">
                                                 <input type="text" placeholder="Add a comment ..." />
@@ -201,9 +204,8 @@ export default function ModalJira(props) {
                                                             accusamus molestiae?
                                                         </p>
                                                         <div>
-                                                            <span style={{ color: '#929398' }}>Edit</span>
-                                                            •
-                                                            <span style={{ color: '#929398' }}>Delete</span>
+                                                            <button className='comment-text__btn-edit'>Edit</button>
+                                                            <button className='comment-text__btn-del'>Delete</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -242,7 +244,7 @@ export default function ModalJira(props) {
                                                                 <img src={user.avatar} alt={user.avatar} />
                                                             </div>
                                                             <p className="name mt-1 ml-1" title={user.name}>
-                                                                {user.name.slice(0, 7)}
+                                                                {user.name.slice(0, 10)}
                                                                 <i className="fa fa-times" style={{ marginLeft: 5, cursor: 'pointer' }} onClick={() => {
                                                                     dispatch({
                                                                         type: HANDLE_CHANGE_POST_API_SAGA,

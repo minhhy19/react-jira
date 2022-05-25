@@ -56,7 +56,7 @@
 }
 
 .modal-info {
-    max-width: 1000px !important;
+    max-width: 1140px !important;
 
     .modal-content {
         padding: 20px 24px;
@@ -74,6 +74,10 @@
     }
 
     .modal-body {
+        h6 {
+            margin: 24px 0px 5px;
+        }
+
         .issue {
             font-size: 20px;
             font-weight: 500;
@@ -92,7 +96,7 @@
                 margin-top: 15px;
 
                 .avatar {
-                    margin-right: 15px;
+                    margin-right: 10px;
                 }
 
                 .input-comment {
@@ -119,20 +123,59 @@
                     }
 
                     .comment-text {
-                        .comment-text__name {
+                        &__name {
                             padding-bottom: 10px;
                             color: rgb(66, 82, 110);
                             font-family: CircularStdMedium;
                             font-weight: normal;
                         }
 
-                        .comment-text__content {
+                        &__content {
                             padding-bottom: 10px;
                             white-space: pre-wrap;
+                        }
+
+                        &__btn-edit {
+                            border: none;
+                            background-color: transparent;
+                            padding: 2px 0;
+                            margin-right: 12px;
+                            font-size: 14.5px;
+                            font-family: "CircularStdBook";
+                            color: rgb(94, 108, 132);
+
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+
+                        &__btn-del {
+                            border: none;
+                            background-color: transparent;
+                            padding: 2px 0;
+                            font-size: 14.5px;
+                            font-family: "CircularStdBook";
+                            color: rgb(94, 108, 132);
+
+                            &::before {
+                                position: relative;
+                                right: 6px;
+                                content: "·";
+                                display: inline-block;
+                            }
+
+                            &:hover {
+                                text-decoration: underline;
+                            }
                         }
                     }
                 }
             }
+        }
+
+        .status .custom-select {
+            height: 35px;
+            background: #dcdfe4;
         }
 
         .assignees {
@@ -157,6 +200,37 @@
                 }
             }
         }
+
+        .estimate {
+            .estimate-hours {
+                height: 35px;
+                background: #f2f3f7;
+                border: 1px solid;
+                border-color: #ced4da;
+                width: 100%;
+                padding: 8px;
+            
+                &:focus {
+                    background: white;
+                }
+            }
+        }
+
+        .time-tracking {
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ced4da;
+
+            .time-tracking__block {
+                padding: 3px;
+                display: flex;
+                align-items: center;
+
+                .time-tracking--clock {
+                    margin-right: 10px;
+                }
+            }
+        }
     }
 }
 
@@ -167,12 +241,67 @@
 }
 
 .task-click {
-    div span {
-        padding-right: 20xp;
+    justify-content: center;
+
+    &__feedback {
+        margin-right: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 3px;
+        background-color: #fff;
+        border: none;
+
+        i {
+            margin-right: 5px;
+        }
+
+        span {
+            font-size: 14.5px;
+            font-family: "CircularStdBook";
+        }
+
+        &:hover {
+            background: rgb(235, 236, 240);
+        }
+    }
+
+    &__link {
+        margin-right: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 3px;
+        background-color: #fff;
+        border: none;
+
+        i {
+            margin-right: 5px;
+        }
+
+        span {
+            font-size: 14.5px;
+            font-family: "CircularStdBook";
+        }
+
+        &:hover {
+            background: rgb(235, 236, 240);
+        }
+    }
+
+    &__remove-task {
+        margin-right: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 3px;
+        background-color: #fff;
+        border: none;
+
+        &:hover {
+            background: rgb(235, 236, 240);
+        }
     }
 
     .close {
-        padding-bottom: 16px !important;
+        // padding-bottom: 16px !important;
     }
 }
 
@@ -185,46 +314,12 @@
     font-size: 13px;
 }
 
-.status .custom-select {
-    height: 35px;
-    background: #dcdfe4;
-    margin-bottom: 20px;
-}
-
 .reporter {
     margin-bottom: 20px;
 
     .item {
         width: fit-content;
     }
-}
-
-.estimate-hours {
-    height: 35px;
-    background: #f2f3f7;
-    margin-bottom: 20px;
-    border: 1px solid;
-    border-color: #ced4da;
-    width: 100%;
-    padding: 8px;
-
-    &:focus {
-        background: white;
-    }
-}
-
-.time-tracking {
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ced4da;
-    h6 {
-        font-size: 12px;
-        color: #929398;
-    }
-}
-
-.time-tracking .fa-clock {
-    margin-right: 10px;
 }
 
 .progress {

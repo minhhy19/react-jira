@@ -546,6 +546,14 @@ strong {
   font-size: 14px;
 }
 
+.ant-popconfirm {
+  z-index: 9999;
+}
+
+.ant-notification {
+  z-index: 9999;
+}
+
 .main {
   padding-left: 2%;
   width: 100%;

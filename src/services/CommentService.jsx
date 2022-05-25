@@ -8,6 +8,10 @@ export class CommentService extends baseService {
     insertComment = (newComment) => {
         return this.post(`comment/insertComment`, newComment);
     }
+
+    deleteComment = (commentId) => {
+        return this.delete(`comment/deleteComment?idComment=${commentId}`);
+    }
 }
 
 export const commentService = new CommentService();

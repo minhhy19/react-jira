@@ -8,7 +8,7 @@ import { CHANGE_ASSIGNESS, CHANGE_TASK_MODAL, HANDLE_CHANGE_POST_API_SAGA, REMOV
 import { GET_ALL_TASK_TYPE_SAGA } from '../../../../redux/constants/Jira/TaskTypeConstant';
 import { Editor } from '@tinymce/tinymce-react'
 import { useFormik } from 'formik';
-import { INSERT_COMMENT_SAGA } from '../../../../redux/constants/Jira/CommentConstants';
+import { DELETE_COMMENT_SAGA, INSERT_COMMENT_SAGA } from '../../../../redux/constants/Jira/CommentConstants';
 
 const { Option } = Select;
 
@@ -23,6 +23,7 @@ export default function ModalJira(props) {
 
     const { projectDetail } = useSelector(state => state.ProjectReducer)
     const [visibleEditor, setVisibleEditor] = useState(false);
+    const [visibleAddComment, setVisibleAddComment] = useState(false);
     const [historyContent, setHistoryContent] = useState(taskDetailModal.description);
     const [content, setContent] = useState(taskDetailModal.description);
     const dispatch = useDispatch();
@@ -34,17 +35,18 @@ export default function ModalJira(props) {
     }, []);
 
     const formik = useFormik({
+        enableReinitialize: true,
         initialValues: {
-          commentAdd: ''
+            contentComment: '',
+            taskId: taskDetailModal?.taskId
         },
-        onSubmit: values => {
-            dispatch({
+        onSubmit: async (values, { resetForm }) => {
+            await dispatch({
                 type: INSERT_COMMENT_SAGA,
-                newComment: {
-                    contentComment: values.commentAdd,
-                    taskId: taskDetailModal.taskId
-                }
+                newComment: values
             })
+            resetForm();
+            setVisibleAddComment(false);
         },
       });
 
@@ -170,7 +172,12 @@ export default function ModalJira(props) {
                                 <Popconfirm
                                     title="Are you sure to delete this comment?"
                                     onConfirm={() => {
-                                        console.log('comment', comment);
+                                        dispatch({
+                                            type: DELETE_COMMENT_SAGA,
+                                            commentId: comment.id,
+                                            taskId: taskDetailModal.taskId
+                                        })
+                                        // console.log('comment', comment);
                                     }}
                                     okText="Yes"
                                     cancelText="No"
@@ -234,17 +241,21 @@ export default function ModalJira(props) {
                                                 <img src={userLogin?.avatar} alt='xyz' title={userLogin?.name} />
                                             </div>
                                             <div className="input-comment">
-                                                <form onSubmit={formik.handleSubmit} id="formComment">
-                                                    <input type="text" name='commentAdd' onChange={formik.handleChange} placeholder="Add a comment ..." />
-                                                    <div>
-                                                        <button type='submit' form="formComment" className="btn btn-primary mr-2" >Save</button>
-                                                        <button className="btn btn-light m-2" >Close</button>
-                                                    </div>
-                                                    {/* <p className='input-comment__tip'>
-                                                        <strong>Pro tip:</strong>
-                                                        <span> press <span style={{ fontWeight: 'normal', backgroundColor: 'rgb(223, 225, 230)', color: 'rgb(23, 43, 77)', fontFamily: 'CircularStdBold' }}>M</span> to comment</span>
-                                                    </p> */}
+                                                <form onSubmit={formik.handleSubmit} id="formComment" onClick={() => {
+                                                    setVisibleAddComment(true);
+                                                }}>
+                                                    <input type="text" value={formik.values.contentComment} name='contentComment' onChange={formik.handleChange} placeholder="Add a comment ..." />
                                                 </form>
+                                                {visibleAddComment ? <div>
+                                                    <button type='submit' form="formComment" className="btn btn-primary mr-2" >Save</button>
+                                                    <button className="btn btn-light m-2" onClick={() => {
+                                                        setVisibleAddComment(false);
+                                                    }} >Close</button>
+                                                </div> : 
+                                                <p className='input-comment__tip'>
+                                                    <strong>Pro tip:</strong>
+                                                    <span> press <span style={{ fontWeight: 'normal', backgroundColor: 'rgb(223, 225, 230)', color: 'rgb(23, 43, 77)', fontFamily: 'CircularStdBold' }}>M</span> to comment</span>
+                                                </p>}
                                             </div>
                                         </div>
                                         {renderComment()}

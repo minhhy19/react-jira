@@ -39,5 +39,6 @@ export function* rootSaga() {
     TaskSaga.theoDoiHandleChangePostApi(),
 
     CommentSaga.theoDoiInsertCommentSaga(),
+    CommentSaga.theoDoiDeleteCommentSaga(),
   ])
 }

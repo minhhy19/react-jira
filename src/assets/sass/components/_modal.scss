@@ -90,8 +90,6 @@
         }
 
         .comment {
-            padding-top: 40px;
-
             .block-comment {
                 margin-top: 15px;
 
@@ -124,7 +122,7 @@
 
                     .comment-text {
                         &__name {
-                            padding-bottom: 10px;
+                            padding-bottom: 5px;
                             color: rgb(66, 82, 110);
                             font-family: CircularStdMedium;
                             font-weight: normal;
@@ -157,12 +155,12 @@
                             font-family: "CircularStdBook";
                             color: rgb(94, 108, 132);
 
-                            &::before {
-                                position: relative;
-                                right: 6px;
-                                content: "·";
-                                display: inline-block;
-                            }
+                            // &::before {
+                            //     position: relative;
+                            //     right: 6px;
+                            //     content: "·";
+                            //     display: inline-block;
+                            // }
 
                             &:hover {
                                 text-decoration: underline;

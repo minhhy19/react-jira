@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Popconfirm, Select } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactHtmlParser from "react-html-parser";
 import { GET_ALL_STATUS_SAGA } from '../../../../redux/constants/Jira/StatusConstant';
@@ -6,7 +7,8 @@ import { GET_ALL_PRIORITY_SAGA } from '../../../../redux/constants/Jira/Priority
 import { CHANGE_ASSIGNESS, CHANGE_TASK_MODAL, HANDLE_CHANGE_POST_API_SAGA, REMOVE_USER_ASSIGN, UPDATE_STATUS_TASK_SAGA } from '../../../../redux/constants/Jira/TaskConstants';
 import { GET_ALL_TASK_TYPE_SAGA } from '../../../../redux/constants/Jira/TaskTypeConstant';
 import { Editor } from '@tinymce/tinymce-react'
-import { Select } from 'antd';
+import { useFormik } from 'formik';
+import { INSERT_COMMENT_SAGA } from '../../../../redux/constants/Jira/CommentConstants';
 
 const { Option } = Select;
 
@@ -29,7 +31,22 @@ export default function ModalJira(props) {
         dispatch({ type: GET_ALL_STATUS_SAGA });
         dispatch({ type: GET_ALL_PRIORITY_SAGA });
         dispatch({ type: GET_ALL_TASK_TYPE_SAGA });
-    }, [])
+    }, []);
+
+    const formik = useFormik({
+        initialValues: {
+          commentAdd: ''
+        },
+        onSubmit: values => {
+            dispatch({
+                type: INSERT_COMMENT_SAGA,
+                newComment: {
+                    contentComment: values.commentAdd,
+                    taskId: taskDetailModal.taskId
+                }
+            })
+        },
+      });
 
 
     const renderDescription = () => {
@@ -56,7 +73,7 @@ export default function ModalJira(props) {
                     setContent(content);
                 }}
             />
-                <button className="btn btn-primary m-2" onClick={() => {
+                <button className="btn btn-primary mr-2" onClick={() => {
                     dispatch({
                         type: HANDLE_CHANGE_POST_API_SAGA,
                         actionType: CHANGE_TASK_MODAL,
@@ -65,7 +82,7 @@ export default function ModalJira(props) {
                     })
                     setVisibleEditor(false);
                 }}>Save</button>
-                <button className="btn btn-primary m-2" onClick={() => {
+                <button className="btn btn-light m-2" onClick={() => {
                     dispatch({
                         type: HANDLE_CHANGE_POST_API_SAGA,
                         actionType: CHANGE_TASK_MODAL,
@@ -102,6 +119,7 @@ export default function ModalJira(props) {
         //     value
         // });
     }
+
     const renderTimeTracking = () => {
         const { timeTrackingSpent, timeTrackingRemaining } = taskDetailModal;
         const max = Number(timeTrackingSpent) + Number(timeTrackingRemaining);
@@ -131,6 +149,42 @@ export default function ModalJira(props) {
         </div>
     }
 
+    const renderComment = () => {
+        const { lstComment } = taskDetailModal;
+        return lstComment?.map((comment) => {
+            return <div className="lastest-comment" key={comment.id}>
+                <div className="comment-item">
+                    <div className="display-comment" style={{ display: 'flex' }}>
+                        <div className="avatar">
+                            <img src={comment.avatar} alt={comment.avatar} title={comment.name} />
+                        </div>
+                        <div className='comment-text'>
+                            <p className='comment-text__name'>
+                                {comment.name}
+                            </p>
+                            <p className='comment-text__content'>
+                                {comment.commentContent}
+                            </p>
+                            <div>
+                                <button className='comment-text__btn-edit'>Edit</button>
+                                <Popconfirm
+                                    title="Are you sure to delete this comment?"
+                                    onConfirm={() => {
+                                        console.log('comment', comment);
+                                    }}
+                                    okText="Yes"
+                                    cancelText="No"
+                                >
+                                    <button className='comment-text__btn-del'>Delete</button>
+                                </Popconfirm>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        })
+    }
+
     return (
         <div className="modal fade" id="infoModal" tabIndex={-1} role="dialog" aria-labelledby="infoModal" aria-hidden="true">
             <div className="modal-dialog modal-info">
@@ -156,7 +210,7 @@ export default function ModalJira(props) {
                                 <span>Copy link</span>
                             </button>
                             <button className='task-click__remove-task'>
-                                <i className="fa fa-trash-alt"/>
+                                <i className="fa fa-trash-alt" />
                             </button>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
@@ -180,37 +234,20 @@ export default function ModalJira(props) {
                                                 <img src={userLogin?.avatar} alt='xyz' title={userLogin?.name} />
                                             </div>
                                             <div className="input-comment">
-                                                <input type="text" placeholder="Add a comment ..." />
-                                                <p className='input-comment__tip'>
-                                                    <strong>Pro tip:</strong>
-                                                    <span> press <span style={{ fontWeight: 'normal', backgroundColor: 'rgb(223, 225, 230)', color: 'rgb(23, 43, 77)', fontFamily: 'CircularStdBold' }}>M</span> to comment</span>
-                                                </p>
+                                                <form onSubmit={formik.handleSubmit} id="formComment">
+                                                    <input type="text" name='commentAdd' onChange={formik.handleChange} placeholder="Add a comment ..." />
+                                                    <div>
+                                                        <button type='submit' form="formComment" className="btn btn-primary mr-2" >Save</button>
+                                                        <button className="btn btn-light m-2" >Close</button>
+                                                    </div>
+                                                    {/* <p className='input-comment__tip'>
+                                                        <strong>Pro tip:</strong>
+                                                        <span> press <span style={{ fontWeight: 'normal', backgroundColor: 'rgb(223, 225, 230)', color: 'rgb(23, 43, 77)', fontFamily: 'CircularStdBold' }}>M</span> to comment</span>
+                                                    </p> */}
+                                                </form>
                                             </div>
                                         </div>
-                                        <div className="lastest-comment">
-                                            <div className="comment-item">
-                                                <div className="display-comment" style={{ display: 'flex' }}>
-                                                    <div className="avatar">
-                                                        <img src={require("../../../../assets/img/download (1).jfif")} alt='xyz' />
-                                                    </div>
-                                                    <div className='comment-text'>
-                                                        <p className='comment-text__name'>
-                                                            Lord Gaben
-                                                        </p>
-                                                        <p className='comment-text__content'>
-                                                            Lorem ipsum dolor sit amet, consectetur
-                                                            adipisicing elit. Repellendus tempora ex
-                                                            voluptatum saepe ab officiis alias totam ad
-                                                            accusamus molestiae?
-                                                        </p>
-                                                        <div>
-                                                            <button className='comment-text__btn-edit'>Edit</button>
-                                                            <button className='comment-text__btn-del'>Delete</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {renderComment()}
                                     </div>
                                 </div>
                                 <div className="col-4">
@@ -262,15 +299,15 @@ export default function ModalJira(props) {
                                                 })
                                             }
                                             <div className="col-6  mt-2 mb-2">
-                                                <Select 
-                                                    options = {projectDetail.members?.filter(mem => {
+                                                <Select
+                                                    options={projectDetail.members?.filter(mem => {
                                                         let index = taskDetailModal.assigness?.findIndex(us => us.id === mem.userId);
                                                         if (index !== -1) {
                                                             return false;
                                                         }
                                                         return true;
                                                     }).map((mem, index) => {
-                                                        return {value: mem.userId, label: mem.name};
+                                                        return { value: mem.userId, label: mem.name };
                                                     })}
                                                     optionFilterProp="label"
                                                     style={{ width: '100%' }}

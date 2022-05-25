@@ -13,10 +13,6 @@ const IconFont = createFromIconfontCN({
 
 
 function LoginPage(props) {
-  
-  console.log(props);
-
-
   const {
     values,
     touched,

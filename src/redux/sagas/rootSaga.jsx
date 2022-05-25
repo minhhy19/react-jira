@@ -6,6 +6,7 @@ import * as TaskTypeSaga from './Jira/TaskTypeSaga';
 import * as PrioritySaga from './Jira/PrioritySaga';
 import * as StatusSaga from './Jira/StatusSaga';
 import * as TaskSaga from './Jira/TaskSaga';
+import * as CommentSaga from './Jira/CommentSaga';
 
 export function* rootSaga() {
 
@@ -36,5 +37,7 @@ export function* rootSaga() {
     TaskSaga.theoDoiUpdateTaskStatusSaga(),
     TaskSaga.theoDoiUpdateTaskSaga(),
     TaskSaga.theoDoiHandleChangePostApi(),
+
+    CommentSaga.theoDoiInsertCommentSaga(),
   ])
 }

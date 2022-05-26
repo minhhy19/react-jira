@@ -35,8 +35,8 @@ export function* rootSaga() {
     TaskSaga.theoDoiCreateTaskSaga(),
     TaskSaga.theoDoiGetTaskDetailSaga(),
     TaskSaga.theoDoiUpdateTaskStatusSaga(),
-    TaskSaga.theoDoiUpdateTaskSaga(),
     TaskSaga.theoDoiHandleChangePostApi(),
+    TaskSaga.theoDoiRemoveTaskSaga(),
 
     CommentSaga.theoDoiInsertCommentSaga(),
     CommentSaga.theoDoiDeleteCommentSaga(),

@@ -3,7 +3,7 @@ import { taskService } from '../../../services/TaskService'
 import { history, STATUS_CODE } from '../../../util/constants/settingSystem';
 import { notificationFunction } from '../../../util/Notification/notificationJira'
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConstant';
-import { HANDLE_CHANGE_POST_API_SAGA, GET_TASK_DETAIL_SAGA, GET_TASK_DETAIL, UPDATE_STATUS_TASK_SAGA, UPDATE_TASK_SAGA, CHANGE_TASK_MODAL, CHANGE_ASSIGNESS, REMOVE_USER_ASSIGN, CREATE_TASK_SAGA } from '../../constants/Jira/TaskConstants'
+import { HANDLE_CHANGE_POST_API_SAGA, GET_TASK_DETAIL_SAGA, GET_TASK_DETAIL, UPDATE_STATUS_TASK_SAGA, UPDATE_TASK_SAGA, CHANGE_TASK_MODAL, CHANGE_ASSIGNESS, REMOVE_USER_ASSIGN, CREATE_TASK_SAGA, REMOVE_TASK_SAGA } from '../../constants/Jira/TaskConstants'
 import { CLOSE_DRAWER } from '../../constants/DrawerConstant';
 import { GET_PROJECT_DETAIL_SAGA } from '../../constants/Jira/ProjectConstants';
 import { messageApp } from '../../../util/Common/Message';
@@ -11,7 +11,8 @@ import { messageApp } from '../../../util/Common/Message';
 const {
     messageCreateTaskSuccess,
     messageUpdateTaskStatusSuccess,
-    messageUpdateTaskSuccess
+    messageUpdateTaskSuccess,
+    messageRemoveTaskSuccess
 } = messageApp;
 function* createTaskSaga(action) {
     try {
@@ -104,13 +105,13 @@ export function* theoDoiUpdateTaskStatusSaga() {
     yield takeLatest(UPDATE_STATUS_TASK_SAGA, updateTaskStatusSaga);
 }
 
-function* updateTaskSaga(action) {
+// function* updateTaskSaga(action) {
 
-}
+// }
 
-export function* theoDoiUpdateTaskSaga() {
-    yield takeLatest(UPDATE_TASK_SAGA, updateTaskSaga);
-}
+// export function* theoDoiUpdateTaskSaga() {
+//     yield takeLatest(UPDATE_TASK_SAGA, updateTaskSaga);
+// }
 
 export function* handleChangePostApi(action) {
     // console.log('abc', action)
@@ -179,4 +180,30 @@ export function* handleChangePostApi(action) {
 
 export function* theoDoiHandleChangePostApi() {
     yield takeLatest(HANDLE_CHANGE_POST_API_SAGA, handleChangePostApi);
+}
+
+function* removeTaskSaga(action) {
+
+    try {
+        const { taskId, projectId } = action;
+        const { data, status } = yield call(() => taskService.removeTask(taskId));
+        if (status === STATUS_CODE.SUCCESS) {
+            yield put({
+                type: GET_PROJECT_DETAIL_SAGA,
+                projectId: projectId
+            })
+            notificationFunction('success', messageRemoveTaskSuccess);
+        }
+    }
+    catch (err) {
+        console.log(err.response?.data)
+        notificationFunction('error', err.response?.data.message);
+        if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
+            history.push('/login')
+        }
+    }
+}
+
+export function* theoDoiRemoveTaskSaga() {
+    yield takeLatest(REMOVE_TASK_SAGA, removeTaskSaga);
 }

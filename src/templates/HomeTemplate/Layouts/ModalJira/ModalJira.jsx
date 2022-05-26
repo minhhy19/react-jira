@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Select } from 'antd';
+import { Popconfirm, Select } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactHtmlParser from "react-html-parser";
 import { GET_ALL_STATUS_SAGA } from '../../../../redux/constants/Jira/StatusConstant';
 import { GET_ALL_PRIORITY_SAGA } from '../../../../redux/constants/Jira/PriorityConstants';
-import { CHANGE_ASSIGNESS, CHANGE_TASK_MODAL, HANDLE_CHANGE_POST_API_SAGA, REMOVE_USER_ASSIGN, UPDATE_STATUS_TASK_SAGA } from '../../../../redux/constants/Jira/TaskConstants';
+import { CHANGE_ASSIGNESS, CHANGE_TASK_MODAL, HANDLE_CHANGE_POST_API_SAGA, REMOVE_TASK_SAGA, REMOVE_USER_ASSIGN, UPDATE_STATUS_TASK_SAGA } from '../../../../redux/constants/Jira/TaskConstants';
 import { GET_ALL_TASK_TYPE_SAGA } from '../../../../redux/constants/Jira/TaskTypeConstant';
 import { Editor } from '@tinymce/tinymce-react'
 import { useFormik } from 'formik';
@@ -26,9 +26,9 @@ export default function ModalJira(props) {
     const { projectDetail } = useSelector(state => state.ProjectReducer)
     const [visibleEditor, setVisibleEditor] = useState(false);
     const [visibleBtnAddComment, setVisibleBtnAddComment] = useState(false);
-    // const [visibleTextareaEditComment, setVisibleTextareaEditComment] = useState(false);
     const [historyContent, setHistoryContent] = useState(taskDetailModal.description);
     const [content, setContent] = useState(taskDetailModal.description);
+    const [textBtnCopy, setTextBtnCopy] = useState('Copy link');
 
     const dispatch = useDispatch();
 
@@ -72,8 +72,8 @@ export default function ModalJira(props) {
                     ],
                     toolbar:
                         'undo redo | formatselect | bold italic backcolor | \
-                            alignleft aligncenter alignright alignjustify | \
-                            bullist numlist outdent indent | removeformat | help'
+                        alignleft aligncenter alignright alignjustify | \
+                        bullist numlist outdent indent | removeformat | help'
                 }}
                 onEditorChange={(content, editor) => {
                     setContent(content);
@@ -175,13 +175,32 @@ export default function ModalJira(props) {
                                 <i className="fab fa-telegram-plane" />
                                 <span>Give feedback</span>
                             </button>
-                            <button className='task-click__link'>
+                            <button className='task-click__link' onClick={() => {
+                                navigator.clipboard.writeText(window.location.href);
+                                setTextBtnCopy('Link copied');
+                                setTimeout(() => {
+                                    setTextBtnCopy('Copy link');
+                                }, 2000);
+                            }}>
                                 <i className="fa fa-link" />
-                                <span>Copy link</span>
+                                <span>{textBtnCopy}</span>
                             </button>
-                            <button className='task-click__remove-task'>
-                                <i className="fa fa-trash-alt" />
-                            </button>
+                            <Popconfirm
+                                title="Are you sure you want to delete this task?"
+                                onConfirm={() => {
+                                    dispatch({
+                                        type: REMOVE_TASK_SAGA,
+                                        taskId: taskDetailModal.taskId,
+                                        projectId: taskDetailModal.projectId
+                                    })
+                                }}
+                                okText='Yes'
+                                cancelText="No"
+                            >
+                                <button className='task-click__remove-task' >
+                                    <i className="fa fa-trash-alt" />
+                                </button>
+                            </Popconfirm>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>

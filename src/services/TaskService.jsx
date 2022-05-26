@@ -20,6 +20,10 @@ export class TaskService extends baseService {
     updateTask = (taskUpdate) => {
         return this.post(`Project/updateTask`, taskUpdate);
     }
+
+    removeTask = (taskId) => {
+        return this.delete(`project/removeTask?taskId=${taskId}`);
+    }
 }   
 
 

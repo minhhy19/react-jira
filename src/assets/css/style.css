@@ -345,6 +345,7 @@ strong {
 }
 
 .modal-info .modal-body .comment .block-comment .input-comment textarea:focus {
+  outline: none;
   background: #fff;
   border: 1px solid #4c9aff;
   -webkit-box-shadow: #4c9aff 0px 0px 0px 1px;
@@ -402,6 +403,7 @@ strong {
 }
 
 .modal-info .modal-body .comment .lastest-comment .comment-item .comment-text__form textarea:focus {
+  outline: none;
   background: #fff;
   border: 1px solid #4c9aff;
   -webkit-box-shadow: #4c9aff 0px 0px 0px 1px;
@@ -536,6 +538,10 @@ strong {
   background: #ebecf0;
 }
 
+.task-click__feedback:focus {
+  outline: none;
+}
+
 .task-click__link {
   margin-right: 5px;
   padding: 5px 10px;
@@ -558,6 +564,10 @@ strong {
   background: #ebecf0;
 }
 
+.task-click__link:focus {
+  outline: none;
+}
+
 .task-click__remove-task {
   margin-right: 5px;
   padding: 5px 10px;
@@ -569,6 +579,10 @@ strong {
 
 .task-click__remove-task:hover {
   background: #ebecf0;
+}
+
+.task-click__remove-task:focus {
+  outline: none;
 }
 
 .fa-trash-alt {

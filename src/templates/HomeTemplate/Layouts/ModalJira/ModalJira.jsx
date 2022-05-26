@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Popconfirm, Select } from 'antd';
+import { Select } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactHtmlParser from "react-html-parser";
 import { GET_ALL_STATUS_SAGA } from '../../../../redux/constants/Jira/StatusConstant';
@@ -8,7 +8,9 @@ import { CHANGE_ASSIGNESS, CHANGE_TASK_MODAL, HANDLE_CHANGE_POST_API_SAGA, REMOV
 import { GET_ALL_TASK_TYPE_SAGA } from '../../../../redux/constants/Jira/TaskTypeConstant';
 import { Editor } from '@tinymce/tinymce-react'
 import { useFormik } from 'formik';
-import { DELETE_COMMENT_SAGA, INSERT_COMMENT_SAGA } from '../../../../redux/constants/Jira/CommentConstants';
+import { INSERT_COMMENT_SAGA } from '../../../../redux/constants/Jira/CommentConstants';
+import CommentList from './ListComment/CommentList';
+import moment from 'moment';
 
 const { Option } = Select;
 
@@ -23,9 +25,11 @@ export default function ModalJira(props) {
 
     const { projectDetail } = useSelector(state => state.ProjectReducer)
     const [visibleEditor, setVisibleEditor] = useState(false);
-    const [visibleAddComment, setVisibleAddComment] = useState(false);
+    const [visibleBtnAddComment, setVisibleBtnAddComment] = useState(false);
+    // const [visibleTextareaEditComment, setVisibleTextareaEditComment] = useState(false);
     const [historyContent, setHistoryContent] = useState(taskDetailModal.description);
     const [content, setContent] = useState(taskDetailModal.description);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -46,9 +50,9 @@ export default function ModalJira(props) {
                 newComment: values
             })
             resetForm();
-            setVisibleAddComment(false);
+            setVisibleBtnAddComment(false);
         },
-      });
+    });
 
 
     const renderDescription = () => {
@@ -151,47 +155,6 @@ export default function ModalJira(props) {
         </div>
     }
 
-    const renderComment = () => {
-        const { lstComment } = taskDetailModal;
-        return lstComment?.map((comment) => {
-            return <div className="lastest-comment" key={comment.id}>
-                <div className="comment-item">
-                    <div className="display-comment" style={{ display: 'flex' }}>
-                        <div className="avatar">
-                            <img src={comment.avatar} alt={comment.avatar} title={comment.name} />
-                        </div>
-                        <div className='comment-text'>
-                            <p className='comment-text__name'>
-                                {comment.name}
-                            </p>
-                            <p className='comment-text__content'>
-                                {comment.commentContent}
-                            </p>
-                            <div>
-                                <button className='comment-text__btn-edit'>Edit</button>
-                                <Popconfirm
-                                    title="Are you sure to delete this comment?"
-                                    onConfirm={() => {
-                                        dispatch({
-                                            type: DELETE_COMMENT_SAGA,
-                                            commentId: comment.id,
-                                            taskId: taskDetailModal.taskId
-                                        })
-                                        // console.log('comment', comment);
-                                    }}
-                                    okText="Yes"
-                                    cancelText="No"
-                                >
-                                    <button className='comment-text__btn-del'>Delete</button>
-                                </Popconfirm>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        })
-    }
-
     return (
         <div className="modal fade" id="infoModal" tabIndex={-1} role="dialog" aria-labelledby="infoModal" aria-hidden="true">
             <div className="modal-dialog modal-info">
@@ -242,23 +205,23 @@ export default function ModalJira(props) {
                                             </div>
                                             <div className="input-comment">
                                                 <form onSubmit={formik.handleSubmit} id="formComment" onClick={() => {
-                                                    setVisibleAddComment(true);
+                                                    setVisibleBtnAddComment(true);
                                                 }}>
-                                                    <input type="text" value={formik.values.contentComment} name='contentComment' onChange={formik.handleChange} placeholder="Add a comment ..." />
+                                                    <textarea type="text" value={formik.values.contentComment} name='contentComment' onChange={formik.handleChange} placeholder="Add a comment..." ></textarea>
                                                 </form>
-                                                {visibleAddComment ? <div>
+                                                {visibleBtnAddComment ? <div>
                                                     <button type='submit' form="formComment" className="btn btn-primary mr-2" >Save</button>
                                                     <button className="btn btn-light m-2" onClick={() => {
-                                                        setVisibleAddComment(false);
+                                                        setVisibleBtnAddComment(false);
                                                     }} >Close</button>
-                                                </div> : 
-                                                <p className='input-comment__tip'>
-                                                    <strong>Pro tip:</strong>
-                                                    <span> press <span style={{ fontWeight: 'normal', backgroundColor: 'rgb(223, 225, 230)', color: 'rgb(23, 43, 77)', fontFamily: 'CircularStdBold' }}>M</span> to comment</span>
-                                                </p>}
+                                                </div> :
+                                                    <p className='input-comment__tip'>
+                                                        <strong>Pro tip:</strong>
+                                                        <span> press <span style={{ fontWeight: 'normal', backgroundColor: 'rgb(223, 225, 230)', color: 'rgb(23, 43, 77)', fontFamily: 'CircularStdBold' }}>M</span> to comment</span>
+                                                    </p>}
                                             </div>
                                         </div>
-                                        {renderComment()}
+                                        <CommentList />
                                     </div>
                                 </div>
                                 <div className="col-4">
@@ -382,8 +345,10 @@ export default function ModalJira(props) {
                                             renderTimeTracking()
                                         }
                                     </div>
-                                    <div style={{ color: '#929398' }}>Create at a month ago</div>
-                                    <div style={{ color: '#929398' }}>Update at a few seconds ago</div>
+                                    <div className='from-now'>
+                                        <div>Create at {moment(taskDetailModal?.createdAt).fromNow()}</div>
+                                        <div>Update at {moment(taskDetailModal?.updatedAt).fromNow()}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -333,10 +333,22 @@ strong {
   width: 100%;
 }
 
-.modal-info .modal-body .comment .block-comment .input-comment input {
+.modal-info .modal-body .comment .block-comment .input-comment textarea {
   width: 100%;
-  height: 45px;
+  height: 61px;
   padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #dfe1e6;
+  background: #f4f5f7;
+  font-family: "CircularStdBook";
+  font-weight: normal;
+}
+
+.modal-info .modal-body .comment .block-comment .input-comment textarea:focus {
+  background: #fff;
+  border: 1px solid #4c9aff;
+  -webkit-box-shadow: #4c9aff 0px 0px 0px 1px;
+          box-shadow: #4c9aff 0px 0px 0px 1px;
 }
 
 .modal-info .modal-body .comment .block-comment .input-comment .input-comment__tip {
@@ -351,16 +363,49 @@ strong {
   margin-right: 15px;
 }
 
+.modal-info .modal-body .comment .lastest-comment .comment-item .comment-text {
+  width: 100%;
+}
+
 .modal-info .modal-body .comment .lastest-comment .comment-item .comment-text__name {
-  padding-bottom: 5px;
+  padding-bottom: 10px;
   color: #42526e;
-  font-family: CircularStdMedium;
+  font-family: "CircularStdMedium";
   font-weight: normal;
+}
+
+.modal-info .modal-body .comment .lastest-comment .comment-item .comment-text__name span {
+  padding-left: 12px;
+  color: #42526e;
+  font-family: "CircularStdBook";
+  font-weight: normal;
+  font-size: 14.5px;
 }
 
 .modal-info .modal-body .comment .lastest-comment .comment-item .comment-text__content {
   padding-bottom: 10px;
   white-space: pre-wrap;
+}
+
+.modal-info .modal-body .comment .lastest-comment .comment-item .comment-text__form {
+  width: 100%;
+}
+
+.modal-info .modal-body .comment .lastest-comment .comment-item .comment-text__form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #dfe1e6;
+  background: #f4f5f7;
+  font-family: "CircularStdBook";
+  font-weight: normal;
+}
+
+.modal-info .modal-body .comment .lastest-comment .comment-item .comment-text__form textarea:focus {
+  background: #fff;
+  border: 1px solid #4c9aff;
+  -webkit-box-shadow: #4c9aff 0px 0px 0px 1px;
+          box-shadow: #4c9aff 0px 0px 0px 1px;
 }
 
 .modal-info .modal-body .comment .lastest-comment .comment-item .comment-text__btn-edit {
@@ -448,6 +493,15 @@ strong {
 
 .modal-info .modal-body .time-tracking .time-tracking__block .time-tracking--clock {
   margin-right: 10px;
+}
+
+.modal-info .modal-body .from-now {
+  color: #5e6c84;
+  font-size: 13px;
+}
+
+.modal-info .modal-body .from-now div {
+  padding: 3px 0;
 }
 
 .task-title span {

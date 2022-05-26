@@ -22,7 +22,8 @@ const messageUpdateTaskSuccess = 'Update task successfully';
 const messageLoginSuccess = 'Login successfully';
 
 // COMMENT
-const messageDeleteCommentSuccess = 'Delete Comment successfully';
+const messageDeleteCommentSuccess = 'Delete comment successfully';
+const messageUpdateCommentSuccess = 'Update comment successfully';
 
 export const messageApp = {
   messageAddUserProjectSuccess,
@@ -36,4 +37,5 @@ export const messageApp = {
   messageUpdateTaskSuccess,
   messageLoginSuccess,
   messageDeleteCommentSuccess,
+  messageUpdateCommentSuccess
 };

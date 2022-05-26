@@ -40,5 +40,6 @@ export function* rootSaga() {
 
     CommentSaga.theoDoiInsertCommentSaga(),
     CommentSaga.theoDoiDeleteCommentSaga(),
+    CommentSaga.theoDoiUpdateCommentSaga(),
   ])
 }

@@ -90,21 +90,6 @@ export default function ProjectManagerPage(props) {
             },
             sortOrder: sortedInfo.columnKey === 'projectName' ? sortedInfo.order : null,
         },
-        // {
-        //     title: 'Description',
-        //     dataIndex: 'description',
-        //     key: 'description',
-        //     render: (text, record, index) => {
-        //         // console.log('text', text);
-        //         // console.log('record', record);
-        //         // console.log('index', index);
-        //         let jsxContent = ReactHtmlParse(text);
-
-        //         return <div key={index}>
-        //             {jsxContent}
-        //         </div>
-        //     }
-        // },
         {
             title: 'Category',
             dataIndex: 'categoryName',

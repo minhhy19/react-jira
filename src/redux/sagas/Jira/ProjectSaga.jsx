@@ -4,7 +4,7 @@ import { messageApp } from '../../../util/Common/Message';
 import { history, STATUS_CODE } from '../../../util/constants/settingSystem';
 import { notificationFunction } from '../../../util/Notification/notificationJira';
 import { CLOSE_DRAWER } from '../../constants/DrawerConstant';
-import { ADD_USER_PROJECT_API, CREATE_PROJECT_SAGA, DELETE_PROJECT_SAGA, GET_ALL_PROJECT, GET_ALL_PROJECT_SAGA, GET_PROJECT_DETAIL, GET_PROJECT_DETAIL_SAGA, REMOVE_USER_PROJECT_API, UPDATE_PROJECT_SAGA } from '../../constants/Jira/ProjectConstants';
+import { ADD_USER_PROJECT_API, CREATE_PROJECT_SAGA, DELETE_PROJECT_SAGA, GET_ALL_PROJECT, GET_ALL_PROJECT_SAGA, GET_PROJECT_DETAIL, GET_PROJECT_DETAIL_SAGA, REMOVE_USER_PROJECT_API, SEARCH_PROJECT_SAGA, UPDATE_PROJECT_SAGA } from '../../constants/Jira/ProjectConstants';
 import { GET_USER_BY_PROJECT_ID_SAGA } from '../../constants/Jira/UserConstants';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConstant';
 
@@ -235,4 +235,33 @@ function* getAllProjectSaga(action) {
 
 export function* theoDoiGetAllProjectSaga() {
     yield takeLatest(GET_ALL_PROJECT_SAGA, getAllProjectSaga);
+}
+
+function* searchProjectSaga(action) {
+    // hiển thị loading
+    yield put({
+        type: DISPLAY_LOADING
+    })
+    try {
+        // Gọi API lấy dữ liệu về
+        const { data, status } = yield call(() => projectService.searchProject(action.keyWord));
+        // Lấy dữ liệu thành công thì đưa dữ liệu lên redux
+        yield put({
+            type: GET_ALL_PROJECT,
+            arrProject: data.content
+        })
+    } catch (err) {
+        console.log(err.response?.data);
+        if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
+            history.push('/login')
+        }
+    }
+    yield put({
+        type: HIDE_LOADING
+    })
+
+}
+
+export function* theoDoiSearchProjectSaga() {
+    yield takeLatest(SEARCH_PROJECT_SAGA, searchProjectSaga);
 }

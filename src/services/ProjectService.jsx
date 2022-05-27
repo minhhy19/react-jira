@@ -25,6 +25,10 @@ export class ProjectService extends baseService {
         return this.get(`Project/getAllProject`)
     }
 
+    searchProject = (keyword) => {
+        return this.get(`Project/getAllProject?keyword=${keyword}`)
+    }
+
     deleteProject = (id) => {
         return this.delete(`Project/deleteProject?projectId=${id}`)
     }

@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Table, Button, Space, Tag, Popconfirm, message, Avatar, Popover, AutoComplete } from 'antd';
-import { EditOutlined, DeleteOutlined, CloseSquareOutlined, CloseOutlined } from "@ant-design/icons";
+import { Table, Button, Space, Tag, Popconfirm, message, Avatar, Popover, AutoComplete, Input } from 'antd';
+import { EditOutlined, DeleteOutlined, SearchOutlined, CloseSquareOutlined, CloseOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from 'react-redux';
 import FormEditProject from '../../components/Forms/FormEditProject/FormEditProject';
 import { NavLink } from 'react-router-dom';
-import { ADD_USER_PROJECT_API, DELETE_PROJECT_SAGA, EDIT_PROJECT, GET_ALL_PROJECT_SAGA, REMOVE_USER_PROJECT_API } from '../../redux/constants/Jira/ProjectConstants';
+import { ADD_USER_PROJECT_API, DELETE_PROJECT_SAGA, EDIT_PROJECT, GET_ALL_PROJECT_SAGA, REMOVE_USER_PROJECT_API, SEARCH_PROJECT_SAGA } from '../../redux/constants/Jira/ProjectConstants';
 import { GET_USER_SAGA } from '../../redux/constants/Jira/UserConstants';
 import { OPEN_FORM_EDIT_PROJECT } from '../../redux/constants/DrawerConstant';
 
@@ -15,7 +15,8 @@ export default function ProjectManagerPage(props) {
     const { userSearch } = useSelector(state => state.UserReducer);
 
     const [value, setValue] = useState('');
-    const searchRef = useRef(null);
+    const searchUserRef = useRef(null);
+    const searchProjectRef = useRef(null);
 
     // Sử dụng useDispatch để gọi action
     const dispatch = useDispatch();
@@ -48,11 +49,11 @@ export default function ProjectManagerPage(props) {
         });
     };
 
-    const setAgeSort = () => {
+    const setProjectNameSort = () => {
         setState({
             sortedInfo: {
-                order: 'descend',
-                columnKey: 'age',
+                order: 'ascend',
+                columnKey: 'projectName',
             },
         });
     };
@@ -69,6 +70,7 @@ export default function ProjectManagerPage(props) {
             sorter: (item2, item1) => {
                 return item2.id - item1.id;
             },
+            sortOrder: sortedInfo.columnKey === 'id' ? sortedInfo.order : null,
             sortDirections: ['descend'],
         },
         {
@@ -86,6 +88,7 @@ export default function ProjectManagerPage(props) {
                 }
                 return 1;
             },
+            sortOrder: sortedInfo.columnKey === 'projectName' ? sortedInfo.order : null,
         },
         // {
         //     title: 'Description',
@@ -114,6 +117,7 @@ export default function ProjectManagerPage(props) {
                 }
                 return 1;
             },
+            sortOrder: sortedInfo.columnKey === 'categoryName' ? sortedInfo.order : null,
         },
         {
             title: 'Creator',
@@ -129,6 +133,7 @@ export default function ProjectManagerPage(props) {
                 }
                 return 1;
             },
+            sortOrder: sortedInfo.columnKey === 'creator' ? sortedInfo.order : null,
         },
         {
             title: 'Members',
@@ -197,10 +202,10 @@ export default function ProjectManagerPage(props) {
                                     })
                                 }}
                                 style={{ width: '100%' }} onSearch={(value) => {
-                                    if (searchRef.current) {
-                                        clearTimeout(searchRef.current);
+                                    if (searchUserRef.current) {
+                                        clearTimeout(searchUserRef.current);
                                     }
-                                    searchRef.current = setTimeout(() => {
+                                    searchUserRef.current = setTimeout(() => {
                                         dispatch({
                                             type: GET_USER_SAGA,
                                             keyWord: value
@@ -256,11 +261,26 @@ export default function ProjectManagerPage(props) {
         },
     ];
 
+    const handleChangeInputSearch = (e) => {
+        const { value } = e.target;
+        if (searchProjectRef.current) {
+            clearTimeout(searchProjectRef.current);
+        }
+        searchProjectRef.current = setTimeout(() => {
+            dispatch({
+                type: SEARCH_PROJECT_SAGA,
+                keyWord: value
+            })
+        }, 300)
+        
+    };
+
     return (
         <div className='container-fluid mt-5'>
             <h3 className='mb-3'>Project Management</h3>
             <Space style={{ marginBottom: 16 }}>
-                <Button onClick={setAgeSort}>Sort age</Button>
+                <Input onChange={handleChangeInputSearch} name='search' style={{ minWidth: 300 }} placeholder="" prefix={<SearchOutlined />} />
+                <Button onClick={setProjectNameSort}>Sort project name</Button>
                 <Button onClick={clearFilters}>Clear filters</Button>
                 <Button onClick={clearAll}>Clear filters and sorters</Button>
             </Space>

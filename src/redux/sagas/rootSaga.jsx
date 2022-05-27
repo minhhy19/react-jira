@@ -26,6 +26,7 @@ export function* rootSaga() {
     ProjectSaga.theoDoiDeleteProjectSaga(),
     ProjectSaga.theoDoiGetProjectDetailSaga(),
     ProjectSaga.theoDoiGetAllProjectSaga(),
+    ProjectSaga.theoDoiSearchProjectSaga(),
     
     TaskTypeSaga.theoDoiGetAllTaskTypeSaga(),
 

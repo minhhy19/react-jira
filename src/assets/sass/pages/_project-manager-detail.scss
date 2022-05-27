@@ -47,8 +47,19 @@
         }
 
         .text {
+            border-radius: 3px;
+            cursor: pointer;
+            padding: 0 12px;
             text-align: center;
+            height: 35px;
             line-height: 35px;
+            font-size: 14.5px;
+            margin-left: 5px;
+            transition: all 0.1s;
+
+            &:hover {
+                background: rgb(235, 236, 240);
+            }
         }
     }
 
@@ -72,9 +83,16 @@
 
                 .list-group-item {
                     margin: 5px;
+                    box-shadow: #091e4240 0px 1px 2px 0px;
+                    border-radius: 3px;
+                    transition: all 0.1s ease 0s;
 
                     p {
                         font-size: 14px;
+                    }
+
+                    &:hover {
+                        background: rgb(235, 236, 240);
                     }
 
                     .block {
@@ -82,8 +100,23 @@
 
                         .block-left {
                             line-height: 40px;
+                            .fa-exclamation-circle, .fa-check-square {
+                                margin-right: 5px;
+                            }
+
                             .svg-inline--fa {
                                 margin-right: 5px;
+                            }
+                        }
+
+                        .block-right {
+                            .avatar-group {
+                                .avatar {
+                                    img {
+                                        width: 30px;
+                                        height: 30px;
+                                    }
+                                }
                             }
                         }
                     }

@@ -32,6 +32,24 @@ export default function ContentMain(props) {
         })
     }
 
+    const renderPriority = (priority) => {
+        switch(priority.priorityId) {
+            case 1: {
+                return <i className="fa fa-arrow-up fa-arrow-up--high" />
+            }
+            case 2: {
+                return <i className="fa fa-arrow-up fa-arrow-up--medium" />
+            }
+            case 3: {
+                return <i className="fa fa-arrow-down fa-arrow-down--low" />
+            }
+            case 4: {
+                return <i className="fa fa-arrow-down fa-arrow-down--lowest" />
+            }
+            default: return '';
+        }
+    }
+
     const renderCardTaskList = () => {
         return <DragDropContext onDragEnd={handleDragEnd}>
             {
@@ -65,9 +83,9 @@ export default function ContentMain(props) {
                                                     </p>
                                                     <div className="block" style={{ display: 'flex' }}>
                                                         <div className="block-left">
-                                                            <p className="text-danger">{task.priorityTask.priority}</p>
-                                                            {/* <i className="fa fa-bookmark" />
-                                                            <i className="fa fa-arrow-up" /> */}
+                                                            {task.typeId === 1 ? <i className="fas fa-exclamation-circle"></i> : <i className="fas fa-check-square"></i>}
+                                                            {/* <span className="text-danger">{task.priorityTask.priority}</span> */}
+                                                            {renderPriority(task.priorityTask)}
                                                         </div>
                                                         <div className="block-right">
                                                             <div className="avatar-group" style={{ display: 'flex' }}>

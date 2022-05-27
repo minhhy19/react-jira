@@ -161,14 +161,14 @@ export default function ModalJira(props) {
                 <div className="modal-content">
                     <div className="modal-header">
                         <div className="task-title">
-                            <i className="fa fa-bookmark" />
+                            {taskDetailModal.typeId === 1 ? <i className="fas fa-exclamation-circle"></i> : <i className="fas fa-check-square"></i>}
                             <select name="typeId" value={taskDetailModal.typeId} onChange={handleChange}>
                                 {arrTaskType.map((tp, index) => {
                                     return <option key={index} value={tp.id}>{tp.taskType}</option>
                                 })}
                             </select>
 
-                            <span>{taskDetailModal.typeId === '1' ? `BUG-${taskDetailModal.taskId}` : `TASK-${taskDetailModal.taskId}`}</span>
+                            <span>{taskDetailModal.typeId === 1 ? `BUG-${taskDetailModal.taskId}` : `TASK-${taskDetailModal.taskId}`}</span>
                         </div>
                         <div style={{ display: 'flex' }} className="task-click">
                             <button className='task-click__feedback'>
@@ -193,6 +193,9 @@ export default function ModalJira(props) {
                                         taskId: taskDetailModal.taskId,
                                         projectId: taskDetailModal.projectId
                                     })
+                                    
+                                    const btnCloseModal = document.querySelector('.task-click__close-modal');
+                                    btnCloseModal.click();
                                 }}
                                 okText='Yes'
                                 cancelText="No"
@@ -201,7 +204,7 @@ export default function ModalJira(props) {
                                     <i className="fa fa-trash-alt" />
                                 </button>
                             </Popconfirm>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" className="close task-click__close-modal" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
@@ -219,7 +222,6 @@ export default function ModalJira(props) {
                                         <h6>Comment</h6>
                                         <div className="block-comment" style={{ display: 'flex' }}>
                                             <div className="avatar">
-                                                {/* <img src={require("../../../../assets/img/download (1).jfif")} alt='xyz' /> */}
                                                 <img src={userLogin?.avatar} alt='xyz' title={userLogin?.name} />
                                             </div>
                                             <div className="input-comment">
@@ -281,10 +283,6 @@ export default function ModalJira(props) {
                                                                         actionType: REMOVE_USER_ASSIGN,
                                                                         userId: user.id
                                                                     })
-                                                                    // dispatch({
-                                                                    //     type: REMOVE_USER_ASSIGN,
-                                                                    //     userId: user.id
-                                                                    // })
                                                                 }} />
                                                             </p>
                                                         </div>
@@ -306,7 +304,6 @@ export default function ModalJira(props) {
                                                     style={{ width: '100%' }}
                                                     name="lstUser"
                                                     value="+ Add more"
-                                                    className="form-control"
                                                     onSelect={(value) => {
                                                         if (value == '0') {
                                                             return;
@@ -319,12 +316,6 @@ export default function ModalJira(props) {
                                                             actionType: CHANGE_ASSIGNESS,
                                                             userSelected
                                                         })
-
-                                                        //dispatchReducer
-                                                        // dispatch({
-                                                        //     type: CHANGE_ASSIGNESS,
-                                                        //     userSelected
-                                                        // });
                                                     }}>
                                                 </Select>
                                             </div>
@@ -344,13 +335,42 @@ export default function ModalJira(props) {
                                     </div> */}
                                     <div className="priority" style={{ marginBottom: 20 }}>
                                         <h6>PRIORITY</h6>
-                                        <select name="priorityId" className="form-control" value={taskDetailModal.priorityId} onChange={(e) => {
-                                            handleChange(e);
-                                        }}>
-                                            {arrPriority.map((item, index) => {
-                                                return <option key={index} value={item.priorityId}>{item.priority}</option>
-                                            })}
-                                        </select>
+                                        <Select 
+                                            name="priorityId" 
+                                            value={taskDetailModal.priorityId}
+                                            style={{ width: '45%' }}
+                                            onChange={(value) => {
+                                                dispatch({
+                                                    type: HANDLE_CHANGE_POST_API_SAGA,
+                                                    actionType: CHANGE_TASK_MODAL,
+                                                    name: 'priorityId',
+                                                    value
+                                                })
+                                            }}>
+                                                {arrPriority.map((item) => {
+                                                    let priorityIcon;
+                                                    switch(item.priorityId) {
+                                                        case 1: {
+                                                            priorityIcon = <i className="fa fa-arrow-up fa-arrow-up--high mr-2" />
+                                                            break;
+                                                        }
+                                                        case 2: {
+                                                            priorityIcon = <i className="fa fa-arrow-up fa-arrow-up--medium mr-2" />
+                                                            break;
+                                                        }
+                                                        case 3: {
+                                                            priorityIcon = <i className="fa fa-arrow-down fa-arrow-down--low mr-2" />
+                                                            break;
+                                                        }
+                                                        case 4: {
+                                                            priorityIcon = <i className="fa fa-arrow-down fa-arrow-down--lowest mr-2" />
+                                                            break;
+                                                        }
+                                                        default: priorityIcon = '';
+                                                    }
+                                                    return <Option key={item.priorityId} value={item.priorityId} >{priorityIcon}{item.priority}</Option>
+                                                })}
+                                        </Select>
                                     </div>
                                     <div className="estimate">
                                         <h6>ORIGINAL ESTIMATE (HOURS)</h6>

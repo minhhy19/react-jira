@@ -117,18 +117,6 @@ strong {
   display: flex;
 }
 
-.fa-bookmark {
-  color: #5fb03e;
-}
-
-.fa-arrow-up {
-  color: #d85463;
-}
-
-.fa-check-square {
-  color: #62a0ce;
-}
-
 /* Menu */
 .menu {
   height: 100vh;
@@ -622,6 +610,34 @@ strong {
   z-index: 9999;
 }
 
+.fa-bookmark {
+  color: #5fb03e;
+}
+
+.fa-check-square {
+  color: #4fade6;
+}
+
+.fa-exclamation-circle {
+  color: #e44d42;
+}
+
+.fa-arrow-up--high {
+  color: #e9494a;
+}
+
+.fa-arrow-up--medium {
+  color: #e97f33;
+}
+
+.fa-arrow-down--low {
+  color: #2d8738;
+}
+
+.fa-arrow-down--lowest {
+  color: #57a55a;
+}
+
 .main {
   padding-left: 2%;
   width: 100%;
@@ -668,8 +684,20 @@ strong {
 }
 
 .main .info .text {
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 0 12px;
   text-align: center;
+  height: 35px;
   line-height: 35px;
+  font-size: 14.5px;
+  margin-left: 5px;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+}
+
+.main .info .text:hover {
+  background: #ebecf0;
 }
 
 .main .content {
@@ -700,10 +728,19 @@ strong {
 
 .main .content .card .list-group .list-group-item {
   margin: 5px;
+  -webkit-box-shadow: #091e4240 0px 1px 2px 0px;
+          box-shadow: #091e4240 0px 1px 2px 0px;
+  border-radius: 3px;
+  -webkit-transition: all 0.1s ease 0s;
+  transition: all 0.1s ease 0s;
 }
 
 .main .content .card .list-group .list-group-item p {
   font-size: 14px;
+}
+
+.main .content .card .list-group .list-group-item:hover {
+  background: #ebecf0;
 }
 
 .main .content .card .list-group .list-group-item .block {
@@ -716,8 +753,17 @@ strong {
   line-height: 40px;
 }
 
+.main .content .card .list-group .list-group-item .block .block-left .fa-exclamation-circle, .main .content .card .list-group .list-group-item .block .block-left .fa-check-square {
+  margin-right: 5px;
+}
+
 .main .content .card .list-group .list-group-item .block .block-left .svg-inline--fa {
   margin-right: 5px;
+}
+
+.main .content .card .list-group .list-group-item .block .block-right .avatar-group .avatar img {
+  width: 30px;
+  height: 30px;
 }
 
 .avatar img {
@@ -725,5 +771,18 @@ strong {
   border: 1px solid transparent;
   height: 40px;
   border-radius: 50%;
+}
+
+.link-register {
+  margin: 10px 0;
+}
+
+.link-register a {
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.link-register a:hover {
+  text-decoration: underline;
 }
 /*# sourceMappingURL=style.css.map */

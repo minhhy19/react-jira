@@ -19,11 +19,16 @@ function* createTaskSaga(action) {
         yield put({
             type: DISPLAY_LOADING
         })
-        const { data, status } = yield call(() => taskService.createTask(action.taskObject));
+        const { taskObject } = action;
+        const { data, status } = yield call(() => taskService.createTask(taskObject));
 
         //Gọi api thành công thì dispatch lên reducer thông qua put
         if (status === STATUS_CODE.SUCCESS && data.statusCode === STATUS_CODE.SUCCESS) {
             console.log(data)
+            yield put({
+                type: GET_PROJECT_DETAIL_SAGA,
+                projectId: taskObject.projectId
+            })
             notificationFunction('success', messageCreateTaskSuccess);
         } else {
             notificationFunction('error', data.message);
@@ -114,7 +119,6 @@ export function* theoDoiUpdateTaskStatusSaga() {
 // }
 
 export function* handleChangePostApi(action) {
-    // console.log('abc', action)
     // Gọi action làm thay đổi taskDetail modal
     switch (action.actionType) {
         case CHANGE_TASK_MODAL: {

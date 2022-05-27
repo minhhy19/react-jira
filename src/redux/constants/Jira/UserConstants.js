@@ -1,4 +1,5 @@
 export const USER_SIGNIN_API = 'USER_SIGNIN_API';
+export const USER_SIGNUP_API = 'USER_SIGNUP_API';
 
 /**
  * Login

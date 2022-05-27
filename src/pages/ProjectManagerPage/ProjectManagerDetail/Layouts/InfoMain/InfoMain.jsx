@@ -27,10 +27,9 @@ export default function InfoMain(props) {
                 <div className="avatar-group" style={{ display: 'flex' }}>
                     {renderAvatar()}
                 </div>
-                <div style={{ marginLeft: 20 }} className="text">Only My Issues</div>
-                <div style={{ marginLeft: 20 }} className="text">Recently Updated</div>
+                <div className="text">Only My Issues</div>
+                <div className="text">Recently Updated</div>
             </div>
         </>
-
     )
 }

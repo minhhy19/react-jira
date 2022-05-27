@@ -12,6 +12,7 @@ export function* rootSaga() {
 
   yield all([
     //Nghiệp vụ Jira .... 
+    UserSaga.theoDoiSignUpSaga(),
     UserSaga.theoDoiSignin(),
     UserSaga.theoDoiGetUserSaga(),
     UserSaga.theoDoiGetUserByProjectIdSaga(),

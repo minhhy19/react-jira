@@ -5,9 +5,11 @@
 
 @import "./components/menu";
 @import "./components/modal";
+@import "./components/icon_color";
 
 // libs
 
 @import "./helper/mixin";
 @import "./pages/home";
 @import "./pages/project-manager-detail";
+@import "./pages/login";

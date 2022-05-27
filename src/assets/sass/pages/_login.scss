@@ -1,0 +1,12 @@
+.link-register {
+    margin: 10px 0;
+
+    a {
+        margin-left: 5px;
+        font-weight: bold;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

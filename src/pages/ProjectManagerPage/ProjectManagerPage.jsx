@@ -256,7 +256,7 @@ export default function ProjectManagerPage(props) {
                 type: SEARCH_PROJECT_SAGA,
                 keyWord: value
             })
-        }, 300)
+        }, 500)
         
     };
 

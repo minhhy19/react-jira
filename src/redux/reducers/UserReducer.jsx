@@ -19,7 +19,6 @@ export const UserReducer = (state = stateDefault, action) => {
             state.userLogin = action.userLogin;
             return {...state}
         }
-
         case GET_USER_SEARCH: {
             state.userSearch = action.lstUserSearch;
             // console.log('stateUser', state);

@@ -79,9 +79,6 @@ export function* theoDoiSignin() {
 
 
 function* getUserSaga(action) {
-
-    // action.keyWord
-
     // Gọi api
     try {
         const { data, status } = yield call(() => userService.getUser(action.keyWord));

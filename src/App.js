@@ -11,6 +11,7 @@ import ProjectManagerPage from "./pages/ProjectManagerPage/ProjectManagerPage";
 import ProjectManagerAdd from "./pages/ProjectManagerPage/ProjectManagerAdd/ProjectManagerAdd";
 import ProjectManagerDetail from "./pages/ProjectManagerPage/ProjectManagerDetail/ProjectManagerDetail";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
+import UserManagerPage from "./pages/UserManagerPage/UserManagerPage";
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                 <HomeTemplate exact path='/projectadd' Component={ProjectManagerAdd} />
                 <HomeTemplate exact path='/project' Component={ProjectManagerPage} />
                 <HomeTemplate exact path='/project/detail/:projectId' Component={ProjectManagerDetail} />
+                <HomeTemplate exact path='/user' Component={UserManagerPage} />
                 <HomeTemplate exact path="/" Component={ProjectManagerPage} />
             </Switch>
         </>

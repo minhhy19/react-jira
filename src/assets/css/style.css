@@ -117,6 +117,10 @@ strong {
   display: flex;
 }
 
+.jira .ant-layout--background {
+  background-color: #fff;
+}
+
 /* Menu */
 .menu {
   height: 100vh;

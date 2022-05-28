@@ -48,4 +48,8 @@ strong {
 .jira {
     height: 100vh;
     display: flex;
+
+    .ant-layout--background {
+        background-color: #fff;
+    }
 }

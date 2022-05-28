@@ -4,12 +4,14 @@ import MenuJira from './Layouts/MenuJira/MenuJira';
 import ModalJira from './Layouts/ModalJira/ModalJira'
 import SidebarJira from './Layouts/SidebarJira/SidebarJira';
 import _ from 'lodash';
+import { Layout } from 'antd';
 
 import '../../index.css';
 import { ACCESS_TOKEN, USER_LOGIN } from '../../util/constants/settingSystem';
 import { messageApp } from '../../util/Common/Message';
 import { Redirect } from 'react-router-dom';
 import { notificationFunction } from '../../util/Notification/notificationJira';
+import HeaderJira from './Layouts/HeaderJira/HeaderJira';
 
 export const HomeTemplate = (props) => {
     const { messageAuthorization } = messageApp;
@@ -40,7 +42,10 @@ export const HomeTemplate = (props) => {
                     <div className="jira">
                         <SidebarJira />
                         <MenuJira />
-                        <Component {...propsRoute} />
+                        <Layout className='ant-layout--background'>
+                            <HeaderJira />
+                            <Component {...propsRoute} />
+                        </Layout>
                         <ModalJira />
                     </div>
                 </>

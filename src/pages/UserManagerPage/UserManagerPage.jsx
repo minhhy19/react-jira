@@ -175,7 +175,7 @@ export default function UserManagerPage(props) {
     };
 
     return (
-        <div className='container-fluid mt-5'>
+        <div className='container-fluid mt-3'>
             <h3 className='mb-3'>Project Management</h3>
             <Space style={{ marginBottom: 16 }}>
                 <Input onChange={handleChangeInputSearch} name='search' style={{ minWidth: 300 }} placeholder="" prefix={<SearchOutlined />} />

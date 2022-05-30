@@ -444,6 +444,7 @@ strong {
   border-radius: 5px;
   -ms-flex-preferred-size: 50%;
       flex-basis: 50%;
+  position: relative;
 }
 
 .modal-info .modal-body .assignees .item .avatar img {
@@ -454,6 +455,12 @@ strong {
 .modal-info .modal-body .assignees .item .name {
   margin: 0;
   font-size: 14.5px;
+}
+
+.modal-info .modal-body .assignees .item .name .fa-times {
+  position: absolute;
+  right: 5%;
+  top: 10%;
 }
 
 .modal-info .modal-body .estimate .estimate-hours {

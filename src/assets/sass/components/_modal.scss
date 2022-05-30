@@ -227,6 +227,7 @@
                 padding: 5px;
                 border-radius: 5px;
                 flex-basis: 50%;
+                position: relative;
             
                 .avatar img {
                     width: 30px;
@@ -236,6 +237,12 @@
                 .name {
                     margin: 0;
                     font-size: 14.5px;
+
+                    .fa-times {
+                        position: absolute;
+                        right: 5%;
+                        top: 10%;
+                    }
                 }
             }
         }

@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import FormEditProject from '../../components/Forms/FormEditProject/FormEditProject';
 import { NavLink } from 'react-router-dom';
 import { ADD_USER_PROJECT_API, DELETE_PROJECT_SAGA, EDIT_PROJECT, GET_ALL_PROJECT_SAGA, REMOVE_USER_PROJECT_API, SEARCH_PROJECT_SAGA } from '../../redux/constants/Jira/ProjectConstants';
-import { GET_USER_SAGA } from '../../redux/constants/Jira/UserConstants';
-import { OPEN_FORM_EDIT_PROJECT } from '../../redux/constants/DrawerConstant';
+import { DELETE_USER_SAGA, EDIT_USER, GET_USER_SAGA } from '../../redux/constants/Jira/UserConstants';
+import { OPEN_FORM_CREATE_USER, OPEN_FORM_EDIT_PROJECT, OPEN_FORM_EDIT_USER } from '../../redux/constants/DrawerConstant';
+import FormCreateUser from '../../components/Forms/FormCreateUser/FormCreateUser';
+import FormEditUser from '../../components/Forms/FormEditUser/FormEditUser';
 
 export default function UserManagerPage(props) {
     // Lấy dữ liệu reducer về component
@@ -124,29 +126,30 @@ export default function UserManagerPage(props) {
             render: (text, record, index) => (
                 <div>
                     <button className='btn mr-2 btn-primary' onClick={() => {
-                        // const action = {
-                        //     type: OPEN_FORM_EDIT_PROJECT,
-                        //     title: 'Edit Project',
-                        //     Component: <FormEditProject />
-                        // }
-                        // // dispatch lên reducer nội dung
-                        // dispatch(action);
+                        const action = {
+                            type: OPEN_FORM_EDIT_USER,
+                            title: 'Edit user',
+                            Component: <FormEditUser />
+                        }
+                        // dispatch lên reducer nội dung
+                        dispatch(action);
 
-                        // // dispatch dữ liệu dòng hiện tại lên reducer
-                        // const actionEditProject = {
-                        //     type: EDIT_PROJECT,
-                        //     projectEditModel: record
-                        // }
-                        // dispatch(actionEditProject);
+                        // dispatch dữ liệu dòng hiện tại lên reducer
+                        const actionEditUser = {
+                            type: EDIT_USER,
+                            userEditModel: record
+                        }
+                        dispatch(actionEditUser);
                     }}>
                         <EditOutlined style={{ fontSize: 17 }} />
                     </button>
                     <Popconfirm
-                        title="Are you sure to delete this project?"
+                        title="Are you sure to delete this user?"
                         onConfirm={() => {
-                            // dispatch({
-                            //     type: DELETE_PROJECT_SAGA, idProject: record.id
-                            // })
+                            // console.log(record);
+                            dispatch({
+                                type: DELETE_USER_SAGA, userId: record.userId
+                            })
                         }}
                         okText="Yes"
                         cancelText="No"
@@ -175,8 +178,15 @@ export default function UserManagerPage(props) {
     };
 
     return (
-        <div className='container-fluid mt-3'>
-            <h3 className='mb-3'>Project Management</h3>
+        <div className='container-fluid'>
+            <button className='btn btn-outline-primary mb-3' onClick={() => {
+                dispatch({
+                    type: OPEN_FORM_CREATE_USER,
+                    Component: <FormCreateUser />,
+                    title: 'Create user'
+                })
+            }}>Create user</button>
+            <h3 className='mb-3'>User Management</h3>
             <Space style={{ marginBottom: 16 }}>
                 <Input onChange={handleChangeInputSearch} name='search' style={{ minWidth: 300 }} placeholder="" prefix={<SearchOutlined />} />
                 <Button onClick={setNameSort}>Sort name</Button>

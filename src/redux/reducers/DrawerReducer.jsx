@@ -1,4 +1,4 @@
-import { CLOSE_DRAWER, OPEN_DRAWER, OPEN_FORM_CREATE_TASK, OPEN_FORM_EDIT_PROJECT, SET_SUBMIT_CREATE_TASK, SET_SUBMIT_EDIT_PROJECT } from "../constants/DrawerConstant"
+import { CLOSE_DRAWER, OPEN_DRAWER, OPEN_FORM_CREATE_TASK, OPEN_FORM_CREATE_USER, OPEN_FORM_EDIT_PROJECT, OPEN_FORM_EDIT_USER, SET_SUBMIT_CREATE_TASK, SET_SUBMIT_CREATE_USER, SET_SUBMIT_EDIT_PROJECT } from "../constants/DrawerConstant"
 
 const initialState = {
     visible: false,
@@ -26,10 +26,25 @@ export const DrawerReducer = (state = initialState, action) => {
             state.callBackSubmit = action.submitFunction;
             return { ...state }
         }
-        case SET_SUBMIT_CREATE_TASK : {
-            return {...state, callBackSubmit:action.submitFunction}
+        case SET_SUBMIT_CREATE_TASK: {
+            return {...state, callBackSubmit: action.submitFunction}
+        }
+        case SET_SUBMIT_CREATE_USER: {
+            return {...state, callBackSubmit: action.submitFunction}
         }
         case OPEN_FORM_CREATE_TASK: {
+            state.visible = true;
+            state.ComponentContentDrawer = action.Component;
+            state.title = action.title;
+            return { ...state }
+        }
+        case OPEN_FORM_CREATE_USER: {
+            state.visible = true;
+            state.ComponentContentDrawer = action.Component;
+            state.title = action.title;
+            return { ...state }
+        }
+        case OPEN_FORM_EDIT_USER: {
             state.visible = true;
             state.ComponentContentDrawer = action.Component;
             state.title = action.title;

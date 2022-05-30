@@ -1,16 +1,19 @@
 import { call, delay, fork, take, takeEvery, takeLatest, put, select } from 'redux-saga/effects';
 import { userService } from '../../../services/UserService';
 import { ACCESS_TOKEN, history, STATUS_CODE, USER_LOGIN } from '../../../util/constants/settingSystem';
-import { GET_USER_SAGA, GET_USER_SEARCH, USER_SIGNIN_API, USER_SIGNUP_API, USLOGIN } from '../../constants/Jira/UserConstants';
+import { DELETE_USER_SAGA, GET_USER_SAGA, GET_USER_SEARCH, UPDATE_USER_SAGA, USER_SIGNIN_API, USER_SIGNUP_API, USLOGIN } from '../../constants/Jira/UserConstants';
 import { GET_ALL_PROJECT_SAGA } from '../../constants/Jira/ProjectConstants';
 import { GET_USER_BY_PROJECT_ID, GET_USER_BY_PROJECT_ID_SAGA } from '../../constants/Jira/UserConstants';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConstant';
 import { notificationFunction } from '../../../util/Notification/notificationJira';
 import { messageApp } from '../../../util/Common/Message';
+import { CLOSE_DRAWER } from '../../constants/DrawerConstant';
 
 const {
     messageLoginSuccess,
-    messageSignUpSuccess
+    messageSignUpSuccess,
+    messageUpdateUserSuccess,
+    messageDeleteUserSuccess
 } = messageApp;
 
 
@@ -25,8 +28,19 @@ function* signUpSaga(action) {
         const { data, status } = yield call(() => userService.signup(action.userSignUp));
         if (status === STATUS_CODE.SUCCESS) {
             notificationFunction('success', messageSignUpSuccess);
-            history.push('/login');
+            if (history.location.pathname === '/signup') {
+                history.push('/login');
+            }
         }
+        // load lại list user
+        yield put({
+            type: GET_USER_SAGA,
+            keyWord: ''
+        })
+        // tắt drawer
+        yield put({
+            type: CLOSE_DRAWER
+        })
     } catch (err) {
         console.log(err.response?.data);
         notificationFunction('error', err.response?.data.message);
@@ -82,12 +96,12 @@ function* getUserSaga(action) {
     // Gọi api
     try {
         const { data, status } = yield call(() => userService.getUser(action.keyWord));
-        console.log('data', data);
         yield put({
             type: GET_USER_SEARCH,
             lstUserSearch: data.content
         })
     } catch (err) {
+        console.log(err);
         console.log(err.response?.data);
         if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
             history.push('/login')
@@ -133,4 +147,71 @@ function* getUserByProjectIdSaga(action) {
 
 export function* theoDoiGetUserByProjectIdSaga() {
     yield takeLatest(GET_USER_BY_PROJECT_ID_SAGA, getUserByProjectIdSaga)
+}
+
+function* updateUserSaga(action) {
+    yield put({
+        type: DISPLAY_LOADING
+    })
+    const { userEdit } = action;
+    // console.log('action',idProject)
+
+    try {
+        const { data, status } = yield call(() => userService.editUser(userEdit));
+        // console.log('checkdata',data);
+
+        if (status === STATUS_CODE.SUCCESS) {
+            notificationFunction('success', messageUpdateUserSuccess);
+        }
+        // load lại list user
+        yield put({
+            type: GET_USER_SAGA,
+            keyWord: ''
+        })
+
+        // tắt drawer
+        yield put({
+            type: CLOSE_DRAWER
+        })
+    } catch (err) {
+        console.log(err);
+        console.log(err.response?.data);
+        notificationFunction('error', err.response?.data.message);
+        if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
+            history.push('/login')
+        }
+    }
+    yield put({
+        type: HIDE_LOADING
+    })
+}
+
+export function* theoDoiUpdateUserSaga() {
+    yield takeLatest(UPDATE_USER_SAGA, updateUserSaga)
+}
+
+function* deleteUserSaga(action) {
+    const { userId } = action;
+    try {
+        const { data, status } = yield call(() => userService.deleteUser(userId));
+        if (status === STATUS_CODE.SUCCESS) {
+            notificationFunction('success', messageDeleteUserSuccess);
+        }
+        // load lại list user
+        yield put({
+            type: GET_USER_SAGA,
+            keyWord: ''
+        })
+    } catch (err) {
+        console.log(err);
+        console.log(err.response?.data);
+        notificationFunction('error', err.response?.data.message || err.response?.data);
+        if (err.response?.status === STATUS_CODE.UNAUTHORIZED) {
+            history.push('/login')
+        }
+    }
+}
+
+export function* theoDoiDeleteUserSaga() {
+    yield takeLatest(DELETE_USER_SAGA, deleteUserSaga)
 }

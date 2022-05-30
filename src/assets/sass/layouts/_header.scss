@@ -1,0 +1,21 @@
+.header-home {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+        height: 100%;
+        overflow: visible;
+        margin: 0;
+        padding: 0;
+        background-color: transparent;
+        box-sizing: border-box;
+        border: none;
+
+        img {
+            border-radius: 50%;
+            height: 100%;
+        }
+    }
+}

@@ -13,3 +13,7 @@ export const GET_USER_BY_PROJECT_ID = 'GET_USER_BY_PROJECT_ID';
 export const GET_USER_SAGA = 'GET_USER_SAGA';
 export const GET_USER_SEARCH = 'GET_USER_SEARCH';
 
+export const EDIT_USER = 'EDIT_USER';
+export const UPDATE_USER_SAGA = 'UPDATE_USER_SAGA';
+
+export const DELETE_USER_SAGA = 'DELETE_USER_SAGA';

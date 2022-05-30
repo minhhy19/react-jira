@@ -30,9 +30,9 @@ function ProjectManagerAdd(props) {
         setFieldValue('description', content);
     }
     return (
-        <div className='container m-5'>
+        <div className='container-fluid'>
             <h3 className='mb-3'>Create Project</h3>
-            <form className='container' onSubmit={handleSubmit} onChange={handleChange}>
+            <form onSubmit={handleSubmit} onChange={handleChange}>
                 <div className='form-group'>
                     <p>Name</p>
                     <input type="text" className='form-control' name='projectName' />

@@ -16,6 +16,8 @@ export function* rootSaga() {
     UserSaga.theoDoiSignin(),
     UserSaga.theoDoiGetUserSaga(),
     UserSaga.theoDoiGetUserByProjectIdSaga(),
+    UserSaga.theoDoiUpdateUserSaga(),
+    UserSaga.theoDoiDeleteUserSaga(),
     
     ProjectCategorySaga.theoDoiGetAllProjectCategory(),
 

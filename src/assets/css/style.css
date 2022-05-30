@@ -642,6 +642,33 @@ strong {
   color: #57a55a;
 }
 
+.header-home {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.header-home button {
+  height: 100%;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: none;
+}
+
+.header-home button img {
+  border-radius: 50%;
+  height: 100%;
+}
+
 .main {
   padding-left: 2%;
   width: 100%;

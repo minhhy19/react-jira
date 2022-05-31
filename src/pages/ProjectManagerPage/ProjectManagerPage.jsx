@@ -127,7 +127,7 @@ export default function ProjectManagerPage(props) {
                 return <div>
                     {record.members?.slice(0, 3).map((member, index) => {
                         return (
-                            <Popover key={index} placement="top" title={'Member'} content={() => {
+                            <Popover key={member.userId} placement="top" title={'Member'} content={() => {
                                 return <table className='table'>
                                     <thead>
                                         <tr>
@@ -139,7 +139,7 @@ export default function ProjectManagerPage(props) {
                                     </thead>
                                     <tbody>
                                         {record.members?.map((item, index) => {
-                                            return <tr key={index}>
+                                            return <tr key={item.userId}>
                                                 <td>{item.userId}</td>
                                                 <td><img src={item.avatar} width="30" height="30" style={{ borderRadius: '15px' }} /></td>
                                                 <td>{item.name}</td>
@@ -159,7 +159,7 @@ export default function ProjectManagerPage(props) {
                                     </tbody>
                                 </table>
                             }}>
-                                <Avatar key={index} src={member.avatar} />
+                                <Avatar key={member.userId} src={member.avatar} />
                             </Popover>
                         )
                     })}

@@ -1,3 +1,4 @@
+import { Avatar } from 'antd';
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
@@ -9,7 +10,7 @@ export default function ContentMain(props) {
     const dispatch = useDispatch();
 
     const handleDragEnd = (result) => {
-        console.log(result);
+        // console.log(result);
         let {projectId, taskId} = JSON.parse( result.draggableId ); //Lấy ra chuỗi sau mỗi lần draggable
 
         console.log({projectId,taskId} )
@@ -53,8 +54,8 @@ export default function ContentMain(props) {
     const renderCardTaskList = () => {
         return <DragDropContext onDragEnd={handleDragEnd}>
             {
-                projectDetail.lstTask?.map((taskListDetail, index) => {
-                    return <Droppable key={index} droppableId={taskListDetail.statusId.toString()}>
+                projectDetail.lstTask?.map((taskListDetail) => {
+                    return <Droppable key={taskListDetail.statusId} droppableId={taskListDetail.statusId.toString()}>
                         {(provided) => {
                             return <div
                                 className="card pb-2" style={{ width: '24.5%', height: 'auto' }} >
@@ -63,7 +64,7 @@ export default function ContentMain(props) {
                                 </div>
                                 <div ref={provided.innerRef}
                                     {...provided.droppableProps}
-                                    key={index}
+                                    key={taskListDetail.statusId}
                                     className="list-group list-group-flush" style={{ height: '100%' }}>
                                     {taskListDetail.lstTaskDeTail.map((task, index) => {
                                         return <Draggable key={task.taskId.toString()} index={index} draggableId={JSON.stringify({ projectId: task.projectId, taskId: task.taskId })}>
@@ -72,7 +73,7 @@ export default function ContentMain(props) {
                                                     ref={provided.innerRef}
                                                     {...provided.draggableProps}
                                                     {...provided.dragHandleProps}
-                                                    key={index} className="list-group-item"
+                                                    key={task.taskId} className="list-group-item"
                                                     data-toggle="modal"
                                                     data-target="#infoModal"
                                                     onClick={() => {
@@ -89,11 +90,12 @@ export default function ContentMain(props) {
                                                         </div>
                                                         <div className="block-right">
                                                             <div className="avatar-group" style={{ display: 'flex' }}>
-                                                                {task.assigness.map((mem, index) => {
-                                                                    return <div className="avatar" key={index}>
+                                                                {task.assigness?.slice(0, 7).map((mem) => {
+                                                                    return <div className="avatar" key={mem.id}>
                                                                         <img src={mem.avatar} alt={mem.avatar} />
                                                                     </div>
                                                                 })}
+                                                                {task.assigness?.length > 7 ?  <div className='avatar'><Avatar>...</Avatar></div> : ''}
                                                             </div>
                                                         </div>
                                                     </div>

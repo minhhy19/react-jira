@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Dropdown, Layout, Menu } from 'antd';
 import { useSelector } from 'react-redux';
 import { ACCESS_TOKEN, history, USER_LOGIN } from '../../../../util/constants/settingSystem';
-import { HomeOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
+import { HomeOutlined, UsergroupAddOutlined, LogoutOutlined } from "@ant-design/icons";
 const { Header } = Layout;
 
 const handleLogOut = () => {
@@ -20,8 +20,9 @@ const menu = (
                 icon: <HomeOutlined />,
             },
             {
-                label: 'Profile',
-                icon: <UserOutlined />,
+                label: 'User management',
+                onClick: () => history.push('/user'),
+                icon: <UsergroupAddOutlined />,
             },
             {
                 label: 'Logout',
@@ -47,18 +48,16 @@ export default function HeaderJira() {
                 arrow={{
                     pointAtCenter: true,
                 }}
-            >
-                <button aria-label='Account' aria-haspopup='true'>
-                    {userLogin?.avatar ? (
-                    <img
-                        src={userLogin.avatar}
-                        alt={userLogin.avatar}
-                        aria-hidden='true'
-                    />
-                    ) : (''
-                    // <AccountSVG className='w-8 h-8' />
-                    )}
-                </button>
+            >   
+                {userLogin?.avatar ? (
+                    <button aria-label='Account' aria-haspopup='true'>
+                        <img
+                            src={userLogin.avatar}
+                            alt={userLogin.avatar}
+                            aria-hidden='true'
+                        />
+                    </button>
+                ) : (<></>)}
             </Dropdown>
         </Header>
     )

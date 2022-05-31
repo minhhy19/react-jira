@@ -163,8 +163,8 @@ export default function ModalJira(props) {
                         <div className="task-title">
                             {taskDetailModal.typeId === 1 ? <i className="fas fa-exclamation-circle"></i> : <i className="fas fa-check-square"></i>}
                             <select name="typeId" value={taskDetailModal.typeId} onChange={handleChange}>
-                                {arrTaskType.map((tp, index) => {
-                                    return <option key={index} value={tp.id}>{tp.taskType}</option>
+                                {arrTaskType.map((tp) => {
+                                    return <option key={tp.id} value={tp.id}>{tp.taskType}</option>
                                 })}
                             </select>
 

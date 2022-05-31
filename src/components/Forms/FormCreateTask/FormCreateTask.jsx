@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
-import { Select, Radio, Slider } from 'antd';
+import { Select, Slider } from 'antd';
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
 import { useSelector, useDispatch, connect } from 'react-redux'
@@ -205,13 +205,9 @@ const formCreateTask = withFormik({
     enableReinitialize: true,
     mapPropsToValues: (props) => {
         const { arrProject, arrTaskType, arrPriority, arrStatus } = props;
-
-
         // if(arrProject?.length > 0){
         //     props.dispatch({type: GET_USER_BY_PROJECT_ID_SAGA, idProject: arrProject[0]?.id});
         // }
-
-
         return {
             taskName: '',
             description: '',

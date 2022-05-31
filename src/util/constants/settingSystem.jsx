@@ -2,8 +2,8 @@ import { createBrowserHistory } from 'history';
 
 export const history = createBrowserHistory();
 
-// export const DOMAIN = 'https://jiranew.cybersoft.edu.vn/api';
-export const DOMAIN = 'http://localhost:5500';
+export const DOMAIN = 'https://jiranew.cybersoft.edu.vn/api';
+// export const DOMAIN = 'http://localhost:5500';
 // export const DOMAIN = 'https://jira-nodejs-app.herokuapp.com';
 export const ACCESS_TOKEN = 'Authorization';
 export const USER_LOGIN = 'USER_LOGIN';

@@ -61,8 +61,8 @@ function ProjectManagerAdd(props) {
                 </div>
                 <div className='form-group'>
                     <select name="categoryId" className='form-control' onChange={handleChange}>
-                        {arrProjectCategory.map((item, index) => {
-                            return <option value={item.id} key={index}>{item.projectCategoryName}</option>
+                        {arrProjectCategory.map((item) => {
+                            return <option value={item.id} key={item.id}>{item.projectCategoryName}</option>
                         })}
                     </select>
                 </div>

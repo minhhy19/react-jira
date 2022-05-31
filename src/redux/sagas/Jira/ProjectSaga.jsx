@@ -230,7 +230,6 @@ function* getAllProjectSaga(action) {
     yield put({
         type: HIDE_LOADING
     })
-
 }
 
 export function* theoDoiGetAllProjectSaga() {

@@ -78,6 +78,7 @@ function FormCreateTask(props) {
             <div className="form-group">
                 <p>Task name</p>
                 <input name="taskName" className="form-control" onChange={handleChange}/>
+                <div className='text-danger'>{errors.taskName}</div>
             </div>
             <div className="form-group">
                 <p>Status</p>
@@ -170,8 +171,6 @@ function FormCreateTask(props) {
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
             <div className="form-group">
@@ -222,8 +221,7 @@ const formCreateTask = withFormik({
         }
     },
     validationSchema: Yup.object().shape({
-
-
+        taskName: Yup.string().required('Task name is required'),
     }),
     handleSubmit: (values, { props, setSubmitting }) => {
         props.dispatch({type: CREATE_TASK_SAGA, taskObject: values});

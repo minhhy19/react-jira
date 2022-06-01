@@ -45,6 +45,7 @@ function FormEditProject(props) {
                     <div className='form-group'>
                         <p className='font-weight-bold'>Project name</p>
                         <input value={values.projectName} onChange={handleChange} type="text" className='form-control' name='projectName' />
+                        <div className='text-danger'>{errors.projectName}</div>
                     </div>
                 </div>
                 <div className='col-4'>
@@ -103,7 +104,7 @@ const editProjectForm = withFormik({
         }
     },
     validationSchema: Yup.object().shape({
-
+        projectName: Yup.string().required('Project name is required'),
     }),
     handleSubmit: (values, { props, setSubmitting }) => {
         // Khi ng dùng bấm submit => đưa dữ liệu ng dùng từ backend thông qua API

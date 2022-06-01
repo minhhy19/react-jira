@@ -3,7 +3,6 @@ import {BrowserRouter, Switch, Router} from "react-router-dom";
 import {UserLoginTemplate} from "./templates/UserLoginTemplate/UserLoginTemplate";
 import Loading from "./components/Loading/Loading";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
-import Home from "./pages/Home/Home";
 import { HomeTemplate } from "./templates/HomeTemplate/HomeTemplate";
 import DrawerJira from "./HOC/DrawerJira";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -27,6 +26,7 @@ function App() {
                 <HomeTemplate exact path='/project/detail/:projectId' Component={ProjectManagerDetail} />
                 <HomeTemplate exact path='/user' Component={UserManagerPage} />
                 <HomeTemplate exact path="/" Component={ProjectManagerPage} />
+                <PageNotFound exact path='*' />
             </Switch>
         </>
     );

@@ -36,6 +36,7 @@ function ProjectManagerAdd(props) {
                 <div className='form-group'>
                     <p>Name</p>
                     <input type="text" className='form-control' name='projectName' />
+                    <div className='text-danger'>{errors.projectName}</div>
                 </div>
                 <div className='form-group'>
                     <p>Description</p>
@@ -83,7 +84,7 @@ const ProjectManagerAddForm = withFormik({
         }
     },
     validationSchema: Yup.object().shape({
-
+        projectName: Yup.string().required('Project name is required'),
     }),
     handleSubmit: (values, { props, setSubmitting }) => {
         // console.log(values);

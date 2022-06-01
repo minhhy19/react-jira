@@ -12,6 +12,7 @@ import { GET_USER_BY_PROJECT_ID_SAGA } from '../../../redux/constants/Jira/UserC
 import { CREATE_TASK_SAGA } from '../../../redux/constants/Jira/TaskConstants';
 import { SET_SUBMIT_CREATE_TASK } from '../../../redux/constants/DrawerConstant';
 
+const { Option } = Select;
 
 function FormCreateTask(props) {
     const dispatch = useDispatch();
@@ -77,7 +78,7 @@ function FormCreateTask(props) {
             </div>
             <div className="form-group">
                 <p>Task name</p>
-                <input name="taskName" className="form-control" onChange={handleChange}/>
+                <input name="taskName" className="form-control" onChange={handleChange} />
                 <div className='text-danger'>{errors.taskName}</div>
             </div>
             <div className="form-group">
@@ -92,13 +93,44 @@ function FormCreateTask(props) {
                 <div className="row">
                     <div className="col-6">
                         <p>Priority</p>
-                        <select name="priorityId" className="form-control">
+                        {/* <select name="priorityId" className="form-control">
                             {arrPriority.map((priority) => {
                                 return <option key={priority.priorityId} value={priority.priorityId}>
                                     {priority.priority}
                                 </option>
                             })}
-                        </select>
+                        </select> */}
+                        <Select
+                            name="priorityId"
+                            defaultValue={arrPriority[0]?.priorityId}
+                            style={{ width: '100%' }}
+                            onChange={(value) => {
+                                setFieldValue('priorityId', value);
+                            }}>
+                            {arrPriority.map((item) => {
+                                let priorityIcon;
+                                switch (item.priorityId) {
+                                    case 1: {
+                                        priorityIcon = <i className="fa fa-arrow-up fa-arrow-up--high mr-2" />
+                                        break;
+                                    }
+                                    case 2: {
+                                        priorityIcon = <i className="fa fa-arrow-up fa-arrow-up--medium mr-2" />
+                                        break;
+                                    }
+                                    case 3: {
+                                        priorityIcon = <i className="fa fa-arrow-down fa-arrow-down--low mr-2" />
+                                        break;
+                                    }
+                                    case 4: {
+                                        priorityIcon = <i className="fa fa-arrow-down fa-arrow-down--lowest mr-2" />
+                                        break;
+                                    }
+                                    default: priorityIcon = '';
+                                }
+                                return <Option key={item.priorityId} value={item.priorityId} >{priorityIcon}{item.priority}</Option>
+                            })}
+                        </Select>
                     </div>
                     <div className="col-6">
                         <p>Task type</p>
@@ -155,7 +187,7 @@ function FormCreateTask(props) {
                                         timeTrackingSpent: e.target.value
                                     });
 
-                                    setFieldValue('timeTrackingSpent',e.target.value);
+                                    setFieldValue('timeTrackingSpent', e.target.value);
                                 }} />
                             </div>
 
@@ -166,7 +198,7 @@ function FormCreateTask(props) {
                                         ...timeTracking,
                                         timeTrackingRemaining: e.target.value
                                     });
-                                    setFieldValue('timeTrackingRemaining',e.target.value);
+                                    setFieldValue('timeTrackingRemaining', e.target.value);
                                 }} />
                             </div>
                         </div>
@@ -192,7 +224,7 @@ function FormCreateTask(props) {
                             bullist numlist outdent indent | removeformat | help'
                     }}
                     onEditorChange={(content, editor) => {
-                        setFieldValue('description',content);
+                        setFieldValue('description', content);
                     }}
                 />
             </div>
@@ -224,7 +256,7 @@ const formCreateTask = withFormik({
         taskName: Yup.string().required('Task name is required'),
     }),
     handleSubmit: (values, { props, setSubmitting }) => {
-        props.dispatch({type: CREATE_TASK_SAGA, taskObject: values});
+        props.dispatch({ type: CREATE_TASK_SAGA, taskObject: values });
         // console.log('taskobject', values)
     },
     displayName: 'createTaskForm',

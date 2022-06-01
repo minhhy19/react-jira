@@ -25,10 +25,12 @@ function* createTaskSaga(action) {
         //Gọi api thành công thì dispatch lên reducer thông qua put
         if (status === STATUS_CODE.SUCCESS && data.statusCode === STATUS_CODE.SUCCESS) {
             console.log(data)
-            yield put({
-                type: GET_PROJECT_DETAIL_SAGA,
-                projectId: taskObject.projectId
-            })
+            if (history.location.pathname === `/project/detail/${taskObject.projectId}`) {
+                yield put({
+                    type: GET_PROJECT_DETAIL_SAGA,
+                    projectId: taskObject.projectId
+                })
+            }
             notificationFunction('success', messageCreateTaskSuccess);
         } else {
             notificationFunction('error', data.message);

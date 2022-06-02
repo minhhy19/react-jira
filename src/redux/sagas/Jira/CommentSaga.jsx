@@ -13,7 +13,6 @@ const {
 
 function* insertCommentSaga(action) {
     try {
-        console.log(action)
         const { data, status } = yield call(() => commentService.insertComment(action.newComment))
         if (status === STATUS_CODE.SUCCESS) {
             yield put({

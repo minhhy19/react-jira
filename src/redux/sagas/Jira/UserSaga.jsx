@@ -55,7 +55,6 @@ export function* theoDoiSignUpSaga() {
 }
 
 function* signinSaga(action) {
-    console.log(action);
     yield put({
         type: DISPLAY_LOADING
     })

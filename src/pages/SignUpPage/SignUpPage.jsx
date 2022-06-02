@@ -61,7 +61,6 @@ const SignUpWithFormik = withFormik({
         passWord: Yup.string().min(6, 'Password must have min 6 characters').max(32, 'Password have max 32 characters')
     }),
     handleSubmit: (values, { props, setSubmitting }) => {
-        console.log(values);
         props.dispatch(signupAction(values));
     },
 

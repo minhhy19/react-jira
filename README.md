@@ -1,3 +1,3 @@
 # Project Jira
-Email: hy@gmail.com pass:123456
+Email: hy@gmail.com password: 123456
 Link: https://react-jira-app.netlify.app/

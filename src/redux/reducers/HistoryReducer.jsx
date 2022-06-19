@@ -1,5 +1,5 @@
 const historyState = {
-    history: {}
+	history: {}
 };
 
 export const HistoryReducer = (state = historyState, action) => {
@@ -10,4 +10,4 @@ export const HistoryReducer = (state = historyState, action) => {
         }
         default: return {...state}
     }
-}
+};

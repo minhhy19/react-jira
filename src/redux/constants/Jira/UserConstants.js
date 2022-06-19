@@ -5,7 +5,7 @@ export const USER_SIGNUP_API = 'USER_SIGNUP_API';
  * Login
  */
 
-export const USLOGIN = 'USLOGIN'
+export const USLOGIN = 'USLOGIN';
 
 export const GET_USER_BY_PROJECT_ID_SAGA = 'GET_USER_BY_PROJECT_ID_SAGA';
 export const GET_USER_BY_PROJECT_ID = 'GET_USER_BY_PROJECT_ID';

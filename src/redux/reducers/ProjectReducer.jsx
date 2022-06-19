@@ -1,6 +1,5 @@
 import { EDIT_PROJECT, GET_ALL_PROJECT, GET_PROJECT_DETAIL } from "../constants/Jira/ProjectConstants";
 
-
 const initialState = {
     projectEdit: {
         id: 0,

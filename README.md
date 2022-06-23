@@ -1,5 +1,5 @@
 # Project Jira
-Email: hy@gmail.com password: 123456
+Email: hy@gmail.com password: 123456 <br/>
 Link: https://react-jira-app.netlify.app/
 
 ### Đổi link API

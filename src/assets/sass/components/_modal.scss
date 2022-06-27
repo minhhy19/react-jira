@@ -80,12 +80,16 @@
 
         .issue {
             font-size: 20px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .description {
             p:first-child {
                 margin: 20px 0px 6px;
+            }
+
+            img {
+                max-width: 100%;
             }
         }
 

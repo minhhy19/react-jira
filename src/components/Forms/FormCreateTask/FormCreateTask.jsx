@@ -63,13 +63,13 @@ function FormCreateTask(props) {
                 <p>Project</p>
                 <select className='form-control' name='projectId' onChange={(e) => {
                     // dispatch giá trị làm thay đổi arrUser
-                    let { value } = e.target;
+                    const { value } = e.target;
                     dispatch({
                         type: GET_USER_BY_PROJECT_ID_SAGA,
                         idProject: value
                     })
                     //Cập nhật giá trị cho project Id
-                    setFieldValue('projectId', e.target.value);
+                    setFieldValue('projectId', value);
                 }}>
                     {arrProject.map((project) => {
                         return <option value={project.id} key={project.id}>{project.projectName}</option>
@@ -83,7 +83,11 @@ function FormCreateTask(props) {
             </div>
             <div className="form-group">
                 <p>Status</p>
-                <select name="statusId" className="form-control">
+                <select name="statusId" className="form-control" onChange={(e) => {
+                    const { value } = e.target;
+                    //Cập nhật giá trị cho statusID
+                    setFieldValue('statusId', value);
+                }}>
                     {arrStatus.map((statusItem) => {
                         return <option key={statusItem.statusId} value={statusItem.statusId}>{statusItem.statusName}</option>
                     })}
@@ -134,7 +138,11 @@ function FormCreateTask(props) {
                     </div>
                     <div className="col-6">
                         <p>Task type</p>
-                        <select className="form-control" name="typeId">
+                        <select className="form-control" name="typeId" onChange={(e) => {
+                            const { value } = e.target;
+                            //Cập nhật giá trị cho typeId
+                            setFieldValue('typeId', value);
+                        }}>
                             {arrTaskType.map((taskType) => {
                                 return <option key={taskType.id} value={taskType.id}>{taskType.taskType}</option>
                             })}

@@ -306,11 +306,15 @@ strong {
 
 .modal-info .modal-body .issue {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .modal-info .modal-body .description p:first-child {
   margin: 20px 0px 6px;
+}
+
+.modal-info .modal-body .description img {
+  max-width: 100%;
 }
 
 .modal-info .modal-body .comment .block-comment {

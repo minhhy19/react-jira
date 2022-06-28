@@ -34,7 +34,7 @@ const menu = (
 );
 
 export default function HeaderJira() {
-    const { userLogin } = useSelector(state => state.UserReducer)
+    const { userLogin } = useSelector(state => state.UserReducer);
     return (
         <Header
             style={{

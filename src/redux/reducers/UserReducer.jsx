@@ -22,7 +22,6 @@ export const UserReducer = (state = stateDefault, action) => {
         }
         case GET_USER_SEARCH: {
             state.userSearch = action.lstUserSearch;
-            // console.log('stateUser', state);
             return {...state}
         }
         case GET_USER_BY_PROJECT_ID: {
@@ -30,7 +29,6 @@ export const UserReducer = (state = stateDefault, action) => {
         }
         case EDIT_USER: {
             state.userEdit = action.userEditModel;
-            // console.log("actionProject", action.projectEditModel)
             return {...state}
         }
         default: return {...state};

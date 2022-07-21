@@ -70,7 +70,6 @@ const formCreateUser = withFormik({
     }),
     handleSubmit: (values, { props, setSubmitting }) => {
         props.dispatch({type: USER_SIGNUP_API, userSignUp: values});
-        // console.log('userobject', values)
     },
     displayName: 'createUserForm',
 })(FormCreateUser);

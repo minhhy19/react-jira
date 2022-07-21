@@ -18,7 +18,6 @@ export const ProjectReducer = (state = initialState, action) => {
     switch (action.type) {
         case EDIT_PROJECT: {
             state.projectEdit = action.projectEditModel;
-            // console.log("actionProject", action.projectEditModel)
             return {...state}
         }
         case GET_PROJECT_DETAIL: {

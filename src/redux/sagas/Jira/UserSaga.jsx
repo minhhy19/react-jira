@@ -114,11 +114,9 @@ export function* theoDoiGetUserSaga() {
 
 function* getUserByProjectIdSaga(action) {
     const { idProject } = action;
-    // console.log('action',idProject)
 
     try {
         const { data, status } = yield call(() => userService.getUserByProjectId(idProject));
-        // console.log('checkdata',data);
 
         if (status === STATUS_CODE.SUCCESS) {
             yield put({
@@ -153,11 +151,9 @@ function* updateUserSaga(action) {
         type: DISPLAY_LOADING
     })
     const { userEdit } = action;
-    // console.log('action',idProject)
 
     try {
         const { data, status } = yield call(() => userService.editUser(userEdit));
-        // console.log('checkdata',data);
 
         if (status === STATUS_CODE.SUCCESS) {
             notificationFunction('success', messageUpdateUserSuccess);

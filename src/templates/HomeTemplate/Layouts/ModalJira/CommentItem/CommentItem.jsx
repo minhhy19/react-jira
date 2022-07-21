@@ -69,7 +69,6 @@ export default function CommentItem(props) {
                                             commentId: comment.id,
                                             taskId: taskDetailModal.taskId
                                         })
-                                        // console.log('comment', comment);
                                     }}
                                     okText="Yes"
                                     cancelText="No"

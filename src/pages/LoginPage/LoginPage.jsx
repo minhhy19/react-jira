@@ -59,9 +59,6 @@ const LoginJiraWithFormik = withFormik({
   }),
   handleSubmit: ({ email, passWord }, { props, setSubmitting }) => {
     props.dispatch(signinAction(email, passWord));
-    // console.log(props)
-    // console.log(values);
-
   },
 
   displayName: 'Login',

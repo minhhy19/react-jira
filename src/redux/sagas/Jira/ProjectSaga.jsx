@@ -62,7 +62,6 @@ export function* theoDoiRemoveUserProjectSaga() {
 }
 
 function* createProjectSaga(action) {
-    // console.log('createProjectAction', action)
     // hiển thị loading
     yield put({
         type: DISPLAY_LOADING
@@ -95,7 +94,6 @@ export function* theoDoiCreateProjectSaga() {
 
 // Saga dùng để update project
 function* updateProjectSaga(action) {
-    // console.log('actionupdateProjectSaga', action)
     // hiển thị loading
     yield put({
         type: DISPLAY_LOADING
@@ -134,7 +132,6 @@ export function* theoDoiUpdateProjectSaga() {
 
 // Saga dùng để delete project
 function* deleteProjectSaga(action) {
-    // console.log('actionupdateProjectSaga', action)
     // hiển thị loading
     yield put({
         type: DISPLAY_LOADING

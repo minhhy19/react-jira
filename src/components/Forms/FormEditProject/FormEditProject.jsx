@@ -94,7 +94,6 @@ function FormEditProject(props) {
 const editProjectForm = withFormik({
     enableReinitialize: true,
     mapPropsToValues: (props) => {
-        // console.log('propvalue', props)
         const { projectEdit } = props;
         return {
             id: projectEdit?.id,

@@ -166,7 +166,6 @@ function FormCreateTask(props) {
                                 setFieldValue('listUserAsign', values);
                             }}
                             onSelect={(value) => {
-                                // console.log(value)
                             }}
                             style={{ width: '100%' }}
                         ></Select>
@@ -265,7 +264,6 @@ const formCreateTask = withFormik({
     }),
     handleSubmit: (values, { props, setSubmitting }) => {
         props.dispatch({ type: CREATE_TASK_SAGA, taskObject: values });
-        // console.log('taskobject', values)
     },
     displayName: 'createTaskForm',
 })(FormCreateTask);

@@ -76,7 +76,6 @@ const formEditUser = withFormik({
     }),
     handleSubmit: (values, { props, setSubmitting }) => {
         props.dispatch({type: UPDATE_USER_SAGA, userEdit: values});
-        // console.log('userobject', values)
     },
     displayName: 'editUserForm',
 })(FormEditUser);

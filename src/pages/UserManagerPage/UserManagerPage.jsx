@@ -33,7 +33,6 @@ export default function UserManagerPage(props) {
     });
 
     const handleChange = (pagination, filters, sorter) => {
-        // console.log('Various parameters', pagination, filters, sorter);
         setState({
             filteredInfo: filters,
             sortedInfo: sorter,
@@ -146,7 +145,6 @@ export default function UserManagerPage(props) {
                     <Popconfirm
                         title="Are you sure to delete this user?"
                         onConfirm={() => {
-                            // console.log(record);
                             dispatch({
                                 type: DELETE_USER_SAGA, userId: record.userId
                             })

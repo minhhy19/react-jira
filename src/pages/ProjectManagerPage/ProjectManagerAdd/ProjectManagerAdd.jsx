@@ -76,7 +76,6 @@ function ProjectManagerAdd(props) {
 const ProjectManagerAddForm = withFormik({
     enableReinitialize: true,
     mapPropsToValues: (props) => {
-        // console.log('propvalue', props)
         return {
             projectName: '',
             description: '',
@@ -87,8 +86,6 @@ const ProjectManagerAddForm = withFormik({
         projectName: Yup.string().required('Project name is required'),
     }),
     handleSubmit: (values, { props, setSubmitting }) => {
-        // console.log(values);
-        // console.log('props', props);
         props.dispatch({
             type: CREATE_PROJECT_SAGA,
             newProject: values

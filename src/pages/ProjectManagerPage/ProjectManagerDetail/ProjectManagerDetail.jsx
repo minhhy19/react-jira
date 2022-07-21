@@ -6,10 +6,8 @@ import InfoMain from './Layouts/InfoMain/InfoMain'
 import { GET_PROJECT_DETAIL_SAGA } from '../../../redux/constants/Jira/ProjectConstants'
 
 export default function ProjectManagerDetail(props) {
-  // console.log(props.match.params.projectId);
   let { projectDetail } = useSelector(state => state.ProjectReducer)
   const dispatch = useDispatch();
-  // console.log('projectDetail', projectDetail);
 
   useEffect(() => {
     // Khi ng dùng link qua trang này bằng thẻ navlink hoặc ng dùng tự gọ url thì ta sẽ lấy tham số từ url => gọi saga

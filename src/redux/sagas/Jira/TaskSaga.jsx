@@ -151,7 +151,6 @@ export function* handleChangePostApi(action) {
     // Save qua api updateTaskSaga
     // Lây dữ liệu từ state.taskDetailModal 
     let { taskDetailModal } = yield select(state => state.TaskReducer);
-    // console.log('taskDetailModal sau khi thay đổi', taskDetailModal)
     // Biến đổi dữ liệu state.taskDetailModal thành dữ liệu api cần
 
     const listUserAsign = taskDetailModal.assigness?.map((user, index) => {

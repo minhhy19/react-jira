@@ -10,10 +10,8 @@ export default function ContentMain(props) {
     const dispatch = useDispatch();
 
     const handleDragEnd = (result) => {
-        // console.log(result);
         let {projectId, taskId} = JSON.parse( result.draggableId ); //Lấy ra chuỗi sau mỗi lần draggable
 
-        // console.log({projectId,taskId} )
         let { source, destination } = result;
         if (!result.destination) {
             return;

@@ -77,7 +77,7 @@ export default function ProjectManagerPage(props) {
             dataIndex: 'projectName',
             key: 'projectName',
             render: (text, record, index) => {
-                return <NavLink to={`/project/detail/${record.id}`}>{text}</NavLink>
+                return <NavLink className="btn btn-outline-primary btn-sm" to={`/project/detail/${record.id}`}>{text}</NavLink>
             },
             sorter: (item2, item1) => {
                 let projectName1 = item1.projectName?.trim().toLowerCase();

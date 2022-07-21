@@ -45,7 +45,7 @@ function FormCreateUser(props) {
             </div>
             <div className="form-group">
                 <p>Phone Number</p>
-                <input type='number' name="phoneNumber" className="form-control" onChange={handleChange}/>
+                <input name="phoneNumber" className="form-control" onChange={handleChange}/>
                 <div className='text-danger'>{errors.phoneNumber}</div>
             </div>
         </form>
@@ -64,7 +64,7 @@ const formCreateUser = withFormik({
     },
     validationSchema: Yup.object().shape({
         name: Yup.string().required('Name is required').min(3, 'Name must have min 3 characters').max(30, 'Name have max 30 characters'),
-        phoneNumber: Yup.number().required('Phone number is required'),
+        phoneNumber: Yup.string().matches(/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/, 'Phone number is not valid, eg: 0344578008').required('Phone number is required'),
         email: Yup.string().required('Email is required').email('Email is invalid!'),
         passWord: Yup.string().min(6, 'Password must have min 6 characters').max(32, 'Password have max 32 characters')
     }),

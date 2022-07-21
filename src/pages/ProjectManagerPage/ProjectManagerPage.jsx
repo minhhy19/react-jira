@@ -208,7 +208,7 @@ export default function ProjectManagerPage(props) {
             key: 'action',
             render: (text, record, index) => (
                 <div>
-                    <button className='btn mr-2 btn-primary' onClick={() => {
+                    <button className='btn mr-2 btn-outline-primary' onClick={() => {
                         const action = {
                             type: OPEN_FORM_EDIT_PROJECT,
                             title: 'Edit Project',
@@ -236,7 +236,7 @@ export default function ProjectManagerPage(props) {
                         okText="Yes"
                         cancelText="No"
                     >
-                        <button className='btn btn-danger' >
+                        <button className='btn btn-outline-danger' >
                             <DeleteOutlined style={{ fontSize: 17 }} />
                         </button>
                     </Popconfirm>

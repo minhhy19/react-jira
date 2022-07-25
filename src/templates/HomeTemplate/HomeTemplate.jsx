@@ -41,7 +41,7 @@ export const HomeTemplate = (props) => {
                 return <>
                     <div className="jira">
                         <SidebarJira />
-                        <MenuJira />
+                        {/* <MenuJira /> */}
                         <Layout className='ant-layout--background'>
                             <HeaderJira />
                             <Component {...propsRoute} />

@@ -1,8 +1,12 @@
 import React from 'react'
 import ReactHtmlParser from "react-html-parser";
+import { useDispatch } from 'react-redux';
+import FormCreateTask from '../../../../../components/Forms/FormCreateTask/FormCreateTask';
+import { OPEN_FORM_CREATE_TASK } from '../../../../../redux/constants/DrawerConstant';
 
 
 export default function InfoMain(props) {
+    const dispatch = useDispatch();
     const {projectDetail} = props;
 
     const renderAvatar = () => {
@@ -27,8 +31,15 @@ export default function InfoMain(props) {
                 <div className="avatar-group" style={{ display: 'flex' }}>
                     {renderAvatar()}
                 </div>
-                <div className="text">Only My Issues</div>
-                <div className="text">Recently Updated</div>
+                <div className='w-100 d-flex justify-content-end'>
+                    <button className='btn btn-outline-primary' onClick={() => {
+                        dispatch({
+                            type: OPEN_FORM_CREATE_TASK,
+                            Component: <FormCreateTask />,
+                            title: 'Create task'
+                        })
+                    }}>Create task</button>
+                </div>
             </div>
         </>
     )

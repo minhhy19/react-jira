@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 export default function MenuJira() {
     const { userLogin } = useSelector(state => state.UserReducer);
     return (
-        <div className="menu">
+        <div className="menu"  style={{ backgroundColor: '#f4f5f7' }}>
             <div className="account">
                 <div className="avatar">
                     {userLogin?.avatar ?

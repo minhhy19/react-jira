@@ -111,14 +111,19 @@ strong {
 }
 
 .jira {
-  height: 100%;
+  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  overflow: hidden;
 }
 
 .jira .ant-layout--background {
   background-color: #fff;
+}
+
+.jira .scroll-jira {
+  overflow: auto;
 }
 
 /* Menu */
